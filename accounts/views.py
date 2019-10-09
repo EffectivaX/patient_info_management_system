@@ -2,11 +2,6 @@ from django.shortcuts import render
 from django.contrib.auth import login, get_user_model, logout
 
 from django.http import HttpResponseRedirect
-from django.views.generic import TemplateView
-# Create your views here.
-
-class HomePageView(TemplateView):
-    template_name = 'home.html'
 
 from .forms import UserCreationForm, UserLoginForm
 
@@ -27,7 +22,11 @@ def login_view(request, *args, **kwargs):
         user_obj = form.cleaned_data.get('user_obj')
         login(request, user_obj)
         return HttpResponseRedirect('/')
-    return render(request, 'accounts/login.html', {'form' : form})
+    context = {
+        'form' : form
+    }
+        
+    return render(request, 'accounts/login.html', context)
 
 
 def logout_view(request):

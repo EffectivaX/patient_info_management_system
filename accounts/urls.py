@@ -1,8 +1,9 @@
-# accounts/urls.py
+# users/urls.py
 from django.urls import path
-
-from .views import HomePageView
+from .forms import UserCreationForm
+from .views import register, login_view, logout_view
 
 urlpatterns = [
-    path('', HomePageView.as_view(), name='home'),
+    path('register/', register, name='register'),
+    path('login/', login_view, name='login'),
 ]

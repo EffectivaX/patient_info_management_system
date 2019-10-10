@@ -52,7 +52,26 @@ class MyUser(AbstractBaseUser):
 
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
+    
     objects = MyUserManager()
 
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email']            
+    REQUIRED_FIELDS = ['email']  
+
+
+    def __str__(self):
+        return self.email
+
+    def get_short_name(self):
+        # The user is identified by their email address
+        return self.email    
+
+    def has_perm(self, perm, obj=None):
+        "Does the user have a specific permission?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    def has_module_perms(self, app_label):
+        "Does the user have permissions to view the app 'app_label'"
+        # Simplest possible answer: Yes, always
+        return True              

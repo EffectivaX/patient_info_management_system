@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     #'management',
     'accounts',
     'pages',
+    'patients',
     
     'django.contrib.admin',
     'django.contrib.auth',
@@ -94,6 +95,15 @@ DATABASES = {
         'HOST' : 'localhost',
         'PORT' : ''
         
+    },
+
+    'users': {
+        'NAME': 'patient_information_management_system',
+        'ENGINE': 'django.db.backends.postgresql',
+        'USER': 'xeroxzen',
+        'PASSWORD': '2020',
+        'HOST' : 'localhost',
+        'PORT' : ''
     }
 }
 
@@ -136,3 +146,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+LOGIN_REDIRECT_URL = '/'

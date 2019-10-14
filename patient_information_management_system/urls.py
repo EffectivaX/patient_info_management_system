@@ -22,22 +22,10 @@ from accounts.views import register, login_view, logout_view
 urlpatterns = [
     path('', include('pages.urls')),
     path('', include('accounts.urls')),
-	# path('accounts/', include('users.urls')),
+    path('', include('patients.urls')),
+    path('patients/', include('patients.urls')),
+    path('accounts/', include('accounts.urls')),
+    path('pages/', include('pages.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls)
-   
 ]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

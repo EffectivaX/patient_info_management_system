@@ -1,5 +1,5 @@
-<form method="POST" action='.'>
+<form method="POST" action='.' class='form-control'>
     {% csrf_token %}
     {{ form.as_p }}
-    <input type='submit' name='Submit'>
+    <input class="btn waves-effect blue lighten-3 hoverable" type='submit' name='Submit'>
 </form>

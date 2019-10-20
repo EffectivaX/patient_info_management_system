@@ -1,0 +1,27 @@
+{% load crispy_forms_tags %}
+
+<!-- Container for the Header -->
+	<div class="container">
+		<div class="row">
+    		<h4 class="left light-blue-text lighten-1">Patient Registration Form</h4>
+    	</div>
+	</div>
+    	<!-- Ending of the Header container-->
+
+    <!-- Container for the patient form -->
+	<div class="container light-blue lighten-4">
+		<div class="row">
+	     <form method="POST" action='.' class='form-control'>
+          {% csrf_token %}
+          {{ form | crispy }}
+
+          <div class="row">
+            <div class="col s12 center">
+              <input id="submit" value="Submit" type="submit" class="btn waves-effect center hoverable green lighten-1">
+              <input id="reset" type="reset" class="btn waves-effect center hoverable red lighten-1">
+            </div>
+          </div>
+     </form>
+    </div>
+  </div>
+    <!-- These last two divs close the container -->

@@ -1,14 +1,153 @@
-<!DOCTYPE html>
-<html>
+{% extends "patients/base.html" %}
 
-<head>
-    <title>Home Page</title>
-</head>
-<body>
-    <h1>Something goes here</h1>
-    {% block content %}
-    
-    {% endblock content %}
-</body>
+{% block content %}
 
-</html>
+	<!-- Container for the Header -->
+	<div class="container">
+		<div class="row">
+    		<h4 class="left light-blue-text lighten-1">Patient Registration Form</h4>
+    	</div>
+
+	</div>
+    	<!-- Ending -->
+
+    <!-- Container for the patient form -->
+	<div class="container light-blue lighten-4">
+		<div class="row">
+    <form class="col s12">
+      <div class="row">
+
+      	<div class="input-field col s3">
+        	<select class="browser-default">
+      			<option value="1" class="light-blue-text lighten-3">Mr</option>
+      			<option value="2" class="light-blue-text lighten-3">Ms</option>
+      			<option value="3" class="light-blue-text lighten-3">Miss</option>
+      			<option value="4" class="light-blue-text lighten-3">Dr</option>
+      			<option value="5" class="light-blue-text lighten-3">Rev</option>
+      			<option value="6" class="light-blue-text lighten-3">Prof</option>
+    		</select>
+        </div>
+
+        <div class="input-field col s3">
+          <input id="first_name" type="text" class="validate">
+          <label for="first_name">First Name</label>
+        </div>
+
+        <div class="input-field col s3">
+          <input id="last_name" type="text" class="validate">
+          <label for="last_name">Last Name</label>
+        </div>
+
+        <div class="input-field col s3">
+        	<select class="browser-default">
+      			<option value="" disabled selected>Gender</option>
+      			<option value="1">Male</option>
+      			<option value="2">Female</option>
+    		</select>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="home" type="text" class="validate">
+          <label for="home_address">Home Address</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="phone" type="text" class="validate">
+          <label for="Phone">Phone Number</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s3">
+          <input id="national_id" type="text" class="validate">
+          <label for="national_id">National ID</label>
+        </div>
+        <div class="input-field col s3">
+          <select class="browser-default">
+          	<option value="" disabled selected>Marital Status</option>
+          	<option value="1">Single</option>
+          	<option value="2">Married</option>
+          	<option value="3">Engaged</option>
+          	<option value="4">Divorced</option>
+          	<option value="5">Widowed</option>
+          </select>
+        </div>
+        <div class="input-field col s3">
+          <select class="browser-default">
+          	<option value="" disabled selected>Employment Status</option>
+          	<option value="1">Gainfully Employed</option>
+          	<option value="2">Unemployed</option>
+          	<option value="3">Contract Worker</option>
+          </select>
+        </div>
+         <div class="input-field col s3">
+          <label for="date">Date of Birth</label>
+          <input id="date" type="date" class="validate">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+        	<input id="allergies" type="text" class="validate">
+          <label for="allergies">Allergies</label>
+        </div>
+        <div class="input-field col s6">
+        	<input id="medication" type="text" class="validate">
+          <label for="medication">Current Medication</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s3">
+          	<input id="blood_type" type="text" class="validate">
+          	<label for="blood_type">Blood Group</label>	
+          </div>
+          <div class="input-field col s3">
+          	<input id="body_mass" type="text" class="validate">
+          	<label for="body_mass">Body Mass</label>	
+          </div>
+          <div class="input-field col s3">
+          	<input id="body_temp" type="text" class="validate">
+          	<label for="body_temp">Body Temperate</label>	
+          </div>
+          <div class="input-field col s3">
+          	<input id="medical_aid" type="text" class="validate">
+          	<label for="medical_aid">Medical Aid</label>	
+          </div>
+          
+        </div>
+        <div class="row">
+        	<div class="input-field col s3">
+          	<input id="reason_for_visit" type="text" class="validate">
+          	<label for="reason_for_visit">Reason for Visit</label>	
+          </div>
+          <div class="input-field col s3">
+          	<input id="doctor" type="text" class="validate">
+          	<label for="doctor">Doctor Consulted</label>	
+          </div>
+          <div class="input-field col s3">
+          	<input id="date_of_visit" type="date" class="validate">
+          	<label for="date_of_visit">Date of Visit </label>	
+          </div>
+        </div>
+        <div class="row">
+        	<div class="col s12 center">
+        		<input id="submit" value="Submit" type="submit" class="btn waves-effect center hoverable green lighten-1">
+        		<input id="reset" type="reset" class="btn waves-effect center hoverable red lighten-1">
+        	</div>
+        </div>
+        <div class="row">
+        	<div class="col s12 right">
+        		<a href="/patients/{{ view_all }}" id="submit" class="btn waves-effect right hoverable black-text light-blue lighten-1">All Patients</a>
+        	</div>
+        </div>
+      </div>
+    </form>
+  </div>
+	</div>
+<!-- End of the container form -->
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="assets/js/materialize.min.js"></script>
+
+{% endblock content %}

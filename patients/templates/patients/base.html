@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ Title }}</title>
+
+    {% load staticfiles %}
+	<link href="{% static 'assets/img/favicon/favicon.png' %}" rel="shortcut icon"/>
+	<link type="text/css" rel="stylesheet" href="{% static 'assets/css/materialize.min.css' %}" media="screen, projection">
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}" media="screen, projection">
+
+	<!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <script type="text/javascript">
+    	
+    	document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems, options);
+  });
+    </script>
+
+</head>
+<body>
+        {% block content %}
+
+        {% endblock content %}
+
+        <script type="text/javascript" src="{ % static 'assets/js/materialize.min.js' % }"></script>
+		    <script type="text/javascript" src="{ % static 'assetd/js/jquery.min.js' % }"></script>
+		    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</body>
+</html>

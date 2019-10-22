@@ -1,15 +1,15 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
-
 from django.core.paginator import Paginator
-
-from .forms import PatientRegistrationForm
 from django.http import HttpResponseRedirect
 
 # Create your views here.
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
+
+from .models import Patient
+from .forms import PatientRegistrationForm
 
 
 class PatientView(FormView):
@@ -35,7 +35,7 @@ def add_patient(request):
             #Process the data i form.cleaned_data as required
             #...
             # redirect to a new URL:
-            return HttpResponseRedirect('/patients/add_patient.html')
+            return HttpResponseRedirect('/patients/view_patients.html')
     else:
         form = PatientRegistrationForm()
 

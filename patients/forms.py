@@ -7,18 +7,25 @@ User = get_user_model()
 
 # Create your forms here.
 
+PREFIX_CHOICES = [
+('MR', 'Mr.'),
+('MRS', 'Mrs.'),
+('MS', 'Ms.'),
+]
+
 
 class PatientRegistrationForm(forms.Form):
-    prefix = forms.CharField(max_length=10)
+    prefix = forms.CharField(max_length=5)
     first_name = forms.CharField(max_length=255)
     last_name = forms.CharField(max_length=255)
     date_of_birth = forms.DateTimeField()
-    gender = forms.CharField()
+    gender = forms.CharField(max_length=6)
     home_address = forms.CharField(max_length=255)
     national_id = forms.CharField(max_length=30)
     phone_number = forms.CharField(max_length=30)
     email_address = forms.EmailField()
     purpose_of_visit = forms.CharField(max_length=255)
+    description_of_the_condition = forms.Textarea()
     prescription = forms.CharField(max_length=255)
     current_temperature = forms.IntegerField()
     blood_type = forms.CharField(max_length=255)

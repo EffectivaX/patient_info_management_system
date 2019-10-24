@@ -11,7 +11,7 @@
     <!-- Container for the patient form -->
 	<div class="container light-blue lighten-4">
 		<div class="row">
-	     <form method="POST" action='.' class='form-control'>
+	     <form method="POST" action='/patients/add_patient' class='form-control'>
           {% csrf_token %}
           {{ form | crispy }}
 

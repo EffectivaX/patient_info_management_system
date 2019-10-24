@@ -24,20 +24,16 @@ def index(request):
 
 
 def add_patient(request):
-    # form = PatientRegistrationForm(request.POST or None)
-    # if form.is_valid():
-    #     form.save()
-    #     return HttpResponseRedirect('/patients/view_all')
-
     if request.method == 'POST':
-        form = PatientRegistrationForm(request.POST)
+        form = PatientRegistrationForm(request.POST or None)
         if form.is_valid():
+            form_user_data = PatientRegistrationForm(request.POST)
             #Process the data i form.cleaned_data as required
             #...
             # redirect to a new URL:
-            return HttpResponseRedirect('/patients/view_patients.html')
+            return HttpResponseRedirect('/patients/view_all')
     else:
-        form = PatientRegistrationForm()
+        form = PatientRegistrationForm
 
     
     context = {

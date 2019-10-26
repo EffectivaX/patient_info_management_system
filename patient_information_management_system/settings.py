@@ -26,21 +26,22 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL = 'accounts.MyUser'
+AUTH_USER_MODEL = 'accounts.CustomUser'
 
 # Application definition
 
 INSTALLED_APPS = [
     # 3rd Part Apps
-    'crispy_forms',
 
     # My Apps
     #'patients',
     #'management',
+    'patients',
     'accounts',
     'pages',
-    'patients',
     'doctors',
+    'crispy_forms',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -86,7 +87,8 @@ DATABASES = {
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
+    # },
+
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'patient_information_management_system',
@@ -95,6 +97,7 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': ''
     },
+
     'users': {
         'NAME': 'patient_information_management_system',
         'ENGINE': 'django.db.backends.postgresql',
@@ -102,7 +105,7 @@ DATABASES = {
         'PASSWORD': '2020',
         'HOST': 'localhost',
         'PORT': ''
-    }
+    },
 }
 
 # Password validation

@@ -1,5 +1,9 @@
-<form method="POST" action='.' class='form-control col s6'>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input class="btn waves-effect blue lighten-3 hoverable" type='submit' name='Submit'>
-</form>
+<div class="container light-blue-text lighten-4">
+    <div class="row">
+        <form method="POST" action='.' class='form-control col s6 center-block'>
+                {% csrf_token %}
+                {{ form.as_p }}
+            <input class="btn waves-effect blue lighten-3 hoverable" type='submit' name='Submit'>
+        </form>
+    </div>
+</div>

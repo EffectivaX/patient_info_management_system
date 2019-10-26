@@ -32,7 +32,7 @@ class MyUserManager(BaseUserManager):
         user.save(using=self._db)
         return user    
 
-class MyUser(AbstractBaseUser):
+class CustomUser(AbstractBaseUser):
     username = models.CharField(
                     max_length=255,
                     validators = [

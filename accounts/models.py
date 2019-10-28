@@ -60,7 +60,7 @@ class CustomUser(AbstractBaseUser):
 
 
     def __str__(self):
-        return self.email
+        return '{0} With Email {1}' .format(self.username, self.email)
 
     def get_short_name(self):
         # The user is identified by their email address
@@ -74,4 +74,10 @@ class CustomUser(AbstractBaseUser):
     def has_module_perms(self, app_label):
         "Does the user have permissions to view the app 'app_label'"
         # Simplest possible answer: Yes, always
-        return True              
+        return True
+
+
+    class Meta:
+        verbose_name_plural = "Administrators"
+        ordering = ("-username",)
+                          

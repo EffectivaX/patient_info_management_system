@@ -1,9 +1,11 @@
+{% csrf_token %}
+
 <!DOCTYPE html>
 <html>
 <head>
-	<title>{{ Title }}</title>
+	<title>Patient Added</title>
 
-    {% load staticfiles %}
+	{% load staticfiles %}
 	<link href="{% static 'assets/img/favicon/favicon.png' %}" rel="shortcut icon"/>
 	<link type="text/css" rel="stylesheet" href="{% static 'assets/css/materialize.min.css' %}" media="screen, projection">
 	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}" media="screen, projection">
@@ -18,14 +20,15 @@
     var instances = M.FormSelect.init(elems, options);
   });
     </script>
-
 </head>
+	{% block content %}
 <body>
-        {% block content %}
-
-        {% endblock%}
-        <script type="text/javascript" src="{ % static 'assets/js/materialize.js' % }"></script>
-		    <script type="text/javascript" src="{ % static 'assets/js/jquery.min.js' % }"></script>
-		    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	
+	<div class="container">
+		<div class="row">
+			<p>Patient Successfully added into the database</p>
+		</div>
+	</div>
 </body>
 </html>
+	{% endblock  %}

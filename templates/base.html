@@ -15,10 +15,12 @@
 
     <!-- Compiled stylesheets -->
     <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}" media="screen, projection">
-	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/themify-icons.css' %}" media="screen, projection">
-	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.min.css' %}" media="screen, projection">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/themify-icons.css' %}" media="screen, projection">
+	<link rel="stylesheet" type="text/css" href="{% static 'font/css/font-awesome.min.css' %}" media="screen, projection">
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
+	<link rel="stylesheet" href="{% static 'font/fonts/fontawesome-webfont.svg' %}">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'assets/fonts/icomoon/style.css' %}">
 <!-- Font Awesome -->
 <link href="{% static 'font/css/font-awesome.min.css' %}" rel="stylesheet">
 
@@ -29,8 +31,8 @@
 
 
 	<nav class="container">
-	<div class="nav-wrapper light-blue lighten-3">
-		<a href="#!" class="brand-logo left">Cyber Tech</a>
+	<div class="nav-wrapper grey-text light-blue lighten-3">
+		<h6 class="brand-logo left">Victoria Falls Medical</h6>
 		<a href="#!" data-activates="mobile-demo" class="button-collapse"></i></a>
 		<ul class="right hide-on-med-and-down">
 			<li {% if request.path == "/" %} class="active" {% endif %}><a href="/">Home</a></li>
@@ -39,26 +41,21 @@
 
 			<li {% if request.path == "/login/" %} class="active" {% endif %}><a href="/login/">Login</a></li>
 
-			<li {% if request.path == "/admin/" %} class="active" {% endif %}><a href="/admin/">Admin</a></li>
+			<li {% if request.path == "/admin/" %} class="active" {% endif %}><a href="/patients/add_patient">Add New Patient</a></li>
+			<li {% if request.path == "/admin/" %} class="active" {% endif %}><a href="patients/view_all">View All Patients</a></li>
+			<li {% if request.path == "/admin/" %} class="active" {% endif %}><a href="patients/">Patients Dashboard</a></li>
 		</ul>
 		</div>
 	</nav>
-
-	<br>
-	<hr>
-	<br>
     <div class="container">
+		<hr>
 		{% block content %}
 			
 		{% endblock %}
-
-		<br>
-		<br>
 		
-		<hr>
-		<br>		
+		<hr>		
 	</div>
-   <footer class="page-footer light-blue lighten-3">
+   <footer class="container page-footer light-blue lighten-3">
 		<div class="container">
 			{% comment %} <div class="col s12 12"> {% endcomment %}
 				<div class="col s12 12">

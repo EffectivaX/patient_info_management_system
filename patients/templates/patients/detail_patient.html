@@ -2,12 +2,56 @@
 
 {% block content %}
 
+<!-- Beginner of card container -->
 <div class="container">
 	<div class="row">
-		<div class="card">
-			Here goes Something
-		</div>
+    <h4 class="left light-blue-text lighten-1">Patient Information</h4>
+  </div>			
+			<!-- Regular Card 1 -->
+      <div class="card red lighten-3 hoverable">
+        <div class="card-content white-text">
+          <span class="card-title">Patient Information</span> <!-- Patient name to replace this -->
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            </p>
+           
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+           
+            <p>Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <br>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+        <div class="card-action">
+          <a href="/patients/">Home</a>
+        </div>
+      </div>
 	</div>
-</div>
 
 {% endblock  %}
+
+{% comment %} 
+
+	Data to be returned
+
+	1. First Name
+	2. Second Name
+	3. Doctor
+	4. Home Address
+	5. Email Address
+	6. Phone #
+	7. Reason for Visit
+	8. Description of their condiotn
+	9. Prescription Recommended
+	10. Medical AID
+	11. Date of Birth
+	12. National id
+	13. Date of last Visit
+	14. Age
+ {% endcomment %}

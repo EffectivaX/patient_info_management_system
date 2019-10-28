@@ -21,7 +21,7 @@ def login_view(request, *args, **kwargs):
     if form.is_valid():
         user_obj = form.cleaned_data.get('user_obj')
         login(request, user_obj)
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/patients')
     context = {
         'form' : form
     }

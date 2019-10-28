@@ -17,7 +17,7 @@ class UserAdmin(BaseUserAdmin):
 
     fieldsets = (
         (None, {'fields' : ('username', 'email', 'password')}),
-        ('Permissions', {'fields' : ('is_admin',)})
+        ('Permissions', {'fields' : ('is_admin', 'is_staff',)})
     )
 
     search_fields = ('username', 'email')

@@ -2,24 +2,12 @@
 
 {% block content %}
 {% load static %}
-	<!-- Container for the Header -->
-	<div class="container">
-		<div class="row">
-    		<h4 class="left light-blue-text lighten-3">Patient Dashboard</h4>
-            <h6 class="right light-blue-text lighten-3">{% if logged %}
-            Logged in as {{ admin.name }}
-            {% else %}
-            <a href="/login" class="btn waves-effect blue lighten-3">Login</a>
-            {% endif %}</h6>
-    	</div>
-	</div>
-    	<!-- Ending -->
+	
 
     <!-- Here comes the beautiful design of the dashboard Using Cards-->
     <div class="container">
       <div class="row">
-        <div class="col s12">
-      
+        <div class="col s12">      
       <!-- Regular Card 1 -->
       <div class="card light-blue lighten-3 col s6 hoverable">
         <div class="card-content white-text">
@@ -55,16 +43,8 @@
     <!-- Image Card -->
     <div class="card small col s6 hoverable">
       <div class="card-image">
-        <img src=" {% static 'assets/img/pic2.jpeg' %} ">
-        <span class="card-title blue-text">All Patients</span>
-      </div>
-      <div class="card-content">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <img src=" {% static 'assets/img/pexels-photo-11.jpeg' %} ">
+        <span class="card-title red-text">ALL PATIENTS</span>
       </div>
       <div class="card-action">
         <a href="/patients/view_all">View All Patients</a>
@@ -74,16 +54,8 @@
     <!-- Image Card 2 -->
     <div class="card small col s6 hoverable">
       <div class="card-image">
-        <img src=" {% static 'assets/img/pic3.jpg' %} ">
-        <span class="card-title blue-text darken-3">See Reports</span>
-      </div>
-      <div class="card-content">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <img src=" {% static 'assets/img/pexels-photo-4.jpeg' %} ">
+        <span class="card-title red-text">SEE REPORTS</span>
       </div>
       <div class="card-action">
         <a href="/patients/reports">See Reports</a>

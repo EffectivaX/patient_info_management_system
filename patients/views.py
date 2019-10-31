@@ -17,7 +17,9 @@ from .forms import PatientForm #, PatientSnippetForm
 
 
 def index(request):
-    context = {'title': 'Patient Dashboard'}
+    context = {
+        'title': 'Patient Dashboard',
+        }
 
     return render(request, 'patients/index.html', context)
 
@@ -58,7 +60,10 @@ def patient_form(request):
     else:
         form = PatientForm()
 
-    context = {'form': form}
+    context = {
+        'form': form,
+        'title' : "Add New Patient"
+        }
 
     return render(request, 'patients/form.html', context)
 
@@ -74,24 +79,26 @@ def add_patient(request):
     else:
         form = PatientForm()
 
-    context = {'form': form}
+    context = {
+        'form': form,
+        "title" : "Add New Patient"}
 
     return render(request, 'patients/form.html', context)
 
 
 
-def snippet_detail(request):
-    if request.method == 'POST':
-        form = PatientForm(request.POST)
-        if form.is_valid():
-            patient_info = form.save(commit=False)
-            patient_info.save()
-    else:
-        form = PatientForm()
+# def snippet_detail(request):
+#     if request.method == 'POST':
+#         form = PatientForm(request.POST)
+#         if form.is_valid():
+#             patient_info = form.save(commit=False)
+#             patient_info.save()
+#     else:
+#         form = PatientForm()
 
-    context = {'form': form}
+#     context = {'form': form}
 
-    return render(request, 'patients/form.html', context)
+#     return render(request, 'patients/form.html', context)
 
 def view_all(request):
     template_name = 'view_patients.html'
@@ -117,4 +124,4 @@ def patient_info(request):
         'title': 'Detailed Information on patient.name'
         }
     
-    return render(request, 'patients/detail_patient.html')
+    return render(request, 'patients/detail_patient.html', context)

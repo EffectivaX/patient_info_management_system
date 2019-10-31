@@ -1,31 +1,90 @@
+
 <!DOCTYPE html>
-<html>
-<head>
-	<title>{{ Title }}</title>
+  <html>
+    <head>
+      {% load static %}
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+       <link href="{% static 'assets/img/favicon/favicon.png' %}" rel="shortcut icon"/>
+	    <link type="text/css" rel="stylesheet" href="{% static 'assets/css/materialize.min.css' %}" media="screen, projection">
+	    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}" media="screen, projection">
+          
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style>       
+        #topbarsearch .input-field .prefix { 
+            width:0rem !important;    
+            }        
+        #topbarsearch nav ul li:hover, nav ul li.active {
+                background-color: none !important;
+            }
+        .input-field .prefix ~ input, .input-field .prefix ~ textarea, .input-field .prefix ~ label, .input-field .prefix ~ .validate ~ label, .input-field .prefix ~ .autocomplete-content{
+            margin-left: 1rem !important;
+            }
+        </style>
 
-    {% load staticfiles %}
-	<link href="{% static 'assets/img/favicon/favicon.png' %}" rel="shortcut icon"/>
-	<link type="text/css" rel="stylesheet" href="{% static 'assets/css/materialize.min.css' %}" media="screen, projection">
-	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}" media="screen, projection">
+        <title>Victoria Falls Medical | {{ title }} </title>        
+    </head>
+    <body>
+      <div class="container">
+        <nav class="white">
+            <div class="nav-wrapper">
+              <a href="#" class="brand-logo red-text lighten-2">{{ title }}</a>   
+                <ul class="hide-on-med-and-down right">               
+                    <li>    
+                       <div class="center row">
+                          <div class="col s12 " >
+                            <div class="row" id="topbarsearch">
+                              <div class="input-field col s6 s12 red-text">
+                                <i class="red-text material-icons prefix">search</i>
+                                <input type="text" placeholder="search" id="autocomplete-input" class="autocomplete red-text" >
+                                </div>
+                              </div>
+                            </div>
+                          </div>          
+                      </li>                     
+                    <li><a href="/login" class="red-text">Login</a></li>
+                    <li><a href="/patients/add_patient" class="red-text">New Patient</a></li>
+                    <li><a href="/patients/view_all" class="red-text">All Patients</a></li>
+                </ul>
+            </div>
+          </nav>
 
-	<!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+          <hr>
+          <br>
+         
+         </div>
 
-    <script type="text/javascript">
-    	
-    	document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems, options);
-  });
-    </script>
-
-</head>
-<body>
         {% block content %}
 
-        {% endblock%}
-        <script type="text/javascript" src="{ % static 'assets/js/materialize.js' % }"></script>
-		    <script type="text/javascript" src="{ % static 'assets/js/jquery.min.js' % }"></script>
-		    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-</body>
-</html>
+        {% endblock content %}            
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="{ % static 'assets/js/materialize.js' % }"></script>
+      <script type="text/javascript" src="{ % static 'assets/js/jquery.min.js' % }"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+      <script>
+
+            document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems, options);
+            });
+
+
+            $(document).ready(function(){                 
+                $('input.autocomplete').autocomplete({
+                data: {
+                    "Apple": null,
+                    "Microsoft": null,
+                    "Google": null,
+                    "Gargle":null
+                }
+                });                
+                });
+      </script>        
+    </body>
+  </html>

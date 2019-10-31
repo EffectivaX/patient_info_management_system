@@ -61,3 +61,26 @@
 
 
     # fields = ('prefix','first_name', 'last_name', 'date_of_birth', 'gender', 'home_address', 'national_id', 'phone_number', 'email_address', 'purpose_of_visit', 'description_of_the_condition', 'prescription', 'current_temperature', 'blood_type', 'current_medication', 'body_mass', 'allergies', 'employment_status', 'consulted_doctor', 'marital_status', 'medical_aid_group', 'date_of_visit')
+
+
+
+    <!-- Container for the Header -->
+	{% comment %} <div class="container">
+		<div class="row">
+    		<h4 class="left light-blue-text lighten-3">{{ title }}</h4>
+            <h6 class="right light-blue-text lighten-3">{% if logged %}
+            Logged in as {{ admin.name }}
+            {% else %}
+            <a href="/login" class="btn waves-effect blue lighten-3">Login</a>
+            {% endif %}</h6>
+    	</div>
+	</div> {% endcomment %}
+    	<!-- Ending -->
+
+        <!-- Container for the Header -->
+	<div class="container">
+		<div class="row">
+    		<h4 class="left light-blue-text lighten-1">{{ title }}</h4>
+    	</div>
+	</div>
+    	<!-- Ending of the Header container-->

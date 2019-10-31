@@ -3,9 +3,6 @@
 {% block content %}
 
 	<div class="container">
-		<div class="row">
-			<h4 class="left light-blue-text lighten-1">All Patients</h4>
-		</div>
     {% for patient in patients %}
 	  <div class="collection">
         <a href="/patients/{{ patient.id }}" class="collection-item grey lighten-1">{{ patient.first_name }} {{ patient.last_name }}</a>

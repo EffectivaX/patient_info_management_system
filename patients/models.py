@@ -48,12 +48,12 @@ class Patient(models.Model):
         return self.first_name #'{0} {1}'.format(self.first_name, self.last_name)
 
     def save(self):
-        self.slug = slugify(self.first_name, self.last_name)
+        # self.slug = slugify(self.first_name, self.last_name)
         super(Patient, self).save()    
 
     class Meta:
         verbose_name_plural = "Patients"
-        ordering = ("-last_name",)
+        # ordering = ("-last_name",)
 
 # class PatientForm(ModelForm):
 #     class Meta:

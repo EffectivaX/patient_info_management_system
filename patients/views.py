@@ -8,20 +8,16 @@ from django.views.generic import TemplateView, ListView
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 from .models import Patient
-from .forms import PatientForm #, PatientSnippetForm
-
-# class PatientView(FormView):
-#     form_class = PatientForm
-#     template_name = 'add_patient.html'
-#     success_url = reverse_lazy('success')
+from .forms import PatientForm  #, PatientSnippetForm
 
 
 def index(request):
     context = {
         'title': 'Patient Dashboard',
-        }
+    }
 
     return render(request, 'patients/index.html', context)
+
 
 # @require_POST
 # @require_GET
@@ -60,31 +56,25 @@ def patient_form(request):
     else:
         form = PatientForm()
 
-    context = {
-        'form': form,
-        'title' : "Add New Patient"
-        }
+    context = {'form': form, 'title': "Add New Patient"}
 
     return render(request, 'patients/form.html', context)
 
 
-@require_GET
 def add_patient(request):
     if request.method == 'POST':
         form = PatientForm(request.POST or None)
         if form.is_valid():
             patient_info = form.save(commit=True)
             patient_info.save()
+            print("Saved Successfully")
             return HttpResponseRedirect('/success.html')
     else:
         form = PatientForm()
 
-    context = {
-        'form': form,
-        "title" : "Add New Patient"}
+    context = {'form': form, "title": "Add New Patient"}
 
     return render(request, 'patients/form.html', context)
-
 
 
 # def snippet_detail(request):
@@ -100,28 +90,37 @@ def add_patient(request):
 
 #     return render(request, 'patients/form.html', context)
 
+
 def view_all(request):
     template_name = 'view_patients.html'
     patients = Patient.objects.all()
     paginator = Paginator(patients, 30)
-    if request.method == 'GET':    
+    if request.method == 'GET':
         page = request.GET.get('page')
     patients = paginator.get_page(page)
 
-    context = {
-        'title': 'All Patients',
-        'patients' : patients
-        }
-    
+    context = {'title': 'All Patients', 'patients': patients}
+
     return render(request, 'patients/view_patients.html', context)
 
-
-
-def patient_info(request):
+def patient_info(request, id):
     template_name = 'detail_patient.html'
+    patient = Patient.objects.get(id=id)
+   
+    context = {
+        'title': 'Patient Information',
+        'patient': patient}
+
+    return render(request, 'patients/detail_patient.html', context)
+
+
+def reports(request):
+    template_name = "reports.html"
+    report = Patient.objects.get('purpose_of_visit')
 
     context = {
-        'title': 'Detailed Information on patient.name'
-        }
-    
-    return render(request, 'patients/detail_patient.html', context)
+        'title' : 'Report',
+        'report' : report
+    }
+
+    return render(request, 'patients/reports.html', context)

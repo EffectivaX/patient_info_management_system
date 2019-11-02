@@ -11,7 +11,8 @@ def register(request, *args, **kwargs):
         form.save()
         return HttpResponseRedirect('/login')
     context = {
-        'form' : form
+        'form': form,
+        'title' : 'Register'
     }
 
     return render(request, 'accounts/register.html', context)
@@ -23,7 +24,8 @@ def login_view(request, *args, **kwargs):
         login(request, user_obj)
         return HttpResponseRedirect('/patients')
     context = {
-        'form' : form
+        'form': form,
+        'title' : 'Login'
     }
         
     return render(request, 'accounts/login.html', context)

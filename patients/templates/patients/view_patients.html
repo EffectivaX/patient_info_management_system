@@ -1,12 +1,11 @@
 {% extends "patients/base.html" %}
 
 {% block content %}
-
 	<div class="container">
+	  <ul class="collection">
     {% for patient in patients %}
-	  <div class="collection">
-        <a href="/patients/{{ patient.id }}" class="collection-item grey lighten-1">{{ patient.first_name }} {{ patient.last_name }}</a>
-      </div>
+        <a href="/patients/patient_info/{{ patient.id }}" class="collection-item">{{ patient.id }} . {{ patient.first_name }} {{ patient.last_name }}</a>
     {% endfor %}
+    </ul>
   </div>
   {% endblock %}

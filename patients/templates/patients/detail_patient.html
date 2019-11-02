@@ -1,57 +1,52 @@
 {% extends "patients/base.html" %}
 
+{% block title %} {{ title }} {% endblock  %}
+
 {% block content %}
 
 <!-- Beginner of card container -->
 <div class="container">
-	<div class="row">
-    <h4 class="left light-blue-text lighten-1">{{ title }}</h4>
-  </div>			
 			<!-- Regular Card 1 -->
-      <div class="card red lighten-3 hoverable">
+      <div class="card col s12 red lighten-3 hoverable">
         <div class="card-content white-text">
-          <span class="card-title">Patient Information</span> <!-- Patient name to replace this -->
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            </p>
+          <span class="card-title">{{ title }}</span> <!-- Patient name to replace this -->
+            <h5>Full Name : {{ patient.prefix }} {{ patient.first_name }} {{ patient.last_name }} </h5>
+            <p>Date of Birth : {{patient.date_of_birth}}</p>
+            <p>Marital Status : {{patient.marital_status}}</p>
+            <p>Employment Status : {{patient.employment_status}}</p>
+            
+            
+           <span class="card-title">{{ title }}</span> 
            
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Date of Visit : {{patient.date_of_visit}}</p>
+            <p>Email Address : {{ patient.email_address }}</p>
+            <p>Phone Number : {{ patient.phone_number }}</p>
+            <p>Gender : {{ patient.gender }}</p>
+             
+           <span class="card-title">{{ title }}</span>
+
+            <p>Reason for Visit : {{ patient.purpose_of_visit }}</p>
+            <p>Description of Condition : {{ patient.description_of_condition }}</p>
+            <p>Prescription : {{ patient.prescription }}</p>
+            <p>Current Medication: {{ patient.current_medication }}</p>
+            <p>Body Masss : {{ patient.body_mass }}</p>
+            <p>Allergies : {{ patient.allergies }}</p>
            
-            <p>Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <br>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </div>
-        <div class="card-action">
-          <a href="/patients/">Home</a>
+           <span class="card-title">{{ title }}</span> 
+           
+            <p>Consulted Doctor : {{ patient.consulted_doctor }}</p>
+            <p>Medical AID Group : {{ patient.medical_aid_group }}</p>
+            <p>Blood Type : {{ patient.blood_type }}</p>
+            <p>Physical Address : {{ patient.home_address }}</p>
+           
+           <span class="card-title">{{ title }}</span>
+           
+            <p>National I.D : {{ patient.national_id }}</p>
+            <p>Current Temperature : {{ patient.current_temperature }}</p>
+
         </div>
       </div>
+          <input class="btn waves-effect right" type="submit" value="Edit" name="edit">
 	</div>
 
 {% endblock  %}
-
-{% comment %} 
-
-	Data to be returned
-
-	1. First Name
-	2. Second Name
-	3. Doctor
-	4. Home Address
-	5. Email Address
-	6. Phone #
-	7. Reason for Visit
-	8. Description of their condiotn
-	9. Prescription Recommended
-	10. Medical AID
-	11. Date of Birth
-	12. National id
-	13. Date of last Visit
-	14. Age
- {% endcomment %}

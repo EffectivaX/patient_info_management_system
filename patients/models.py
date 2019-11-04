@@ -3,6 +3,7 @@ from datetime import datetime
 from django.urls import reverse
 from django.utils.text import slugify
 from django.forms import ModelForm
+from django import forms
 
 # Create your models here.
 
@@ -23,7 +24,7 @@ class Patient(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     gender = models.CharField(max_length=12)
-    date_of_birth = models.DateField(default=datetime.now)
+    date_of_birth = models.DateField()
     home_address = models.CharField(default='', max_length=255)
     national_id = models.CharField(default='', max_length=30)
     phone_number = models.CharField(max_length=30)
@@ -45,7 +46,7 @@ class Patient(models.Model):
     created_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.first_name #'{0} {1}'.format(self.first_name, self.last_name)
+        return self.first_name + " " + self.last_name
 
     def save(self):
         # self.slug = slugify(self.first_name, self.last_name)

@@ -1,15 +1,17 @@
-{% extends "patients/base.html" %}
 {% load crispy_forms_tags %}
 
 {% block content %}
     <!-- Container for the patient form -->
 	<div class="container light-blue lighten-4">
 		<div class="row">
-	     <form method="post" action='/patients/' enctype="multipart/form-data" class='col s12'>
+	     <form method="POST" action='.' enctype="multipart/form-data" class='col s12'>
           {% csrf_token %}
-          {% crispy form form.helper %}
+          
+          {{ form | crispy }}
+          <!-- {% crispy form form.helper %} -->
+          <input type="submit" name="submit" value="submit" class="btn">
      </form>
     </div>
-{% endblock %}
   </div>
+{% endblock %}
     <!-- These last two divs close the container -->

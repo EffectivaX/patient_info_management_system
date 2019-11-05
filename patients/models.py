@@ -1,9 +1,9 @@
 from django.db import models
 from datetime import datetime
-from django.urls import reverse
+# from django.urls import reverse
 from django.utils.text import slugify
-from django.forms import ModelForm
-from django import forms
+# from django.forms import ModelForm
+# from django import forms
 
 # Create your models here.
 
@@ -48,12 +48,12 @@ class Patient(models.Model):
     def __str__(self):
         return self.first_name + " " + self.last_name
 
-    def save(self):
-        # self.slug = slugify(self.first_name, self.last_name)
-        super(Patient, self).save()    
+    # def save(self):
+    #     # self.slug = slugify(self.first_name, self.last_name)
+    #     super(Patient, self).save()    
 
-    class Meta:
-        verbose_name_plural = "Patients"
+    # class Meta:
+    #     verbose_name_plural = "Patients"
         # ordering = ("-last_name",)
 
 # class PatientForm(ModelForm):

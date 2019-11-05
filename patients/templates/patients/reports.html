@@ -1,20 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>{{ title }}</title>
-</head>
-<body>
-	<div class="container">
-		<div class="row">
-			<div class="card">
-				<div class="card-title">
-					<h3>Reports</h3>
-				</div>
+{% extends "patients/base.html" %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="card">
+			{% for report in reports %}
 				<div class="card-content">
-					<p>Something goes here</p>
+					<p>{{ report.purpose_of_visit }}</p>
 				</div>
-			</div>
+			{% endfor %}
 		</div>
 	</div>
-</body>
-</html>
+</div>
+{% endblock %} 

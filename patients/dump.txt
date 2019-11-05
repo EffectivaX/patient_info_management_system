@@ -133,3 +133,90 @@
 #     context = {'form': form, "title": "Add New Patient"}
 
 #     return render(request, 'patients/form.html', context)
+
+# prefix = forms.CharField(label='Prefix',
+    #     widget= forms.TextInput(attrs={'class': 'form-control col s3'}))
+    
+    # first_name = forms.CharField(label='First Name',
+    #     widget= forms.TextInput(attrs={'class': 'form-control col s3'}))
+    
+    # last_name = forms.CharField(label='Last Name',
+    #     widget= forms.TextInput(attrs={'class': 'form-control col s3'}))
+    
+    # date_of_birth = forms.CharField(label='Date of Visit',
+    #     widget=forms.Textarea(attrs={'class': 'form-control col s3' }))
+    
+    # home_address = forms.CharField(label='Home Address',
+    #     widget= forms.TextInput(attrs={'class': 'form-control col s6'}))
+    
+    # phone_number = forms.CharField(label='Phone Number',
+    #     widget= forms.TextInput(attrs={'class': 'input-field col s6'}))
+    
+    # national_id = forms.CharField(label='National ID',
+    #     widget= forms.TextInput(attrs={'class': 'input-field col s3'}))
+    
+    # email_address = forms.EmailField(label='Email Address',
+    #     widget= forms.TextInput(attrs={'class': 'input-field col s3'}))
+    
+    # purpose_of_visit = forms.CharField(label='Purpose of Visit',
+    #     widget= forms.TextInput(attrs={'class': 'input-field col s3'}))
+    
+    # description_of_the_condition = forms.CharField(label='DEscription of the Condition',
+    #     widget=forms.Textarea(attrs={'class':'input-field col s12'}))
+    
+    # prescription = forms.CharField(label='Prescription',
+    #     widget= forms.TextInput(attrs={'class': 'input-field col s3'}))
+    
+    # current_temperature = forms.CharField(label='Current Temperature',
+    #     widget= forms.TextInput(attrs={'class': 'input-field col s3'}))
+    
+    # current_medication = forms.CharField(label='Current Medication',
+    #     widget= forms.TextInput(attrs={'class': 'input-field col s6'}))
+    
+    # blood_type = forms.CharField(label='Blood Type',
+    #     widget= forms.TextInput(attrs={'class': 'input-field col s3'}))
+    
+    # body_mass = forms.CharField(label='Body Mass',
+    #     widget= forms.TextInput(attrs={'class': 'input-field col s3'}))
+    
+    # allergies = forms.CharField(label='Allergies',
+    #     widget= forms.TextInput(attrs={'class': 'input-field col s6'}))
+    
+    # employment_status = forms.CharField(label='Employment Status',
+    #     widget= forms.TextInput(attrs={'class': 'input-field col s3'}))
+    
+    # consulted_doctor = forms.CharField(label='Consulted Doctor',
+    #     widget= forms.TextInput(attrs={'class': 'input-field col s3'}))
+    
+    # marital_status = forms.CharField(label='Marital Status',
+    #     widget= forms.TextInput(attrs={'class': 'input-field col s3'}))
+    
+    # medical_aid_group = forms.CharField(label='Medical Aid Group',
+    #     widget= forms.TextInput(attrs={'class': 'input-field col s3'}))
+    
+    # date_of_visit = forms.CharField(label='Date of Visit',
+    #     widget=forms.Textarea(attrs={'class': 'input-field col s3' }))
+
+    # class PatientForm(forms.Form):
+#     prefix = forms.CharField(max_length=6)
+#     first_name = forms.CharField(max_length=255)
+#     last_name = forms.CharField(max_length=255)
+#     date_of_birth = forms.DateField()
+#     gender = forms.CharField(max_length=6)
+#     home_address = forms.CharField(max_length=255)
+#     national_id = forms.CharField(max_length=30)
+#     phone_number = forms.CharField(max_length=30)
+#     email_address = forms.EmailField()
+#     purpose_of_visit = forms.CharField(max_length=255)
+#     description_of_the_condition = forms.CharField(widget=forms.Textarea)
+#     prescription = forms.CharField(max_length=255)
+#     current_temperature = forms.IntegerField()
+#     blood_type = forms.CharField(max_length=255)
+#     current_medication = forms.CharField(max_length=255)
+#     body_mass = forms.IntegerField()
+#     allergies = forms.CharField(max_length=255)
+#     employment_status = forms.CharField(max_length=20)
+#     consulted_doctor = forms.CharField(max_length=255)
+#     marital_status = forms.CharField(max_length=20)
+#     medical_aid_group = forms.CharField(max_length=255)
+#     date_of_visit = forms.DateField()

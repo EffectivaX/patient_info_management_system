@@ -47,27 +47,5 @@ class PatientModelForm(forms.ModelForm):
             # Reset('reset', 'Reset', css_class='btn-danger')
         )
 
-class PatientForm(forms.Form):
-    prefix = forms.CharField(max_length=6)
-    first_name = forms.CharField(max_length=255)
-    last_name = forms.CharField(max_length=255)
-    date_of_birth = forms.DateField()
-    gender = forms.CharField(max_length=6)
-    home_address = forms.CharField(max_length=255)
-    national_id = forms.CharField(max_length=30)
-    phone_number = forms.CharField(max_length=30)
-    email_address = forms.EmailField()
-    purpose_of_visit = forms.CharField(max_length=255)
-    description_of_the_condition = forms.CharField(widget=forms.Textarea)
-    prescription = forms.CharField(max_length=255)
-    current_temperature = forms.IntegerField()
-    blood_type = forms.CharField(max_length=255)
-    current_medication = forms.CharField(max_length=255)
-    body_mass = forms.IntegerField()
-    allergies = forms.CharField(max_length=255)
-    employment_status = forms.CharField(max_length=20)
-    consulted_doctor = forms.CharField(max_length=255)
-    marital_status = forms.CharField(max_length=20)
-    medical_aid_group = forms.CharField(max_length=255)
-    date_of_visit = forms.DateField()
+
 

@@ -7,7 +7,7 @@
 <!-- Beginner of card container -->
 <div class="container">
 			<!-- Regular Card 1 -->
-      <div class="card col s12 red lighten-3 hoverable">
+      <div class="card col s12 light-blue lighten-3 hoverable">
         <div class="card-content white-text">
           <span class="card-title">{{ title }}</span> <!-- Patient name to replace this -->
             <h5>Full Name : {{ patient.prefix }} {{ patient.first_name }} {{ patient.last_name }} </h5>
@@ -26,10 +26,10 @@
            <span class="card-title">{{ title }}</span>
 
             <p>Reason for Visit : {{ patient.purpose_of_visit }}</p>
-            <p>Description of Condition : {{ patient.description_of_condition }}</p>
+            <p>Description of Condition : {{ patient.description_of_condition|safe }}</p>
             <p>Prescription : {{ patient.prescription }}</p>
             <p>Current Medication: {{ patient.current_medication }}</p>
-            <p>Body Masss : {{ patient.body_mass }}</p>
+            <p>Body Mass : {{ patient.body_mass }}</p>
             <p>Allergies : {{ patient.allergies }}</p>
            
            <span class="card-title">{{ title }}</span> 
@@ -46,7 +46,13 @@
 
         </div>
       </div>
-          <input class="btn waves-effect right" type="submit" value="Edit" name="edit">
+
+        <div class="container center">
+          <div class="row">
+            <input class="btn waves-effect blue" type="submit" value="Edit" name="edit">
+            <input class="btn waves-effect red" type="submit" value="Delete" name="delete">
+          </div>
+        </div>
 	</div>
 
 {% endblock  %}

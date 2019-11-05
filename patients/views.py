@@ -68,7 +68,26 @@ def patient_form(request):
         'title': "Add New Patient"
     }
 
-    return render(request, 'patients/form.html', context)  
+    return render(request, 'patients/form.html', context)
+
+# Adding a new patient using a form named PatientForm()
+def new_patient(request):
+    patient_form = PatientModelForm()
+    if request.method == 'POST':
+        patient_form = PatientModelForm(request.POST)
+        if patient_form.is_valid():
+            patient_form.save()
+            return HttpResponseRedirect('/patients/')
+    
+    else:
+        form = PatientModelForm()
+
+    context = {
+        'form': patient_form, 
+        'title': "Add New Patient"
+    }
+
+    return render(request, 'patients/add_patient.html', context)    
 
 # A function to view all patients in the database
 def view_all(request):

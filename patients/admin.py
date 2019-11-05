@@ -6,7 +6,7 @@ from .models import Patient
 class PatientAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'date_of_birth',
                     'purpose_of_visit', 'medical_aid_group', 'date_of_visit')
-    prepopulated_fields = {'slug': ('slug', )}
+    prepopulated_fields = {'first_name': ('last_name','purpose_of_visit', )}
 
 
 admin.site.register(Patient, PatientAdmin)

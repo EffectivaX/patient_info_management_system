@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator
 from django.views.decorators.http import require_POST, require_GET
-
+from django import forms
 # Create your views here.
 from django.views.generic import TemplateView, ListView
 from django.urls import reverse_lazy
@@ -19,37 +19,44 @@ def index(request):
     return render(request, 'patients/index.html', context)
 
 # A function to add new patient to the database
+# This form uses the PatientModelForm()
 def patient_form(request):
+    form = PatientModelForm()
     if request.method == 'POST':
         form = PatientModelForm(request.POST)
         if form.is_valid():
-            # # Process the cleaned_data
-            # prefix = request.POST['prefix']
-            # first_name = request.POST['first_name']
-            # last_name = request.POST['last_name']
-            # date_of_birth = request.POST['date_of_birth']
-            # gender = request.POST['gender']
-            # home_address = request.POST['home_address']
-            # national_id = request.POST['national_id']
-            # phone_number = request.POST['phone_number']
-            # email_address = request.POST['email_address']
-            # purpose_of_visit = request.POST['purpose_of_visit']
-            # description_of_the_condition = request.POST['description_of_the_condition']
-            # prescription = request.POST['prescription']
-            # current_temperature = request.POST['current_temperature']
-            # blood_type = request.POST['blood_type']
-            # current_medication = request.POST['current_medication']
-            # body_mass = request.POST['body_mass']
-            # allergies = request.POST['allergies']
-            # employment_status = request.POST['employment_status']
-            # consulted_doctor = request.POST['consulted_doctor']
-            # marital_status = request.POST['marital_status']
-            # medical_aid_group = request.POST['medical_aid_group']
-            # date_of_visit = request.POST['date_of_visit']
+            # Process the cleaned_data
+            prefix = form.cleaned_data.get('prefix')
+            first_name = form.cleaned_data.get('first_name')
+            last_name = form.cleaned_data.get('last_name')
+            date_of_birth = form.cleaned_data.get('date_of_birth')
+            gender = form.cleaned_data.get('gender')
+            home_address = form.cleaned_data.get('home_address')
+            national_id = form.cleaned_data.get('national_id')
+            phone_number = form.cleaned_data.get('phone_number')
+            email_address = form.cleaned_data.get('email_address')
+            purpose_of_visit = form.cleaned_data.get('purpose_of_visit')
+            description_of_the_condition = form.cleaned_data.get('description_of_the_condition')
+            prescription = form.cleaned_data.get('prescription')
+            current_temperature = form.cleaned_data.get('current_temperature')
+            blood_type = form.cleaned_data.get('blood_type')
+            current_medication = form.cleaned_data.get('current_medication')
+            body_mass = form.cleaned_data.get('body_mass')
+            allergies = form.cleaned_data.get('allergies')
+            employment_status = form.cleaned_data.get('employment_status')
+            consulted_doctor = form.cleaned_data.get('consulted_doctor')
+            marital_status = form.cleaned_data.get('marital_status')
+            medical_aid_group = form.cleaned_data.get('medical_aid_group')
+            date_of_visit = form.cleaned_data.get('date_of_visit')
 
-            # patient_obj = Patient(prefix=prefix, first_name=first_name, last_name=last_name,date_of_birth=date_of_birth, gender=gender, home_address=home_address, national_id=national_id, phone_number=phone_number, email_address=email_address, purpose_of_visit=purpose_of_visit, description_of_the_condition=description_of_the_condition, prescription=prescription,current_temperature=current_temperature, blood_type=blood_type, current_medication=current_medication, body_mass=body_mass, allergies=allergies, employment_status=employment_status, consulted_doctor=consulted_doctor, marital_status=marital_status, medical_aid_group=medical_aid_group, date_of_visit=date_of_visit)
-            # patient_obj.save()
-            # print('Data saved successfully')
+            print(request.POST['first_name'])
+            print(request.POST['consulted_doctor'])
+
+            patient_obj = Patient(prefix=prefix, first_name=first_name, last_name=last_name,date_of_birth=date_of_birth, gender=gender, home_address=home_address, national_id=national_id, phone_number=phone_number, email_address=email_address, purpose_of_visit=purpose_of_visit, description_of_the_condition=description_of_the_condition, prescription=prescription,current_temperature=current_temperature, blood_type=blood_type, current_medication=current_medication, body_mass=body_mass, allergies=allergies, employment_status=employment_status, consulted_doctor=consulted_doctor, marital_status=marital_status, medical_aid_group=medical_aid_group, date_of_visit=date_of_visit)
+            patient_obj.save()
+            form.save()
+            
+            print('Data saved successfully')
             form.save()
             return HttpResponseRedirect('/patients/')
     
@@ -61,7 +68,7 @@ def patient_form(request):
         'title': "Add New Patient"
     }
 
-    return render(request, 'patients/form.html', context)
+    return render(request, 'patients/form.html', context)  
 
 # A function to view all patients in the database
 def view_all(request):

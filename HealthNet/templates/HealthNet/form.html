@@ -5,8 +5,8 @@
 
 {% block content %}
     <!-- Container for the patient form -->
-	<div class="container light-blue lighten-4">
-		<div class="row">
+	{% comment %} <div class="container light-blue lighten-4"> {% endcomment %}
+		<div class="container light-blue lighten-4">
 	     <form method="POST" action='.' enctype="multipart/form-data" class='col s12 form-control'>
           {% csrf_token %}
           
@@ -16,6 +16,6 @@
           <!-- <input type="submit" name="submit" value="submit" class="btn"> -->
      </form>
     </div>
-  </div>
+  {% comment %} </div> {% endcomment %}
 {% endblock %}
     <!-- These last two divs close the container -->

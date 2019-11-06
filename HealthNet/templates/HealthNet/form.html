@@ -1,0 +1,21 @@
+{% extends "HealthNet/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %} {{ title }} {% endblock  %}
+
+{% block content %}
+    <!-- Container for the patient form -->
+	<div class="container light-blue lighten-4">
+		<div class="row">
+	     <form method="POST" action='.' enctype="multipart/form-data" class='col s12 form-control'>
+          {% csrf_token %}
+          
+          {% comment %} {{ form | crispy }} {% endcomment %}
+          {% crispy form form.helper %}
+           
+          <!-- <input type="submit" name="submit" value="submit" class="btn"> -->
+     </form>
+    </div>
+  </div>
+{% endblock %}
+    <!-- These last two divs close the container -->

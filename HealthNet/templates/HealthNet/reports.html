@@ -1,0 +1,17 @@
+{% extends "HealthNet/base.html" %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="card">
+			{% for report in reports %}
+				<div class="card-content">
+					<p>{{ report.purpose_of_visit }}</p>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+{% endblock %} 

@@ -32,27 +32,28 @@ BLOOD_TYPE_CHOICES = (
 )                      
 
 INSURANCES = (
-    (0, "N/A"),
-    (1, "MASCA"),
-    (2, "NUST Medical AID"),
-    (3, "Humana"),
-    (4, "Premier Services"),
-    (5, "PSMAS"),
-    (6, "Emergency 24"),
-    (7, "Emblem Healthcare"),
-    (8, "ZimAid"),
-    (9, "Kaiser Permanente"),
-    (10, "Wellpoint"),
+    ('Not Applicable', "N/A"),
+    ('masca', "MASCA"),
+    ('nust medical aid', "NUST Medical AID"),
+    ('humana', "Humana"),
+    ('premier', "Premier Services"),
+    ('psmas', "PSMAS"),
+    ('emergency24', "Emergency 24"),
+    ('EA', "Emblem Healthcare"),
+    ('zimaid', "ZimAid"),
+    ('KP', "Kaiser Permanente"),
+    ('WP', "Wellpoint"),
 )                      
 
 MARITAL_CHOICES = [
-        (0, 'Not Applicable'),
-        (1, 'Engaged'),
-        (2, 'Single'),
-        (3, 'Divorced'),
-        (4, 'Separated'),
-        (5, 'Married'),
+        ('N/A', 'Not Applicable'),
+        ('ENGAGED', 'Engaged'),
+        ('SINGLE', 'Single'),
+        ('DIVORCED', 'Divorced'),
+        ('SEPARATED', 'Separated'),
+        ('MARRIED', 'Married'),
     ]
+
 class Doctor(models.Model):
     prefix = models.CharField(max_length=6, default='Dr')
     first_name = models.CharField(max_length=60)

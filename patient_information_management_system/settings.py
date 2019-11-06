@@ -34,12 +34,12 @@ INSTALLED_APPS = [
     # 3rd Part Apps
 
     # My Apps
-    #'patients',
     #'management',
+    #'patients',
+    'HealthNet',
     'patients',
     'accounts',
     'pages',
-    'doctors',
     'crispy_forms',
 
     'django.contrib.admin',

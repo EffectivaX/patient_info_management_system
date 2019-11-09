@@ -5,7 +5,7 @@
 {% block content %}
 
 <!-- Beginner of card container -->
-<div class="container">
+<!-- <div class="container"> -->
 			<!-- Regular Card 1 -->
       <div class="card col s12 light-blue lighten-3 hoverable">
         <div class="card-content white-text">
@@ -14,15 +14,15 @@
             <p>Date of Birth : {{patient.date_of_birth}}</p>
             <p>Marital Status : {{patient.marital_status}}</p>
             <p>Employment Status : {{patient.employment_status}}</p>
-            
-            
-           <span class="card-title">{{ title }}</span> 
-           
+
+
+           <span class="card-title">{{ title }}</span>
+
             <p>Date of Visit : {{patient.date_of_visit}}</p>
             <p>Email Address : {{ patient.email_address }}</p>
             <p>Phone Number : {{ patient.phone_number }}</p>
             <p>Gender : {{ patient.gender }}</p>
-             
+
            <span class="card-title">{{ title }}</span>
 
             <p>Reason for Visit : {{ patient.purpose_of_visit }}</p>
@@ -31,28 +31,28 @@
             <p>Current Medication: {{ patient.current_medication }}</p>
             <p>Body Mass : {{ patient.body_mass }}</p>
             <p>Allergies : {{ patient.allergies }}</p>
-           
-           <span class="card-title">{{ title }}</span> 
-           
+
+           <span class="card-title">{{ title }}</span>
+
             <p>Consulted Doctor : {{ patient.consulted_doctor }}</p>
             <p>Medical AID Group : {{ patient.medical_aid_group }}</p>
             <p>Blood Type : {{ patient.blood_type }}</p>
             <p>Physical Address : {{ patient.home_address }}</p>
-           
+
            <span class="card-title">{{ title }}</span>
-           
+
             <p>National I.D : {{ patient.national_id }}</p>
             <p>Current Temperature : {{ patient.current_temperature }}</p>
 
         </div>
       </div>
 
-        <div class="container center">
+        <div class="container">
           <div class="row">
             <input class="btn waves-effect blue" type="submit" value="Edit" name="edit">
             <input class="btn waves-effect red" type="submit" value="Delete" name="delete">
           </div>
         </div>
-	</div>
+	<!-- </div> -->
 
 {% endblock  %}

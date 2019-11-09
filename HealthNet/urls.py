@@ -1,6 +1,6 @@
 from django.urls import path, include
 from django.conf.urls import url
-from .forms import PatientModelForm
+from .forms import PatientModelForm, PatientForm
 from . import views
 
 urlpatterns = [

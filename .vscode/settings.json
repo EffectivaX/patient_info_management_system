@@ -1,5 +1,6 @@
 {
     "python.formatting.provider": "yapf",
     "editor.cursorSmoothCaretAnimation": true,
-    "editor.hideCursorInOverviewRuler": true
+    "editor.hideCursorInOverviewRuler": true,
+    "python.pythonPath": "C:\\Users\\Andile XeroxZen\\envs\\venv\\Scripts\\python.exe"
 }

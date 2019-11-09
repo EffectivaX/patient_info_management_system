@@ -86,10 +86,10 @@
     	<!-- Ending of the Header container-->
 
 
-   
+
     def clean(self):
         data = super(PatientForm, self).clean()
-        
+
         prefix = cleaned_data.get('prefix')
         first_name = cleaned_data.get('first_name')
         last_name = cleaned_data.get('last_name')
@@ -136,64 +136,64 @@
 
 # prefix = forms.CharField(label='Prefix',
     #     widget= forms.TextInput(attrs={'class': 'form-control col s3'}))
-    
+
     # first_name = forms.CharField(label='First Name',
     #     widget= forms.TextInput(attrs={'class': 'form-control col s3'}))
-    
+
     # last_name = forms.CharField(label='Last Name',
     #     widget= forms.TextInput(attrs={'class': 'form-control col s3'}))
-    
+
     # date_of_birth = forms.CharField(label='Date of Visit',
     #     widget=forms.Textarea(attrs={'class': 'form-control col s3' }))
-    
+
     # home_address = forms.CharField(label='Home Address',
     #     widget= forms.TextInput(attrs={'class': 'form-control col s6'}))
-    
+
     # phone_number = forms.CharField(label='Phone Number',
     #     widget= forms.TextInput(attrs={'class': 'input-field col s6'}))
-    
+
     # national_id = forms.CharField(label='National ID',
     #     widget= forms.TextInput(attrs={'class': 'input-field col s3'}))
-    
+
     # email_address = forms.EmailField(label='Email Address',
     #     widget= forms.TextInput(attrs={'class': 'input-field col s3'}))
-    
+
     # purpose_of_visit = forms.CharField(label='Purpose of Visit',
     #     widget= forms.TextInput(attrs={'class': 'input-field col s3'}))
-    
+
     # description_of_the_condition = forms.CharField(label='DEscription of the Condition',
     #     widget=forms.Textarea(attrs={'class':'input-field col s12'}))
-    
+
     # prescription = forms.CharField(label='Prescription',
     #     widget= forms.TextInput(attrs={'class': 'input-field col s3'}))
-    
+
     # current_temperature = forms.CharField(label='Current Temperature',
     #     widget= forms.TextInput(attrs={'class': 'input-field col s3'}))
-    
+
     # current_medication = forms.CharField(label='Current Medication',
     #     widget= forms.TextInput(attrs={'class': 'input-field col s6'}))
-    
+
     # blood_type = forms.CharField(label='Blood Type',
     #     widget= forms.TextInput(attrs={'class': 'input-field col s3'}))
-    
+
     # body_mass = forms.CharField(label='Body Mass',
     #     widget= forms.TextInput(attrs={'class': 'input-field col s3'}))
-    
+
     # allergies = forms.CharField(label='Allergies',
     #     widget= forms.TextInput(attrs={'class': 'input-field col s6'}))
-    
+
     # employment_status = forms.CharField(label='Employment Status',
     #     widget= forms.TextInput(attrs={'class': 'input-field col s3'}))
-    
+
     # consulted_doctor = forms.CharField(label='Consulted Doctor',
     #     widget= forms.TextInput(attrs={'class': 'input-field col s3'}))
-    
+
     # marital_status = forms.CharField(label='Marital Status',
     #     widget= forms.TextInput(attrs={'class': 'input-field col s3'}))
-    
+
     # medical_aid_group = forms.CharField(label='Medical Aid Group',
     #     widget= forms.TextInput(attrs={'class': 'input-field col s3'}))
-    
+
     # date_of_visit = forms.CharField(label='Date of Visit',
     #     widget=forms.Textarea(attrs={'class': 'input-field col s3' }))
 
@@ -220,3 +220,218 @@
 #     marital_status = forms.CharField(max_length=20)
 #     medical_aid_group = forms.CharField(max_length=255)
 #     date_of_visit = forms.DateField()
+
+{% block title %} {{ title }} {% endblock  %}
+
+{% block content %}
+    <!-- Container for the patient form -->
+	{% comment %} <div class="container light-blue lighten-4"> {% endcomment %}
+		{% comment %} <div class="container light-blue lighten-4"> {% endcomment %}
+	     <form method="POST" action='.' enctype="multipart/form-data" class='col s12 form-control'>
+          {% csrf_token %}
+
+          {% comment %} {{ form | crispy }} {% endcomment %}
+          {% crispy form form.helper %}
+
+
+     </form>
+    {% comment %} </div> {% endcomment %}
+  {% comment %} </div> {% endcomment %}
+    <!-- These last two divs close the container -->
+    {% endblock %}
+
+<!--         <div class="form-row">
+          <div class="form-group col-md-2">
+            <label for="prefix">Prefix</label>
+            <input type="text" name="prefix" class="form-control" id="prefix">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="first_name">First Name</label>
+            <input type="text" name="first_name" class="form-control" id="first_name">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="last_name">Last Name</label>
+            <input type="text" name="last_name" class="form-control" id="last_name">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" class="form-control">
+              <option selected>Choose...</option>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+        </div>
+
+
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="email">Email</label>
+            <input type="email" name="email" class="form-control" id="email" placeholder="Email">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="phone_number">Phone Number</label>
+            <input type="phone" name="phone_number" class="form-control" id="phone_number" placeholder="+263 77 8 613 888">
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="birthday">Date of Birth</label>
+            <input type="date" name="date_of_birth" class="form-control" id="birthday" placeholder="1990-12-04">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="home_address">Home Address</label>
+            <input type="text" name="home_address" class="form-control" id="home_address" placeholder="123 Tavern Main St.">
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="national_id">National ID</label>
+            <input type="text" name="national_id" class="form-control" id="national_id" placeholder="08-2127708X35">
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="marital_status">Marital Status</label>
+            <select id="marital_status" name="marital_status" class="form-control">
+              <option selected>Choose...</option>
+              <option value="1">Single</option>
+                  <option value="2">Married</option>
+                  <option value="3">Engaged</option>
+                  <option value="4">Divorced</option>
+                  <option value="5">Widowed</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="marital_status">Employment Status</label>
+            <select id="employment_status" name="employment_status" class="form-control">
+              <option selected>Choose...</option>
+              <option value="1">Employed</option>
+                  <option value="2">Not Employed</option>
+                  <option value="3">Student</option>
+            </select>
+          </div>
+           <div class="form-group col-md-4">
+            <label for="medical_aid_group">Medical AID</label>
+            <select id="medical_aid_group" name="medical_aid_group" class="form-control">
+              <option selected>Choose...</option>
+              <option>MASCA</option>
+            </select>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="allergies">Allergies</label>
+            <input type="text" name="allergies" class="form-control" id="allergies">
+
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="blood_type">Blood Type</label>
+            <select id="blood_type" name="blood_type" class="form-control">
+              <option selected>Choose...</option>
+              <option value="1">Employed</option>
+                  <option value="2">Not Employed</option>
+                  <option value="3">Student</option>
+            </select>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="body_mass">Body Mass</label>
+            <input type="text" name="body_mass" class="form-control" id="body_mass">
+
+          </div>
+          <div class="form-group col-md-4">
+            <label for="body_temp">Body Temperature</label>
+            <input type="text" name="body_temperature" class="form-control" id="temperature">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="reason_for_visit">Purpose for Visit</label>
+            <input type="text" name="purpose_for_visit" class="form-control" id="purpose_for_visit">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="prescription">Doctor's Prescription</label>
+            <input type="text" name="prescription" class="form-control" id="prescription">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="consulted_doctor">Consulted Doctor</label>
+            <select id="consulted_doctor" class="form-control">
+              <option selected>Choose...</option>
+              <option>Dr N. Mbele</option>
+              <option>Dr N. Mbele</option>
+              <option>Dr N. Mbele</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group col-md-8">
+            <label for="description_of_condition">Description of Condition</label>
+            <textarea class="form-control" rows="8" id="description_of_condition" name="description_of_condition"></textarea>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="date_of_visit">Date of Visit</label>
+          <input type="date" name="date_of_visit" class="form-control" id="date_of_visit">
+        </div>
+        <!-- <div class="form-group">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <label class="form-check-label" for="gridCheck">Check me out</label>
+          </div>
+        </div> -->
+
+        <!-- Regular Card 1 -->
+        <div class="card light-blue lighten-3 col s6 hoverable">
+          <div class="card-content white-text">
+            <span class="card-title">Patients Dashboard</span>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div>
+          <div class="card-action">
+            <a href="/HealthNet/">Home</a>
+          </div>
+        </div>
+
+        <!-- Regular Card 2 -->
+        <div class="card red lighten-3 col s6 hoverable">
+          <div class="card-content white-text">
+            <span class="card-title">Register New Patient</span>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div>
+          <div class="card-action">
+            <a href="/HealthNet/patients/patient_form/">Add Patient</a>
+          </div>
+        </div>
+
+      <!-- Image Card -->
+      <div class="card small col s6 hoverable">
+        <div class="card-image">
+          <img src=" {% static 'assets/img/pexels-photo-11.jpeg' %} ">
+          <span class="card-title red-text">ALL PATIENTS</span>
+        </div>
+        <div class="card-action">
+          <a href="/HealthNet/patients/view_all">View All Patients</a>
+        </div>
+      </div>
+
+      <!-- Image Card 2 -->
+      <div class="card small col s6 hoverable">
+        <div class="card-image">
+          <img src=" {% static 'assets/img/pexels-photo-4.jpeg' %} ">
+          <span class="card-title red-text">SEE REPORTS</span>
+        </div>
+        <div class="card-action">
+          <a href="/HealthNet/patients/get_reports">See Reports</a>
+        </div>
+      </div>

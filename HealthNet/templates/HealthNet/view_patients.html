@@ -1,11 +1,10 @@
 {% extends "HealthNet/base.html" %}
 
 {% block content %}
-	<div class="container">
-	  <ul class="collection">
+	  <ul class="list-group">
     {% for patient in patients %}
-        <a href="HealthNet/patient_info/{{ patient.id }}" class="collection-item">{{ patient.id }} . {{ patient.first_name }} {{ patient.last_name }}</a>
+        <!-- <a href="HealthNet/patient_info/{{ patient.id }}" class="collection-item">{{ patient.id }} . {{ patient.first_name }} {{ patient.last_name }}</a> -->
+		<a href="/HealthNet/patients/patient_info/{{ patient.id }}" class="list-group-item list-group-item-success">{{ patient.id }} . {{ patient.first_name }} {{ patient.last_name }}</a>
     {% endfor %}
     </ul>
-  </div>
 {% endblock %}

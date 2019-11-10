@@ -4,55 +4,40 @@
 
 {% block content %}
 
-<!-- Beginner of card container -->
-<!-- <div class="container"> -->
-			<!-- Regular Card 1 -->
-      <div class="card col s12 light-blue lighten-3 hoverable">
-        <div class="card-content white-text">
-          <span class="card-title">{{ title }}</span> <!-- Patient name to replace this -->
-            <h5>Full Name : {{ patient.prefix }} {{ patient.first_name }} {{ patient.last_name }} </h5>
-            <p>Date of Birth : {{patient.date_of_birth}}</p>
-            <p>Marital Status : {{patient.marital_status}}</p>
-            <p>Employment Status : {{patient.employment_status}}</p>
-
-
-           <span class="card-title">{{ title }}</span>
-
-            <p>Date of Visit : {{patient.date_of_visit}}</p>
-            <p>Email Address : {{ patient.email_address }}</p>
-            <p>Phone Number : {{ patient.phone_number }}</p>
-            <p>Gender : {{ patient.gender }}</p>
-
-           <span class="card-title">{{ title }}</span>
-
-            <p>Reason for Visit : {{ patient.purpose_of_visit }}</p>
-            <p>Description of Condition : {{ patient.description_of_condition|safe }}</p>
-            <p>Prescription : {{ patient.prescription }}</p>
-            <p>Current Medication: {{ patient.current_medication }}</p>
-            <p>Body Mass : {{ patient.body_mass }}</p>
-            <p>Allergies : {{ patient.allergies }}</p>
-
-           <span class="card-title">{{ title }}</span>
-
-            <p>Consulted Doctor : {{ patient.consulted_doctor }}</p>
-            <p>Medical AID Group : {{ patient.medical_aid_group }}</p>
-            <p>Blood Type : {{ patient.blood_type }}</p>
-            <p>Physical Address : {{ patient.home_address }}</p>
-
-           <span class="card-title">{{ title }}</span>
-
-            <p>National I.D : {{ patient.national_id }}</p>
-            <p>Current Temperature : {{ patient.current_temperature }}</p>
-
-        </div>
+<div class="card text-white bg-dark card-accent-success mb-3">
+  <div class="card-header">
+      <h3><b>{{ patient.first_name }} 's {{title}}</b></h3>
+  </div>
+  <div class="card-body">
+      <div class="card-text">
+          <h5 class="card-title">Full Name :                {{ patient.first_name }} {{ patient.last_name }}</h5>
+          <!-- <div class="form-row""> -->
+              <p class="card-text text-primary">Date of Birth       :       {{patient.date_of_birth}}</p>
+              <p class="card-text text-secondary">Gender            :       {{ patient.gender }}</p>
+              <p class="card-text text-warning">National ID         :       {{ patient.national_id }}</p>
+              <p class="card-text text-info">Physical Address       :       {{ patient.home_address }}</p>
+              <p class="card-text text-success">Phone Number        :       {{ patient.phone_number }}</p>
+              <p class="card-text text-warning">Email Address       :       {{ patient.email_address }}</p>
+              <p class="card-text text-danger">Reason for Visit     :       {{ patient.purpose_of_visit }}</p>
+              <p class="card-text text-primary">Current Medication  :       {{ patient.current_medication }}</p>
+              <p class="card-text text-secondary">Prescription      :       {{ patient.prescription }}</p>
+              <p class="card-text text-info">Condition Description  :       {% autoescape off %} {{ patient.description_of_the_condition }} {% endautoescape %} </p>
+              <p class="card-text text-success">Body Temperature    :       {{ patient.current_temperature }}</p>
+              <p class="card-text text-info">Body Mass              :       {{ patient.body_mass }}</p>
+              <p class="card-text text-danger">Blood Type           :       {{ patient.blood_type }}</p>
+              <p class="card-text text-warning">Patient Allergies   :       {{ patient.allergies }}</p>
+              <p class="card-text text-light">Medical AID Group     :       {{ patient.medical_aid_group }}</p>
+              <p class="card-text text-success">Consulted Doctor    :       {{ patient.consulted_doctor }}</p>
+              <p class="card-text text-primary">Date of Visit       :       {{ patient.date_of_visit }}</p>
+          <!-- </div> -->
       </div>
+  </div>
+</div>
 
-        <div class="container">
-          <div class="row">
-            <input class="btn waves-effect blue" type="submit" value="Edit" name="edit">
-            <input class="btn waves-effect red" type="submit" value="Delete" name="delete">
-          </div>
-        </div>
-	<!-- </div> -->
+<br>
+ <button type="button" class="btn btn-info">Edit</button>
+ <button type="button" class="btn btn-danger">Delete</button>
+<br>
+<br>
 
 {% endblock  %}

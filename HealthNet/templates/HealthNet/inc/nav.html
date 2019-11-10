@@ -1,57 +1,35 @@
-<head>
-
-{% load static %}
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
-    <link href="{% static 'assets/img/favicon/favicon.png' %}" rel="shortcut icon"/>
-	<link type="text/css" rel="stylesheet" href="{% static 'assets/css/materialize.min.css' %}" media="screen, projection">
-</head>
-
-<div class="container">
-    <!-- <nav class="white">
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo red-text lighten-2">{{ title }}</a>
-            <ul class="hide-on-med-and-down right">
-                <li>
-                    <div class="center row">
-                        <div class="col s12 " >
-                        <div class="row" id="topbarsearch">
-                            <div class="input-field col s6 s12 red-text">
-                            <i class="red-text material-icons prefix">search</i>
-                            <input type="text" placeholder="search" id="autocomplete-input" class="autocomplete red-text" >
-                            </div>
-                            </div>
-                        </div>
-                        </div>
-                    </li>
-                <li><a href="/HealthNet/" class="red-text">Home</a></li>
-                <li><a href="/HealthNet/patients/patient_form" class="red-text">New Patient</a></li>
-                <li><a href="/HealthNet/patients/view_all" class="red-text">All Patients</a></li>
-                <li><a href="/admin" class="red-text">Admin</a></li>
-            </ul>
-        </div>
-    </nav> -->
-    <nav class="navbar-inverse navbar-dark bg-dark">
-        <a class="navbar-brand" href="/HealthNet/">HealthNet</a>
-        <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button> -->
-        <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li>
-            </ul>
-            <span class="navbar-text">
-                Navbar text with an inline element
-            </span>
-        </div>
+    <nav class="navbar navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a class="navbar-brand" href="/HealthNet/">{{ project_name }}</a>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/HealthNet/">Admin<span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/HealthNet/patients/patient_form/">Add Patient</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/HealthNet/patients/view_all/">View All Patients</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/HealthNet/patients/get_reports/">Get Reports</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/HealthNet/contact/">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Check Doctors</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
     </nav>
-</div>

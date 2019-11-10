@@ -3,83 +3,79 @@
 
 {% load static %}
 
-
 {% block content %}
     <!-- Here comes the beautiful design of the dashboard Using Cards-->
-    <!-- <div class="container"> -->
       <div class="row">
-			<div class="card" style="width: 20rem;">
+			<div class="card text-white bg-success mb-3" style="width: 23rem;">
 				<div class="card-header">
-					{{title}}
+					<b>{{title}}</b>
 				</div>
 				<div class="card-body">
-					<h5 class="card-title">Special title treatment</h5>
-					<p class="card-text">With supporting text below as a natural lead-in to addition</p>
+					<h5 class="card-title">Add a new patient to the system</h5>
+					<p class="card-text">This is ProMed's platform for registering new patients into the system</p>
+                    <p class="card-text">Comprehensive system for all health needs</p>
+                    <p class="card-text">With supporting text below as a natural lead-in to addition</p>
 						<a href="/HealthNet/" class="btn btn-primary">Go Home</a>
 				</div>
 			</div>
 
-			<div class="card" style="width: 20rem;">
+			<div class="card text-white bg-secondary mb-3" style="width: 23rem;">
 				<div class="card-header">
-					All Patients
+					<b>All Patients</b>
 				</div>
 				<div class="card-body">
-					<h5 class="card-title">Special title treatment</h5>
-					<p class="card-text">With supporting text below as a natural lead-in to addition</p>
-						<a href="/HealthNet/patients/view_all" class="btn btn-primary">View All Patients</a>
+					<h5 class="card-title">View All Patients in the System</h5>
+					<p class="card-text">Check out oujr ever growing database</p>
+                    <p class="card-text">With supporting text below as a natural lead-in to addition</p>
+						<a href="/HealthNet/patients/view_all" class="btn btn-info">View All Patients</a>
 				</div>
 			</div>
 
-			<div class="card" style="width: 20rem;">
+			<div class="card text-white bg-info mb-3" style="width: 23rem;">
 				<div class="card-header">
-					Add Patient
+					<b>Add Patient</b>
 				</div>
 				<div class="card-body">
 					<h5 class="card-title">Special title treatment</h5>
 					<p class="card-text">With supporting text below as a natural lead-in to addition</p>
-						<a href="/HealthNet/patients/patient_form/" class="btn btn-primary">Add New Patient</a>
+                    <p class="card-text">With supporting text below as a natural lead-in to addition</p>
+                    <p class="card-text">With supporting text below as a natural lead-in to addition</p>
+						<a href="/HealthNet/patients/patient_form/" class="btn btn-warning">Add New Patient</a>
 				</div>
 			</div>
 
-			<div class="card" style="width: 20rem;">
+			<div class="card text-white bg-danger mb-3" style="width: 23rem;">
 				<div class="card-header">
-					Add Patient
+					<b>Reports</b>
 				</div>
 				<div class="card-body">
-					<h5 class="card-title">Special title treatment</h5>
-					<p class="card-text">With supporting text below as a natural lead-in to addition</p>
-						<a href="/HealthNet/patients/patient_form/" class="btn btn-primary">Add New Patient</a>
+					<h5 class="card-title">Check out latest Reports</h5>
+					<p class="card-text">Because we aim to please we have provided the option for generating reports that are based on certain trends. the first trend we are on the lookout for is that of diseases outbreak, if say a particular pattern is repetitive it has to be flagged for close monitoring so that immediate action and steps can be taken</p>
+						<a href="/HealthNet/patients/get_reports/" class="btn btn-success">See Reports</a>
 				</div>
 			</div>
-			<div class="card" style="width: 20rem;">
+			<div class="card text-white bg-warning mb-3" style="width: 23rem;">
 				<div class="card-header">
-					Add Patient
+					<b>Check Doctors</b>
 				</div>
 				<div class="card-body">
-					<h5 class="card-title">Special title treatment</h5>
-					<p class="card-text">With supporting text below as a natural lead-in to addition</p>
-						<a href="/HealthNet/patients/patient_form/" class="btn btn-primary">Add New Patient</a>
+					<h5 class="card-title">Check out our medical practictioners</h5>
+					<p class="card-text">Check out a list of our skilled medical personnel currently working with us to provide the municiaplty with the best medical health care the people can get.</p>
+						<a href="/HealthNet/doctors/all_doctors/" class="btn btn-primary">View Doctors</a>
 				</div>
 			</div>
 
-			<div class="card" style="width: 20rem;">
+			<div class="card text-white bg-dark mb-3" style="width: 23rem;">
 				<div class="card-header">
-					{{ title }}
+					<b>Authorised Hospital Staff</b>
 				</div>
 				<div class="card-body">
-					<h5 class="card-title">Special title treatment</h5>
-					<p class="card-text">With supporting text below as a natural lead-in to addition</p>
-						<a href="/HealthNet/patients/patient_form/" class="btn btn-primary">Add New Patient</a>
+					<h5 class="card-title">A list of all the authorised personnel</h5>
+					<p class="card-text">Because we work with sensitive data, that is individual's most private and intimate information, our system has to be totally secured and we have to keep a tight list of how many people have access to it to minimise information leaks.</p>
+						<a href="/HealthNet/doctors/staff/" class="btn btn-primary">View Staff</a>
 				</div>
 			</div>
       </div> <!-- Row Div -->
-  <!-- </div> <!-- Container div --> -->
 
   <!-- Dashboard Design Ends Here -->
-
-
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="assets/js/materialize.min.js"></script>
-
 {% endblock content %}

@@ -9,7 +9,7 @@ class PatientAdmin(admin.ModelAdmin):
     prepopulated_fields = {'first_name': ('last_name','purpose_of_visit', )}
 
 class DoctorAdmin(admin.ModelAdmin):
-	list_display = ['first_name', 'last_name', 'qualification', 'specialty']
+	list_display = ['first_name', 'last_name', 'qualification', 'specialty', 'phone_number','Email']
 
 class HospitalStaffAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name')

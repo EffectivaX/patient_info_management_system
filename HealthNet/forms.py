@@ -80,39 +80,6 @@ class DoctorModelForm(forms.ModelForm):
         fields = '__all__'
 
 
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #
-    #     self.helper = FormHelper
-    #     self.helper.form_method = 'post'
-    #
-    #     self.helper.layout = Layout(
-    #         'prefix',
-    #         'first_name',
-    #         'last_name',
-    #         'date_of_birth',
-    #         'gender',
-    #         'home_address',
-    #         'phone_number',
-    #         'national_id',
-    #         'email_address',
-    #         'purpose_of_visit',
-    #         'description_of_the_condition',
-    #         'prescription',
-    #         'current_temperature',
-    #         'blood_type',
-    #         'current_medication',
-    #         'body_mass',
-    #         'allergies',
-    #         'employment_status',
-    #         'consulted_doctor',
-    #         'marital_status',
-    #         'medical_aid_group',
-    #         'date_of_visit',
-    #         Submit('submit', 'Submit', css_class='btn waves-effect hoverable green lighten-1 center')
-    #         # Reset('reset', 'Reset', css_class='btn-danger')
-    #     )
-
 class PatientForm(forms.Form):
     prefix = forms.CharField(widget=forms.Select(choices=PREFIX_CHOICES, attrs={
         'class' : 'form-group col-md-2'
@@ -163,11 +130,11 @@ class PatientForm(forms.Form):
         'class' : 'form-group col-md-6'
     }))
 
-    prescription = forms.CharField(required=False,widget=forms.TextInput(attrs={
+    prescription = forms.CharField(widget=forms.TextInput(attrs={
         'class' : 'form-group col-md-6'
     }))
 
-    current_temperature = forms.CharField(required=False,widget=forms.TextInput(attrs={
+    current_temperature = forms.CharField(widget=forms.TextInput(attrs={
         'class' : 'form-group col-md-3'
     }))
 
@@ -180,12 +147,12 @@ class PatientForm(forms.Form):
         'placeholder' : 'Morphin'
     }))
 
-    body_mass = forms.CharField(required=False,widget=forms.TextInput(attrs={
+    body_mass = forms.CharField(widget=forms.TextInput(attrs={
         'class' : 'form-group col-md-4',
         'placeholder' : '60kg'
     }))
 
-    allergies = forms.CharField(required=False,widget=forms.TextInput(attrs={
+    allergies = forms.CharField(widget=forms.TextInput(attrs={
         'class' : 'form-group col-md-6',
         'placeholder' : 'chicken nuggets'
     }))
@@ -198,11 +165,11 @@ class PatientForm(forms.Form):
         'class' : 'form-group col-md-6'
     }))
 
-    marital_status = forms.CharField(required=False,widget=forms.Select(choices=MARITAL_CHOICES, attrs={
+    marital_status = forms.CharField(widget=forms.Select(choices=MARITAL_CHOICES, attrs={
         'class' : 'form-group col-md-4'
     }))
 
-    Medical_Aid_Group = forms.CharField(required=False,widget=forms.Select(choices=INSURANCES, attrs={
+    medical_aid_group = forms.CharField(widget=forms.Select(choices=INSURANCES, attrs={
         'class' : 'form-group col-md-6'
     }))
 

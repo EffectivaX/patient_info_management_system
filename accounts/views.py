@@ -12,7 +12,7 @@ def register(request, *args, **kwargs):
         return HttpResponseRedirect('/login')
     context = {
         'form': form,
-        'title' : 'Register'
+        'title' : 'CyberTech ProMed Register'
     }
 
     return render(request, 'accounts/register.html', context)
@@ -25,7 +25,7 @@ def login_view(request, *args, **kwargs):
         return HttpResponseRedirect('/HealthNet/')
     context = {
         'form': form,
-        'title' : 'Login'
+        'title' : 'CyberTech ProMed Login'
     }
 
     return render(request, 'accounts/login.html', context)

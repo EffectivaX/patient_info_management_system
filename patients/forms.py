@@ -46,6 +46,3 @@ class PatientModelForm(forms.ModelForm):
             Submit('submit', 'Submit', css_class='btn waves-effect hoverable green lighten-1 center')
             # Reset('reset', 'Reset', css_class='btn-danger')
         )
-
-
-

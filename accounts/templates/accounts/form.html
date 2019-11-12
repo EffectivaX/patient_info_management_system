@@ -1,9 +1,14 @@
-<div class="container light-blue-text lighten-4">
     <div class="row">
-        <form method="POST" action='.' class='form-control col s6 center-block'>
-                {% csrf_token %}
+        <div class="col-sm-3 offset-sm-3">
+            <form method="POST" action="."> {% csrf_token %}
+
                 {{ form.as_p }}
-            <input class="btn waves-effect blue lighten-3 hoverable" type='submit' name='Submit'>
-        </form>
+                {% if not login %}
+                    <p>Not registered yet? Click <a href="/register">Here</a></p>
+                {% elif not register %}
+                    <p>Already registered? Click <a href="/login">Here</a></p>
+                {% endif %}
+                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+            </form>
+        </div>
     </div>
-</div>

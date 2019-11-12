@@ -55,16 +55,16 @@ def patient_form(request):
             patient_obj = Patient(prefix=prefix, first_name=first_name, last_name=last_name,date_of_birth=date_of_birth, gender=gender, home_address=home_address, national_id=national_id, phone_number=phone_number, email_address=email_address, purpose_of_visit=purpose_of_visit, description_of_the_condition=description_of_the_condition, prescription=prescription,current_temperature=current_temperature, blood_type=blood_type, current_medication=current_medication, body_mass=body_mass, allergies=allergies, employment_status=employment_status, consulted_doctor=consulted_doctor, marital_status=marital_status, medical_aid_group=medical_aid_group, date_of_visit=date_of_visit)
             patient_obj.save()
             form.save()
-            
+
             print('Data saved successfully')
             form.save()
             return HttpResponseRedirect('/patients/')
-    
+
     else:
         form = PatientModelForm()
 
     context = {
-        'form': form, 
+        'form': form,
         'title': "Add New Patient"
     }
 
@@ -78,16 +78,16 @@ def new_patient(request):
         if patient_form.is_valid():
             patient_form.save()
             return HttpResponseRedirect('/patients/')
-    
+
     else:
         form = PatientModelForm()
 
     context = {
-        'form': patient_form, 
+        'form': patient_form,
         'title': "Add New Patient"
     }
 
-    return render(request, 'patients/add_patient.html', context)    
+    return render(request, 'patients/add_patient.html', context)
 
 # A function to view all patients in the database
 def view_all(request):
@@ -99,7 +99,7 @@ def view_all(request):
     patients = paginator.get_page(page)
 
     context = {
-        'title': 'All Patients', 
+        'title': 'All Patients',
         'patients': patients
         }
 
@@ -109,7 +109,7 @@ def view_all(request):
 def patient_info(request, id):
     template_name = 'detail_patient.html'
     patient = Patient.objects.get(id=id)
-   
+
     context = {
         'title': 'Patient Information',
         'patient': patient}
@@ -126,12 +126,12 @@ def get_reports(request):
         "Waterborne",
         "Rubella"
     ]
-    
+
     # if reports in alert_list:
     paginator = Paginator(reports, 30)
     if request.method == 'GET':
         page_requested = request.GET.get('page')
-    reports = paginator.get_page(page_requested)    
+    reports = paginator.get_page(page_requested)
 
     context = {
         'title' : 'Reports',

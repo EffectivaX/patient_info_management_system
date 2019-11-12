@@ -15,7 +15,7 @@ PREFIX_CHOICES = [
 ]
 
 GENDER_CHOICES = [
-    ('MALE', 'Male'), 
+    ('MALE', 'Male'),
     ('FEMALE', 'Female')
 ]
 
@@ -29,7 +29,7 @@ BLOOD_TYPE_CHOICES = (
     ('B-', 'B- Type'),
     ('AB-', 'AB- Type'),
     ('O-', 'O- Type'),
-)                      
+)
 
 INSURANCES = (
     (0, "N/A"),
@@ -43,7 +43,7 @@ INSURANCES = (
     (8, "ZimAid"),
     (9, "Kaiser Permanente"),
     (10, "Wellpoint"),
-)                      
+)
 
 MARITAL_CHOICES = [
         (0, 'Not Applicable'),
@@ -59,7 +59,7 @@ class Doctor(models.Model):
     last_name = models.CharField(max_length=60)
     qualification = models.CharField(max_length=60)
     specialty = models.CharField(max_length=60)
-    parent = models.ForeignKey('self', blank=True, null=True, related_name='children', on_delete = models.PROTECT)
+    # parent = models.ForeignKey('self', blank=True, null=True, related_name='children', on_delete = models.PROTECT)
 
     def __str__(self):
         return self.first_name + " " + self.last_name
@@ -86,7 +86,7 @@ class Patient(models.Model):
     current_medication = models.CharField(max_length=255)
     body_mass = models.CharField(max_length=255)
     allergies = models.CharField(max_length=255)
-    consulted_doctor = models.ForeignKey('Doctor', related_name="doctor", on_delete=models.PROTECT)
+    # consulted_doctor = models.ForeignKey('Doctor', related_name="doctor", on_delete=models.PROTECT)
     employment_status = models.CharField(max_length=20)
     marital_status = models.CharField(max_length=20, choices=MARITAL_CHOICES)
     medical_aid_group = models.CharField(max_length=255, choices=INSURANCES)

@@ -1,10 +1,10 @@
 'prefix', 'first_name','last_name', 'date_of_birth', 'gender','home_address','national_id', 'phone_number', 'email_address', 'purpose_of_visit', 'description_of_the_condition', 'prescription', 'current_temperature', 'blood_type', 'current_medication', 'body_mass', 'allergies', 'employment_status', 'consulted_doctor', 'marital_status', 'medical_aid_group', 'date_of_visit',
 
 first{
-      
-      Scott Crumley 
-      1970-12-13 
-      Male 
+
+      Scott Crumley
+      1970-12-13
+      Male
       67 Crawford Drive Victoria Falls
       08-2127708X35
       263778613888
@@ -25,10 +25,10 @@ first{
 }
 
 second{
-      
-      reyna Finkbeiner 
-      1965-12-13 
-      Female 
+
+      reyna Finkbeiner
+      1965-12-13
+      Female
       69 Crawford Drive Victoria Falls
       02-6137708Z02
       263778611238
@@ -49,10 +49,10 @@ second{
 }
 
 third{
-      
-      full_name : reyna Finkbeiner 
-      dob: 1965-12-13 
-      gender : Female 
+
+      full_name : reyna Finkbeiner
+      dob: 1965-12-13
+      gender : Female
       home_address : 69 Crawford Drive Victoria Falls
       id_number : 02-6137708Z02
       phone_number : 263778611238
@@ -113,3 +113,60 @@ Gabriel Ashbaugh M
 Hortencia Sypher F
 Galina Brungardt F
 Louis Honaker M
+
+# Adding a new patient using a form named PatientForm()
+@login_required
+def new_patient(request):
+    patient_form = PatientForm()
+    if request.method == 'POST':
+        patient_form = PatientForm(request.POST)
+        if patient_form.is_valid():
+            patient_form.save()
+            return HttpResponseRedirect('/HealthNet/')
+
+    else:
+        form = PatientForm()
+
+    context = {
+        'form': patient_form,
+        'title': "Add New Patient",
+        'project_name' : 'ProMed HealthNet Inc',
+        'creator' : 'Andile XeroxZen',
+        'purpose' : 'Patient Information Management System'
+    }
+
+    return render(request, 'HealthNet/add_patient.html', context)
+
+
+        # def __init__(self, *args, **kwargs):
+        #     super().__init__(*args, **kwargs)
+        #
+        #     self.helper = FormHelper
+        #     self.helper.form_method = 'post'
+        #
+        #     self.helper.layout = Layout(
+        #         'prefix',
+        #         'first_name',
+        #         'last_name',
+        #         'date_of_birth',
+        #         'gender',
+        #         'home_address',
+        #         'phone_number',
+        #         'national_id',
+        #         'email_address',
+        #         'purpose_of_visit',
+        #         'description_of_the_condition',
+        #         'prescription',
+        #         'current_temperature',
+        #         'blood_type',
+        #         'current_medication',
+        #         'body_mass',
+        #         'allergies',
+        #         'employment_status',
+        #         'consulted_doctor',
+        #         'marital_status',
+        #         'medical_aid_group',
+        #         'date_of_visit',
+        #         Submit('submit', 'Submit', css_class='btn waves-effect hoverable green lighten-1 center')
+        #         # Reset('reset', 'Reset', css_class='btn-danger')
+        #     )

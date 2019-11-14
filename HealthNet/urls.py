@@ -9,6 +9,7 @@ urlpatterns = [
     path('HealthNet/patients/patient_form/', views.patient_form, name='patients/patient_form'),
     path('HealthNet/patients/patient_info/<int:id>/', views.patient_info, name='patient_info'),
     path('HealthNet/patients/edit_info/<int:id>/', views.edit_info, name='edit_info'),
+    path('HealthNet/patients/delete_info/<int:id>', views.delete_info, name='Delete'),
     path('HealthNet/patients/get_reports/', views.get_reports, name="reports"),
     # path('HealthNet/success/',  views.success, name="New Patient"),
     path('HealthNet/contact/', views.contact_snippet, name='Contact'),

@@ -1,14 +1,15 @@
     <div class="row">
-        <div class="col-sm-3 offset-sm-3">
+        <div class="col-sm-3 offset-sm-4">
+            <h5>{{ title }}</h5>
             <form method="POST" action="."> {% csrf_token %}
 
                 {{ form.as_p }}
-                {% if not login %}
-                    <p>Not registered yet? Click <a href="/register">Here</a></p>
-                {% elif not register %}
-                    <p>Already registered? Click <a href="/login">Here</a></p>
+                {% if not register %}
+                    <p>Not registered yet? Click <a href="/register/" style="color: red;">Here</a></p>
+                {% elif not login %}
+                    <p>Already registered? Click <a href="/login/" style="color: red;">Here</a></p>
                 {% endif %}
-                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                <button type="submit" class="btn btn-primary mb-2">{{ button }}</button>
             </form>
         </div>
     </div>

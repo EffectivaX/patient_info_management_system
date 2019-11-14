@@ -147,7 +147,7 @@ class PatientForm(forms.Form):
         'placeholder' : 'Morphin'
     }))
 
-    body_mass = forms.CharField(widget=forms.TextInput(attrs={
+    body_mass = forms.IntegerField(widget=forms.TextInput(attrs={
         'class' : 'form-group col-md-4',
         'placeholder' : '60kg'
     }))

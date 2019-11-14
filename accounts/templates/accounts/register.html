@@ -1,7 +1,6 @@
  {% extends "accounts/base.html" %}
 
 {% block content %}
-    <h3 class="col-sm-5 offset-sm-3" style="margin-bottom: 10px;">{{ title }}</h3>
     {% include "accounts/form.html" with form=form %}
     {% if form.errors %}
     <p>Your form has some errors ,rectify them and proceed</p>

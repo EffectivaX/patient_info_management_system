@@ -100,7 +100,7 @@ class Patient(models.Model):
     current_temperature = models.CharField(max_length=255, blank=True)
     blood_type = models.CharField(max_length=255, choices=BLOOD_TYPE_CHOICES, blank=True)
     current_medication = models.CharField(max_length=255)
-    body_mass = models.CharField(max_length=255, blank=True)
+    body_mass = models.PositiveIntegerField()
     allergies = models.CharField(max_length=255, blank=True)
     consulted_doctor = models.ForeignKey('Doctor', related_name="doctor", on_delete=models.PROTECT)
     employment_status = models.CharField(max_length=20, choices=EMPLOYMET_STATUS)

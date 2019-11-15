@@ -169,4 +169,55 @@ def new_patient(request):
         #         'date_of_visit',
         #         Submit('submit', 'Submit', css_class='btn waves-effect hoverable green lighten-1 center')
         #         # Reset('reset', 'Reset', css_class='btn-danger')
+
+
+
+        patient.prefix = form.cleaned_data.get('prefix')
+        patient.first_name = form.cleaned_data.get('first_name')
+        patient.last_name = form.cleaned_data.get('last_name')
+        patient.date_of_birth = form.cleaned_data.get('date_of_birth')
+        patient.gender = form.cleaned_data.get('gender')
+        patient.home_address = form.cleaned_data.get('home_address')
+        patient.national_id = form.cleaned_data.get('national_id')
+        patient.phone_number = form.cleaned_data.get('phone_number')
+        patient.email_address = form.cleaned_data.get('email_address')
+        patient.purpose_of_visit = form.cleaned_data.get('purpose_of_visit')
+        patient.description_of_the_condition = form.cleaned_data.get('description_of_the_condition')
+        patient.prescription = form.cleaned_data.get('prescription')
+        patient.current_temperature = form.cleaned_data.get('current_temperature')
+        patient.blood_type = form.cleaned_data.get('blood_type')
+        patient.current_medication = form.cleaned_data.get('current_medication')
+        patient.body_mass = form.cleaned_data.get('body_mass')
+        patient.allergies = form.cleaned_data.get('allergies')
+        patient.employment_status = form.cleaned_data.get('employment_status')
+        patient.consulted_doctor = form.cleaned_data.get('consulted_doctor')
+        patient.marital_status = form.cleaned_data.get('marital_status')
+        patient.medical_aid_group = form.cleaned_data.get('medical_aid_group')
+        patient.date_of_visit = form.cleaned_data.get('date_of_visit')
         #     )
+
+        # def contact_snippet(request):
+        #     form = ContactForm()
+        #     if request.method == 'POST':
+        #         form = ContactForm()
+        #         if form.is_valid():
+        #             contact = Contact.objects.create(
+        #                 name = form.cleaned_data.get('name'),
+        #                 subject = form.cleaned_data.get('subject'),
+        #                 email = form.cleaned_data.get('email'),
+        #                 category = form.cleaned_data.get('category'),
+        #                 message = form.cleaned_data.get('message')
+        #             )
+        #
+        #             contact.save()
+        #
+        #     form = ContactForm()
+        #
+        #     context = {
+        #         'form' : form,
+        #         'button' : 'Send Message',
+        #         'project_name' : 'ProMed HealthNet Inc',
+        #         'title' : 'Contact Us'
+        #     }
+        #
+        #     return render(request, 'HealthNet/form.html', context)

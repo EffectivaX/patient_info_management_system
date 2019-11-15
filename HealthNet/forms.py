@@ -1,6 +1,6 @@
 from django import forms
 from datetime import datetime
-from .models import Patient, Doctor, Contact
+from .models import Patient, Doctor, Contact, Staff
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit
 # from django.core import validators
@@ -9,17 +9,17 @@ from crispy_forms.layout import Layout, Submit
 
 
 PREFIX_CHOICES = [
-    ('Mr', 'MR.'),
-    ('Mrs', 'MRS.'),
-    ('Ms', 'MS.'),
-    ('Prof', 'PROF.'),
-    ('Dr', 'DR.'),
-    ('Rev', 'REV.'),
+    ('Mr', 'Mr.'),
+    ('Mrs', 'Mrs.'),
+    ('Ms', 'Ms.'),
+    ('Prof', 'Prof.'),
+    ('Dr', 'Dr.'),
+    ('Rev', 'Rev.'),
 ]
 
 GENDER_CHOICES = [
-    ('Male', 'MALE'),
-    ('Female', 'FEMALE')
+    ('Male', 'Male'),
+    ('Female', 'Female')
 ]
 
 
@@ -49,12 +49,12 @@ INSURANCES = (
 )
 
 MARITAL_CHOICES = [
-        ('Not Available', 'N/A'),
-        ('Engaged', 'ENGAGED'),
-        ('Single', 'SINGLE'),
-        ('Divorced', 'DIVORCED'),
-        ('Separated', 'SEPARATED'),
-        ('Married', 'MARRIED'),
+        ('Not Available', 'Not Available'),
+        ('Engaged', 'Engaged'),
+        ('Single', 'Single'),
+        ('Divorced', 'Divorced'),
+        ('Separated', 'Separated'),
+        ('Married', 'Married'),
     ]
 
 EMPLOYMET_STATUS = [
@@ -78,6 +78,17 @@ class DoctorModelForm(forms.ModelForm):
     class Meta:
         model = Doctor
         fields = '__all__'
+
+class StaffModelForm(forms.ModelForm):
+    class Meta:
+        model = Staff
+        fields = '__all__'
+
+class ContactModelForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = '__all__'
+
 
 
 class PatientForm(forms.Form):
@@ -178,56 +189,139 @@ class PatientForm(forms.Form):
         'placeholder' : 'YYYY-MM-DD'
     }))
 
-    # date_of_visit = forms.DateField(widget=forms.SelectDateWidget(
-    #     empty_label=("Choose Year", "Choose Month", "Choose Day"
-    #     ),
-    #     attrs={
-    #         'class' : 'form-row date col-md-4'
-    # }))
-
 
     def __init__(self, *args, **kwargs):
         super(PatientForm, self).__init__(*args, **kwargs)
 
+class DoctorForm(forms.Form):
+    PREFIX_LOCAL = [
+        ('Dr', 'Dr')
+    ]
+    prefix = forms.CharField(widget=forms.Select(choices=PREFIX_LOCAL, attrs={
+        'class' : 'form-group col-md-2'
+    }))
+
+    first_name = forms.CharField(widget=forms.TextInput(attrs={
+        'placeholder': 'First Name',
+        'class': 'form-row col-md-4'
+    }))
+
+    last_name = forms.CharField(widget=forms.TextInput(attrs={
+        'placeholder': 'Last Name',
+        'class': 'form-row col-md-4'
+    }))
+
+    date_of_birth = forms.DateField(widget=forms.TextInput(attrs={
+        'class' : 'form-row col-md-4',
+        'placeholder' : 'YYYY-MM-DD'
+    }))
+
+    gender = forms.CharField(widget=forms.Select(choices=GENDER_CHOICES, attrs={
+        'class' : 'form-row col-md-4'
+    }))
+
+    phone_number = forms.CharField(widget=forms.TextInput(attrs={
+        'class' : 'form-row col-md-4'
+    }))
+
+    Email = forms.EmailField(required=False,widget=forms.EmailInput(attrs={
+        'class' : 'form-row col-md-6',
+        'placeholder' : 'example@gmail.com'
+    }))
+
+    identification_id = forms.CharField(widget=forms.TextInput(attrs={
+        'class' : 'form-row col-md-4'
+    }))
+
+    qualification = forms.CharField(widget=forms.TextInput(attrs={
+        'class' : 'form-group col-md-4'
+    }))
+
+    specialty = forms.CharField(widget=forms.TextInput(attrs={
+        'class' : 'form-group col-md-4'
+    }))
+
+    join_date = forms.DateField(widget=forms.TextInput(attrs={
+        'class' : 'form-row col-md-4',
+        'placeholder' : 'YYYY-MM-DD'
+    }))
+
+
+    def __init__(self, *args, **kwargs):
+        super(DoctorForm, self).__init__(*args, **kwargs)
+
+class StaffForm(forms.Form):
+    title = forms.CharField(widget=forms.Select(choices=PREFIX_CHOICES, attrs={
+        'class' : 'form-group col-md-2'
+    }))
+
+    first_name = forms.CharField(widget=forms.TextInput(attrs={
+        'placeholder': 'First Name',
+        'class': 'form-row col-md-4'
+    }))
+
+    last_name = forms.CharField(widget=forms.TextInput(attrs={
+        'placeholder': 'Last Name',
+        'class': 'form-row col-md-4'
+    }))
+
+    date_of_birth = forms.DateField(widget=forms.TextInput(attrs={
+        'class' : 'form-row col-md-4',
+        'placeholder' : 'YYYY-MM-DD'
+    }))
+
+    gender = forms.CharField(widget=forms.Select(choices=GENDER_CHOICES, attrs={
+        'class' : 'form-row col-md-4'
+    }))
+
+    phone_number = forms.CharField(widget=forms.TextInput(attrs={
+        'class' : 'form-row col-md-4'
+    }))
+
+    Email = forms.EmailField(required=False,widget=forms.EmailInput(attrs={
+        'class' : 'form-row col-md-4',
+        'placeholder' : 'example@gmail.com'
+    }))
+
+    identification_id = forms.CharField(widget=forms.TextInput(attrs={
+        'class' : 'form-row col-md-4'
+    }))
+
+    position = forms.CharField(widget=forms.TextInput(attrs={
+        'class' : 'form-row col-md-4'
+    }))
+
+    join_date = forms.DateField(widget=forms.TextInput(attrs={
+        'class' : 'form-row col-md-4',
+        'placeholder' : 'YYYY-MM-DD'
+    }))
+
+
+    def __init__(self, *args, **kwargs):
+        super(StaffForm, self).__init__(*args, **kwargs)
+
 
 class ContactForm(forms.Form):
-
-    CATEGORY_CHOICE = [
-        ('question', 'Question'),
-        ('suggestion', 'Suggestion'),
-        ('other', 'Other'),
-    ]
-
     name = forms.CharField(widget=forms.TextInput(attrs={
         'class' : 'form-row col-md-4'
     }))
     email = forms.EmailField(label='E-Mail', widget=forms.TextInput(attrs={
         'class' : 'form-row col-md-4'
     }))
-    category = forms.CharField(widget=forms.Select(choices=CATEGORY_CHOICE, attrs={
-        'class' : 'form-row col-md-4'
-    }))
-
-    subject = forms.CharField(widget=forms.TextInput(attrs={
-        'class' : 'form-row col-md-4'
-    }),
-    required=False)
     message = forms.CharField(widget=forms.Textarea(attrs={
         'class' : 'form-row col-md-6'
     }))
 
-    def clean(self):
-        cleaned_data = super(ContactForm, self).clean()
-        name = cleaned_data.get('name')
-        email = cleaned_data.get('email')
-        subject =cleaned_data.get('subject')
-        category = cleaned_data.get('category')
-        message = cleaned_data.get('message')
+    def __init__(self, *args, **kwargs):
+        super(ContactForm, self).__init__(*args, **kwargs)
 
-        if not name and not email and not message:
-            raise forms.ValidationError('You have to write something')
-
-class ContactModelForm(forms.ModelForm):
-    class Meta:
-        model = Contact
-        fields = ['name', 'email', 'subject', 'category', 'message']
+    # def clean(self):
+    #     cleaned_data = super(ContactForm, self).clean()
+    #     name = cleaned_data.get('name')
+    #     email = cleaned_data.get('email')
+    #     subject =cleaned_data.get('subject')
+    #     category = cleaned_data.get('category')
+    #     message = cleaned_data.get('message')
+    #
+    #     if not name and not email and not message:
+    #         raise forms.ValidationError('You have to write something')

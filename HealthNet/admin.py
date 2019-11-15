@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Patient, Doctor, HospitalStaff, MedicalRecords, Contact
+from .models import Patient, Doctor, MedicalRecords, Staff, Contact
 
 class PatientAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'date_of_birth',
@@ -11,9 +11,8 @@ class PatientAdmin(admin.ModelAdmin):
 class DoctorAdmin(admin.ModelAdmin):
 	list_display = ['first_name', 'last_name', 'qualification', 'specialty', 'phone_number','Email']
 
-class HospitalStaffAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'last_name')
-    prepopulated_fields = {'first_name' : ('last_name', 'identification_id',)}
+class StaffAdmin(admin.ModelAdmin):
+    list_display = ['first_name', 'last_name', 'position', 'phone_number','Email']
 
 class MedicalRecordsAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'date_of_birth',
@@ -21,12 +20,12 @@ class MedicalRecordsAdmin(admin.ModelAdmin):
     prepopulated_fields = {'first_name' : ('last_name', 'physical_address')}
 
 class ContactAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'subject', 'category', 'message')
-    prepopulated_fields = {'name' : ('email', 'category')}
+    list_display = ('name', 'email', 'message')
+    prepopulated_fields = {'name' : ('email', 'message')}
 
 
 admin.site.register(Doctor, DoctorAdmin)
 admin.site.register(Patient, PatientAdmin)
-admin.site.register(HospitalStaff, HospitalStaffAdmin)
 admin.site.register(MedicalRecords, MedicalRecordsAdmin)
 admin.site.register(Contact, ContactAdmin)
+admin.site.register(Staff, StaffAdmin)

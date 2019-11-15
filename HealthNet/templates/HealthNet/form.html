@@ -5,13 +5,13 @@
     <!-- <div class="container"> -->
     {% block content %}
 
-      <form method="POST" action="." enctype="multipart/form" class="needs-validation ">{% csrf_token %}
+      <form method="POST" action="." enctype="multipart/form" class="needs-validation">{% csrf_token %}
           <!-- <div class="form-row"> -->
               <!-- <div class="col-md-4 mb-3"> -->
 
 
                   {{ form|crispy }}
-                <button type="submit" class="btn btn-primary">SUBMIT</button>
+                <button type="submit" class="btn btn-primary">{{ button }}</button>
             <!-- </div> -->
         <!-- </div> -->
       </form>

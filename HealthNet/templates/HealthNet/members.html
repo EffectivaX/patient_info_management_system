@@ -1,0 +1,10 @@
+{% extends "HealthNet/base.html" %}
+
+{% block content %}
+
+<ul class="list-group">
+{% for member in members %}
+  <p class="list-group-item list-group-item-light">{{ member.id }} . {{ member.first_name }} {{ member.last_name }} <a href="/HealthNet/staff/member_info/{{ member.id }}" style="float: right;" class="btn btn-success btn-sm">View</a></p>
+{% endfor %}
+</ul>
+{% endblock %}

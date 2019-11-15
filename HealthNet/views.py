@@ -9,8 +9,8 @@ from django import forms
 from django.views.generic import TemplateView, ListView
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
-from .models import Patient, Doctor
-from .forms import PatientModelForm, PatientForm, ContactForm, ContactModelForm
+from .models import Patient, Doctor, Staff, Contact
+from .forms import PatientForm, ContactForm, DoctorForm, StaffForm
 
 login_required_m = method_decorator(login_required)
 
@@ -58,28 +58,6 @@ def patient_form(request):
                 medical_aid_group = form.cleaned_data.get('medical_aid_group'),
                 date_of_visit = form.cleaned_data.get('date_of_visit'),
             )
-            patient.prefix = form.cleaned_data.get('prefix')
-            patient.first_name = form.cleaned_data.get('first_name')
-            patient.last_name = form.cleaned_data.get('last_name')
-            patient.date_of_birth = form.cleaned_data.get('date_of_birth')
-            patient.gender = form.cleaned_data.get('gender')
-            patient.home_address = form.cleaned_data.get('home_address')
-            patient.national_id = form.cleaned_data.get('national_id')
-            patient.phone_number = form.cleaned_data.get('phone_number')
-            patient.email_address = form.cleaned_data.get('email_address')
-            patient.purpose_of_visit = form.cleaned_data.get('purpose_of_visit')
-            patient.description_of_the_condition = form.cleaned_data.get('description_of_the_condition')
-            patient.prescription = form.cleaned_data.get('prescription')
-            patient.current_temperature = form.cleaned_data.get('current_temperature')
-            patient.blood_type = form.cleaned_data.get('blood_type')
-            patient.current_medication = form.cleaned_data.get('current_medication')
-            patient.body_mass = form.cleaned_data.get('body_mass')
-            patient.allergies = form.cleaned_data.get('allergies')
-            patient.employment_status = form.cleaned_data.get('employment_status')
-            patient.consulted_doctor = form.cleaned_data.get('consulted_doctor')
-            patient.marital_status = form.cleaned_data.get('marital_status')
-            patient.medical_aid_group = form.cleaned_data.get('medical_aid_group')
-            patient.date_of_visit = form.cleaned_data.get('date_of_visit')
 
             print('Data saved successfully')
             patient.save()
@@ -90,6 +68,7 @@ def patient_form(request):
 
     context = {
         'form': form,
+        'button' : 'Add Patient',
         'title': "Add New Patient",
         'project_name' : 'ProMed HealthNet Inc',
         'creator' : 'Andile XeroxZen',
@@ -122,27 +101,7 @@ def view_all(request):
 
     return render(request, 'HealthNet/view_patients.html', context)
 
-@login_required
-def staff(request):
-    template = 'staff.html'
-    staff = Doctor.objects.all()
-    paginator = Paginator(staff, 20)
-    if request.method == 'GET':
-        page = request.GET.get('page')
-    staff = paginator.get_page(page)
-
-    context = {
-        'title': 'All Doctors',
-        'staff': staff,
-        'project_name' : 'ProMed HealthNet Inc',
-        'creator' : 'Andile XeroxZen',
-        'purpose' : 'Patient Information Management System'
-        }
-
-    return render(request, 'HealthNet/staff.html', context)
-
 # A function to to view details of any patient selected, they're selected using the unique id
-
 @login_required
 def patient_info(request, id):
     template_name = 'detail_patient.html'
@@ -161,7 +120,7 @@ def patient_info(request, id):
 # This is a function for editing a patient's Information
 
 @login_required
-def edit_info(request, id=None):
+def edit_patient(request, id=None):
     item = get_object_or_404(Patient, id=id)
     form = PatientForm(request.POST or None, instance=item)
     if form.is_valid():
@@ -179,7 +138,8 @@ def edit_info(request, id=None):
     return render(request, 'HealthNet/form.html', context)
 
 # This is a delete function
-def delete_info(request, id=None):
+@login_required
+def delete_patient(request, id=None):
     item = get_object_or_404(Patient, id=id)
 
     if request.method == 'POST':
@@ -222,43 +182,209 @@ def get_reports(request):
 
     return render(request, 'HealthNet/reports.html', context)
 
-
+# Contact Function
 def contact(request):
     form = ContactForm()
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid:
+            message = Contact.objects.create(
+                name = form.cleaned_data.get('name'),
+                email = form.cleaned_data.get('email'),
+                message = form.cleaned_data.get('message')
+            )
 
-            form.save()
+            message.save()
+            return HttpResponse('Message was successfully sent...')
+    else:
+        form = ContactForm()
 
     context = {
         'form' : form,
+        'button' : 'Send Message',
         'project_name' : 'ProMed HealthNet Inc',
         'title' : 'Contact Us'
     }
     return render(request, 'HealthNet/form.html', context)
 
-def contact_snippet(request):
-    form = ContactForm()
+# Fucnction Add Staff Members
+@login_required
+def add_staff_member(request):
+    form = StaffForm()
     if request.method == 'POST':
-        form = ContactForm()
+        form = StaffForm(request.POST)
         if form.is_valid():
-            contact = Contact.objects.create(
-                name = form.cleaned_data.get('name'),
-                subject = form.cleaned_data.get('subject'),
-                email = form.cleaned_data.get('email'),
-                category = form.cleaned_data.get('category'),
-                message = form.cleaned_data.get('message')
+            # Process and clean the data
+            staff_member = Staff.objects.create(
+                title = form.cleaned_data.get('title'),
+                first_name = form.cleaned_data.get('first_name'),
+                last_name = form.cleaned_data.get('last_name'),
+                date_of_birth = form.cleaned_data.get('date_of_birth'),
+                gender = form.cleaned_data.get('gender'),
+                phone_number = form.cleaned_data.get('phone_number'),
+                Email = form.cleaned_data.get('Email'),
+                identification_id = form.cleaned_data.get('identification_id'),
+                position = form.cleaned_data.get('position'),
+                join_date = form.cleaned_data.get('join_date')
+
             )
 
-            contact.save()
-
-    form = ContactForm()
+            staff_member.save()
+            return HttpResponse('Staff Member successfully added...')
+    else:
+        form = StaffForm()
 
     context = {
         'form' : form,
+        'button' : 'Add Member',
         'project_name' : 'ProMed HealthNet Inc',
-        'title' : 'Contact Us'
+        'title' : 'Add New Staff Member'
+    }
+
+    return render(request, 'HealthNet/form.html', context)
+
+# Function to edit or update a staff members
+@login_required
+def update_member(request, id=None):
+    item = get_object_or_404(Staff, id=id)
+    form = StaffForm(request.POST or None, instance=item)
+    if form.is_valid():
+        form.save()
+        return redirect('/HealthNet/staff/all_members/')
+
+    context = {
+        'title': 'Staff Member',
+        'form': form,
+        'project_name' : 'ProMed HealthNet Inc',
+        'creator' : 'Andile XeroxZen',
+        'purpose' : 'Patient Information Management System'
+    }
+
+    return render(request, 'HealthNet/form.html', context)
+
+# Function to delete a staff member
+@login_required
+def delete_staff_member(request, id=None):
+    item = get_object_or_404(Staff, id=id)
+
+    if request.method == 'POST':
+        form = StaffForm(request.POST, instance = item)
+        if form.is_valid():
+            item.delete()
+            return HttpResponse("Patient successfully deleted")
+    else:
+        form = StaffForm(instance=item)
+    context = {
+        'form' : form
+    }
+    return redirect(request, 'HealthNet/staff/all_members/', context)
+
+# Function to display all staff members
+@login_required
+def all_members(request):
+    template = 'HealthNet/members.html'
+    members = Staff.objects.all()
+    paginator = Paginator(members, 50)
+    if request.method == 'GET':
+        page = request.GET.get('page')
+    staff = paginator.get_page(page)
+
+    context = {
+        'title': 'Staff Members',
+        'members': members,
+        'project_name' : 'ProMed HealthNet Inc',
+        'creator' : 'Andile XeroxZen',
+        'purpose' : 'Patient Information Management System'
+        }
+
+    return render(request, template, context)
+
+# Function to add doctors
+@login_required
+def add_doctor(request):
+    form = DoctorForm()
+    if request.method == 'POST':
+        form = DoctorForm(request.POST)
+        if form.is_valid():
+            # Process and clean the data
+            doctor = Doctor.objects.create(
+                prefix = form.cleaned_data.get('prefix'),
+                first_name = form.cleaned_data.get('first_name'),
+                last_name = form.cleaned_data.get('last_name'),
+                date_of_birth = form.cleaned_data.get('date_of_birth'),
+                gender = form.cleaned_data.get('gender'),
+                phone_number = form.cleaned_data.get('phone_number'),
+                Email = form.cleaned_data.get('Email'),
+                identification_id = form.cleaned_data.get('identification_id'),
+                qualification = form.cleaned_data.get('qualification'),
+                specialty = form.cleaned_data.get('specialty'),
+                join_date = form.cleaned_data.get('join_date')
+
+            )
+
+            doctor.save()
+            return HttpResponse('Doctor successfully added...')
+    else:
+        form = DoctorForm()
+
+    context = {
+        'form' : form,
+        'button' : 'Submit Doctor',
+        'project_name' : 'ProMed HealthNet Inc',
+        'title' : 'Add New Doctor'
+    }
+
+    return render(request, 'HealthNet/form.html', context)
+
+@login_required
+def all_doctors(request):
+    template = 'staff.html'
+    staff = Doctor.objects.all()
+    paginator = Paginator(staff, 20)
+    if request.method == 'GET':
+        page = request.GET.get('page')
+    staff = paginator.get_page(page)
+
+    context = {
+        'title': 'All Doctors',
+        'staff': staff,
+        'project_name' : 'ProMed HealthNet Inc',
+        'creator' : 'Andile XeroxZen',
+        'purpose' : 'Patient Information Management System'
+        }
+
+    return render(request, 'HealthNet/staff.html', context)
+
+@login_required
+def delete_doctor(request, id=None):
+    item = get_object_or_404(Doctor, id=id)
+
+    if request.method == 'POST':
+        form = DoctorForm(request.POST, instance = item)
+        if form.is_valid():
+            item.delete()
+            return HttpResponse("Patient successfully deleted")
+    else:
+        form = DoctorForm(instance=item)
+    context = {
+        'form' : form
+    }
+    return redirect(request, 'HealthNet/patients/view_all', context)
+
+@login_required
+def update_doctor(request, id=None):
+    item = get_object_or_404(Doctor, id=id)
+    form = DoctorForm(request.POST or None, instance=item)
+    if form.is_valid():
+        form.save()
+        return redirect('/HealthNet/staff/doctors/')
+
+    context = {
+        'title': 'Update Doctor',
+        'form': form,
+        'project_name' : 'ProMed HealthNet Inc',
+        'creator' : 'Andile XeroxZen',
+        'purpose' : 'Patient Information Management System'
     }
 
     return render(request, 'HealthNet/form.html', context)

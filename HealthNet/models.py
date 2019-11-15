@@ -71,9 +71,12 @@ class Doctor(models.Model):
     Email = models.EmailField()
     picture = models.ImageField(upload_to='images/', null=True, height_field=None, width_field=None, max_length=None)
     qualification = models.CharField(max_length=60)
+    gender = models.CharField(max_length=7, default='')
+    date_of_birth = models.DateField(default=datetime.now)
     identification_id = models.CharField(max_length=30, default='',unique=True)
     specialty = models.CharField(max_length=60)
     parent = models.ForeignKey('self', blank=True, null=True, related_name='children', on_delete = models.PROTECT)
+    join_date = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -83,6 +86,30 @@ class Doctor(models.Model):
     class Meta:
         verbose_name_plural = 'Doctors'
         ordering = ("identification_id",)
+
+class Staff(models.Model):
+    title = models.CharField(max_length=6, default='')
+    first_name = models.CharField(max_length=60)
+    last_name = models.CharField(max_length=60)
+    date_of_birth = models.DateField(null=True)
+    phone_number = models.CharField(max_length=20)
+    Email = models.EmailField()
+    gender = models.CharField(max_length=7)
+    picture = models.ImageField(upload_to='images/', null=True, height_field=None, width_field=None, max_length=None)
+    identification_id = models.CharField(max_length=30, default='',unique=True)
+    position = models.CharField(max_length=100)
+    parent = models.ForeignKey('self', blank=True, null=True, related_name='children', on_delete = models.PROTECT)
+    join_date = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def _str__(self):
+        return self.first_name + " " + self.last_name
+
+    class Meta:
+        verbose_name_plural = 'Staff'
+        ordering = ("identification_id",)
+
 
 class Patient(models.Model):
     prefix = models.CharField(max_length=10, blank=True, choices=PREFIX_CHOICES)
@@ -118,19 +145,6 @@ class Patient(models.Model):
         verbose_name_plural = "Patients"
         # ordering = ("-last_name",)
 
-class HospitalStaff(models.Model):
-    first_name = models.CharField(max_length=60)
-    last_name = models.CharField(max_length=60)
-    identification_id = models.CharField(max_length=60, unique=True)
-    qualification = models.CharField(max_length=60)
-    parent = models.ForeignKey('self', blank=True, null=True, related_name='children', on_delete = models.PROTECT)
-
-    def __str__(self):
-        return self.first_name + " " + self.last_name
-
-    class Meta:
-        verbose_name_plural = "Authorised Personnel"
-
 class MedicalRecords(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -154,17 +168,13 @@ class MedicalRecords(models.Model):
         verbose_name_plural = "Medical Records"
 
 class Contact(models.Model):
-    CATEGORY_CHOICE = [
-        ('question', 'Question'),
-        ('suggestion', 'Suggestion'),
-        ('other', 'Other'),
-    ]
-
     name = models.CharField(max_length=100)
     email = models.EmailField()
-    subject = models.CharField(max_length=200, blank=True)
-    category = models.CharField(max_length=30, choices=CATEGORY_CHOICE)
     message = models.TextField()
+    created_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.name
+        return self.email
+
+    class Meta:
+        verbose_name_plural = 'Messages'    

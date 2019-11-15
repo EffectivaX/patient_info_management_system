@@ -2,7 +2,7 @@
 
 {% block content %}
 {% for staff in staff %}
-<div class="container card mb-3" style="max-width: 580px;">
+<div class="card mb-3" style="max-width: 580px;">
     <div class="row no-gutters">
         <div class="col-md-4">
             {% if staff.picture %}
@@ -16,8 +16,8 @@
                 <p class="card-text text-dark">Specialty    :   {{ staff.specialty }}</p>
                 <p class="card-text text-info">Identification    :   {{ staff.identification_id }}</p>
                 <p class="card-text text-warning">Phone Number    :   {{ staff.phone_number }}</p>
-                <p class="card-text text-secondary">Email Address    :   {{ staff.Email }}</p>
-                <p class="card-text text-danger"><small class="text-muted">Last updated {{ staff.updated_at }}</
+                <p class="card-text text-secondary"><i>Email Address    :   {{ staff.Email }}</i></p>
+                <p class="card-text text-danger"><small class="text-muted"><i>Last updated {{ staff.updated_at }}</i></
             </div>
         </div>
     </div>

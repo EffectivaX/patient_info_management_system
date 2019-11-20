@@ -64,7 +64,7 @@ def patient_form(request):
 
             print('Data saved successfully')
             patient.save()
-            return HttpResponse('Patient successfully added to the database')
+            return HttpResponseRedirect('/HealthNet/')
 
     else:
         form = PatientForm()

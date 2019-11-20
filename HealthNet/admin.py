@@ -5,7 +5,7 @@ from .models import Patient, Doctor, MedicalRecords, Staff, Contact
 
 class PatientAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'date_of_birth',
-                    'purpose_of_visit', 'medical_aid_group', 'date_of_visit')
+                    'purpose_of_visit', 'medical_aid_group', 'date_of_visit', 'national_id', 'phone_number', 'email_address')
     prepopulated_fields = {'first_name': ('last_name','purpose_of_visit', )}
 
 class DoctorAdmin(admin.ModelAdmin):

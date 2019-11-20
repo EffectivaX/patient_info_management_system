@@ -8,7 +8,7 @@ from django.views.generic import TemplateView
 class HomePageView(TemplateView):
     template_name = 'home.html'
 
-def customhomepage(request):
+def homepage(request):
     template_name = 'home.html'
 
     context = {
@@ -16,5 +16,3 @@ def customhomepage(request):
     }
 
     return render(request, "home.html", context)
-    # Google this
-    # RecursionError: maximum recursion depth exceeded

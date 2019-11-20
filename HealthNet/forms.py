@@ -92,7 +92,7 @@ class ContactModelForm(forms.ModelForm):
 
 
 class PatientForm(forms.Form):
-    prefix = forms.CharField(widget=forms.Select(choices=PREFIX_CHOICES, attrs={
+    title = forms.CharField(widget=forms.Select(choices=PREFIX_CHOICES, attrs={
         'class' : 'form-group col-md-2'
     }))
 
@@ -197,7 +197,7 @@ class DoctorForm(forms.Form):
     PREFIX_LOCAL = [
         ('Dr', 'Dr')
     ]
-    prefix = forms.CharField(widget=forms.Select(choices=PREFIX_LOCAL, attrs={
+    title = forms.CharField(widget=forms.Select(choices=PREFIX_LOCAL, attrs={
         'class' : 'form-group col-md-2'
     }))
 
@@ -233,6 +233,8 @@ class DoctorForm(forms.Form):
         'class' : 'form-row col-md-4'
     }))
 
+    # picture = forms.FileField()
+
     qualification = forms.CharField(widget=forms.TextInput(attrs={
         'class' : 'form-group col-md-4'
     }))
@@ -246,9 +248,8 @@ class DoctorForm(forms.Form):
         'placeholder' : 'YYYY-MM-DD'
     }))
 
-
     def __init__(self, *args, **kwargs):
-        super(DoctorForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
 class StaffForm(forms.Form):
     title = forms.CharField(widget=forms.Select(choices=PREFIX_CHOICES, attrs={
@@ -273,6 +274,8 @@ class StaffForm(forms.Form):
     gender = forms.CharField(widget=forms.Select(choices=GENDER_CHOICES, attrs={
         'class' : 'form-row col-md-4'
     }))
+
+    picture = forms.FileField()
 
     phone_number = forms.CharField(widget=forms.TextInput(attrs={
         'class' : 'form-row col-md-4'
@@ -314,14 +317,3 @@ class ContactForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(ContactForm, self).__init__(*args, **kwargs)
-
-    # def clean(self):
-    #     cleaned_data = super(ContactForm, self).clean()
-    #     name = cleaned_data.get('name')
-    #     email = cleaned_data.get('email')
-    #     subject =cleaned_data.get('subject')
-    #     category = cleaned_data.get('category')
-    #     message = cleaned_data.get('message')
-    #
-    #     if not name and not email and not message:
-    #         raise forms.ValidationError('You have to write something')

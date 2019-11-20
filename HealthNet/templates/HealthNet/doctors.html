@@ -1,0 +1,31 @@
+{% extends "HealthNet/base.html" %}
+
+{% block content %}
+<ul class='list-group offset-md-2'>
+    <h3 class="card-title">{{ title }}</h3>
+    {% for doctor in staff %}
+    <div class="card card-accent-success mb-3" style="max-width: 700px;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                {% if doctor.picture %}
+                <img src="{{ doctor.picture.url }}" class="card-img img-responsive" alt="Image Coming Up" height="300" width="300">
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title text-info">{{ doctor.title }} {{ doctor.first_name }} {{ doctor.last_name }}</h5>
+                    <p class="card-text text-success">Qualification    :   {{ doctor.qualification }}</p>
+                    <p class="card-text text-dark">Specialty    :   {{ doctor.specialty }}</p>
+                    <p class="card-text text-info">Identification    :   {{ doctor.identification_id }}</p>
+                    <p class="card-text text-warning">Phone Number    :   {{ doctor.phone_number }}</p>
+                    <p class="card-text text-secondary"><i>Email Address    :   {{ doctor.Email }}</i></p>
+                    <p class="card-text text-danger"><small class="text-muted"><i>Last updated {{ doctor.updated_at }}</i></small></p>
+                    <a href="/HealthNet/staff/edit_member/{{ member.id }}/" class="btn btn-info">Edit</a>
+                    <a href="/HealthNet/staff/delete_member/{{ member.id }}/" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</ul>
+{% endblock %}

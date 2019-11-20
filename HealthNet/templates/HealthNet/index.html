@@ -5,6 +5,7 @@
 
 {% block content %}
     <!-- Here comes the beautiful design of the dashboard Using Cards-->
+    <h3 class="card-title">{{ title }}</h3>
       <div class="row">
 			<div class="card text-white bg-success mb-3" style="width: 23rem;">
 				<div class="card-header">
@@ -72,7 +73,7 @@
 				<div class="card-body">
 					<h5 class="card-title">A list of all the authorised personnel</h5>
 					<p class="card-text">Because we work with sensitive data, that is individual's most private and intimate information, our system has to be totally secured and we have to keep a tight list of how many people have access to it to minimise information leaks.</p>
-						<a href="/HealthNet/staff/add_staff_member/" class="btn btn-info">Add Staff Member</a>
+						<a href="/HealthNet/staff/new_member/" class="btn btn-info">Add Staff Member</a>
 				</div>
 			</div>
 
@@ -95,6 +96,18 @@
 					<h5 class="card-title">A list of all the authorised personnel</h5>
 					<p class="card-text">Because we work with sensitive data, that is individual's most private and intimate information, our system has to be totally secured and we have to keep a tight list of how many people have access to it to minimise information leaks.</p>
 						<a href="/HealthNet/staff/all_members/" class="btn btn-primary">View Staff</a>
+				</div>
+			</div>
+
+            <div class="card text-white bg-secondary mb-3" style="width: 23rem;">
+				<div class="card-header">
+					<b>All Patients</b>
+				</div>
+				<div class="card-body">
+					<h5 class="card-title">View All Patients in the System</h5>
+					<p class="card-text">Check out oujr ever growing database</p>
+                    <p class="card-text">With supporting text below as a natural lead-in to addition</p>
+						<a href="/HealthNet/patients/view_all" class="btn btn-info">View All Patients</a>
 				</div>
 			</div>
       </div> <!-- Row Div -->

@@ -26,7 +26,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL = 'accounts.CustomUser'
+AUTH_USER_MODEL = 'accounts.MyUser'
 
 # Application definition
 
@@ -92,21 +92,21 @@ DATABASES = {
 
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'patient_information_management_system',
+        'NAME': 'ProMedical',
         'USER': 'xeroxzen',
         'PASSWORD': '2020',
         'HOST': 'localhost',
         'PORT': ''
     },
 
-    'users': {
-        'NAME': 'patient_information_management_system',
-        'ENGINE': 'django.db.backends.postgresql',
-        'USER': 'xeroxzen',
-        'PASSWORD': '2020',
-        'HOST': 'localhost',
-        'PORT': ''
-    },
+#     'users': {
+#         'NAME': 'patient_information_management_system',
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'USER': 'xeroxzen',
+#         'PASSWORD': '2020',
+#         'HOST': 'localhost',
+#         'PORT': ''
+#     },
 }
 
 # Password validation

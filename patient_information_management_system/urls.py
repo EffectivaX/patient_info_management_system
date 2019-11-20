@@ -16,19 +16,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import TemplateView
+from django.conf.urls.static import static #new
+from django.conf import settings #new
 
 from accounts.views import register, login_view, logout_view
 
 urlpatterns = [
     path('', include('pages.urls')),
     path('', include('accounts.urls')),
-    # path('', include('patients.urls')),
-    # path('', include('doctors.urls')),
     path('', include('HealthNet.urls')),
     path('HealthNet/', include('HealthNet.urls')),
-    # path('doctors/', include('doctors.urls')),
     path('accounts/', include('accounts.urls')),
     path('pages/', include('pages.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls)
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -23,7 +23,9 @@ class MyUserManager(BaseUserManager):
 
         user = self.model(
             username = username,
-            email = self.normalize_email(email)
+            email = self.normalize_email(email),
+            # role = 'Admin',
+            # unique_id = '12345ABX-0',
         )
 
         user.set_password(password)
@@ -32,14 +34,16 @@ class MyUserManager(BaseUserManager):
 
     def create_superuser(self, username, email, password=None):
         user = self.create_user(
-            username, email, password = password
+            username,
+            email,
+            password = password,
         )
         user.is_admin = True
         user.is_staff = True
         user.save(using=self._db)
         return user
 
-class CustomUser(AbstractBaseUser):
+class MyUser(AbstractBaseUser):
     username = models.CharField(
                     max_length=255,
                     validators = [
@@ -56,7 +60,9 @@ class CustomUser(AbstractBaseUser):
         unique= True,
         verbose_name='email address'
     )
-
+    # unique_id = models.CharField(max_length=10)
+    # role = models.CharField(max_length=30, choices=AUTHORISED_PERSONNEL, default=False)
+    is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
 
@@ -67,7 +73,7 @@ class CustomUser(AbstractBaseUser):
 
 
     def __str__(self):
-        return '{0} With Email {1}' .format(self.username, self.email)
+        return self.email
 
     def get_short_name(self):
         # The user is identified by their email address
@@ -83,63 +89,12 @@ class CustomUser(AbstractBaseUser):
         # Simplest possible answer: Yes, always
         return True
 
-
-    class Meta:
-        verbose_name_plural = "Administrators"
-        ordering = ("-username",)
-
-
-class AuthorisedUsers(AbstractBaseUser):
-    username = models.CharField(
-                    max_length=255,
-                    validators = [
-                        RegexValidator(regex = USERNAME_REGEX,
-                                message = 'Username must be alphanumeric or contain numbers',
-                                code = 'invalid username'
-
-                        )],
-                     unique = True
-                )
-
-    email = models.EmailField(
-        max_length=255,
-        unique= True,
-        verbose_name='email address'
-    )
-
-    position = models.CharField(
-        max_length=70,
-        choices=AUTHORISED_PERSONNEL,
-        verbose_name = 'Level of Access'
-    )
-
-    is_admin = models.BooleanField(default=False)
-    is_staff = models.BooleanField(default=False)
-
-    objects = MyUserManager()
-
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email']
-
-
-    def __str__(self):
-        return '{0} With Email {1}' .format(self.username, self.email)
-
-    def get_short_name(self):
-        # The user is identified by their email address
-        return self.email
-
-    def has_perm(self, perm, obj=None):
-        "Does the user have a specific permission?"
-        # Simplest possible answer: Yes, always
-        return True
-
-    def has_module_perms(self, app_label):
-        "Does the user have permissions to view the app 'app_label'"
-        # Simplest possible answer: Yes, always
-        return True
+    # def is_staff(self):
+    #     "Is the user a member of staff?"
+    #     #Simplest possible answer: All Admins are staff
+    #     return True
 
 
     class Meta:
-        verbose_name_plural = "Authorised Users"
+        verbose_name_plural = "Admin"
         ordering = ("-username",)

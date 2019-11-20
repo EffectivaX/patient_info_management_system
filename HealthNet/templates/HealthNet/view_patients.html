@@ -2,6 +2,7 @@
 
 {% block content %}
 	  <ul class="list-group">
+		   <h3 class="card-title">{{ title }}</h3>
     {% for patient in patients %}
         <!-- <a href="HealthNet/patient_info/{{ patient.id }}" class="collection-item">{{ patient.id }} . {{ patient.first_name }} {{ patient.last_name }}</a> -->
 		<p class="list-group-item list-group-item-light">{{ patient.id }} . {{ patient.first_name }} {{ patient.last_name }} <a href="/HealthNet/patients/patient_info/{{ patient.id }}" style="float: right;" class="btn btn-success btn-sm">View</a></p>

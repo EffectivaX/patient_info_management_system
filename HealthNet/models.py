@@ -1,9 +1,18 @@
 from django.db import models
 from datetime import datetime
+from django.conf import settings
 # from django.urls import reverse
 from django.utils.text import slugify
 
 # Create your models here.
+from django.conf import settings
+from django.db.models.signals import post_save
+
+
+def post_save_receiver(sender, instance, created, **kwargs):
+    pass
+
+post_save.connect(post_save_receiver, sender=settings.AUTH_USER_MODEL)
 
 PREFIX_CHOICES = [
     ('Mr', 'MR.'),
@@ -64,7 +73,7 @@ EMPLOYMET_STATUS = [
     ]
 
 class Doctor(models.Model):
-    prefix = models.CharField(max_length=6, default='Dr')
+    title = models.CharField(max_length=6, default='Dr')
     first_name = models.CharField(max_length=60)
     last_name = models.CharField(max_length=60)
     phone_number = models.CharField(max_length=20)
@@ -88,7 +97,7 @@ class Doctor(models.Model):
         ordering = ("identification_id",)
 
 class Staff(models.Model):
-    title = models.CharField(max_length=6, default='')
+    title = models.CharField(max_length=6, choices=PREFIX_CHOICES)
     first_name = models.CharField(max_length=60)
     last_name = models.CharField(max_length=60)
     date_of_birth = models.DateField(null=True)
@@ -103,7 +112,7 @@ class Staff(models.Model):
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    def _str__(self):
+    def __str__(self):
         return self.first_name + " " + self.last_name
 
     class Meta:
@@ -112,7 +121,7 @@ class Staff(models.Model):
 
 
 class Patient(models.Model):
-    prefix = models.CharField(max_length=10, blank=True, choices=PREFIX_CHOICES)
+    title = models.CharField(max_length=10, blank=True, choices=PREFIX_CHOICES)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     gender = models.CharField(max_length=12, choices=GENDER_CHOICES)
@@ -134,9 +143,9 @@ class Patient(models.Model):
     marital_status = models.CharField(max_length=20, choices=MARITAL_CHOICES)
     medical_aid_group = models.CharField(max_length=255, choices=INSURANCES)
     date_of_visit = models.DateField(default=datetime.now)
+    # created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, related_name='user')
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now=True)
-    # slug = models.SlugField(blank=True, unique=True)
 
     def __str__(self):
         return self.first_name + " " + self.last_name
@@ -177,4 +186,4 @@ class Contact(models.Model):
         return self.email
 
     class Meta:
-        verbose_name_plural = 'Messages'    
+        verbose_name_plural = 'Messages'

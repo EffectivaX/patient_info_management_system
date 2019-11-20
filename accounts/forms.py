@@ -16,6 +16,14 @@ class UserCreationForm(forms.ModelForm):
         'placeholder' : 'andilembele@cybertech.co.zw'
     }))
 
+    identification_id = forms.CharField(label='Identification ID', widget=forms.TextInput(attrs={
+        'class' : 'form-control',
+        # 'placeholder' : 'Your 10 Digit Key Here'
+    }))
+    role = forms.CharField(label='Role', widget=forms.TextInput(attrs={
+        'class' : 'form-control'
+    }))
+
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={
         'class' : 'form-control',
         'placeholder' : 'Password'

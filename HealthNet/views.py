@@ -10,7 +10,10 @@ from django.views.generic import TemplateView, ListView
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 from .models import Patient, Doctor, Staff, Contact
-from .forms import PatientForm, ContactForm, DoctorForm, StaffForm
+from .forms import PatientForm, ContactForm, DoctorForm, StaffForm, ContactModelForm
+# from django.views.generic.edit import UpdateView
+from django.urls import reverse_lazy
+# from django.views.generic.edit import DeleteView
 
 login_required_m = method_decorator(login_required)
 
@@ -35,7 +38,7 @@ def patient_form(request):
         if form.is_valid():
             # Process the cleaned_data
             patient = Patient.objects.create(
-                prefix = form.cleaned_data.get('prefix'),
+                title = form.cleaned_data.get('title'),
                 first_name = form.cleaned_data.get('first_name'),
                 last_name = form.cleaned_data.get('last_name'),
                 date_of_birth = form.cleaned_data.get('date_of_birth'),
@@ -137,6 +140,22 @@ def edit_patient(request, id=None):
 
     return render(request, 'HealthNet/form.html', context)
 
+
+# Edit using update view
+
+# @login_required
+# class PatientFormUpdate(UpdateView):
+#     model = Patient
+#     fields = '__all__'
+#     template_name = '_update_form'
+#
+#
+# # Delete class
+# class PatientDelete(DeleteView):
+#     model = Patient
+#     success_url = reverse_lazy('HealthNet/form.html')
+
+
 # This is a delete function
 @login_required
 def delete_patient(request, id=None):
@@ -182,31 +201,6 @@ def get_reports(request):
 
     return render(request, 'HealthNet/reports.html', context)
 
-# Contact Function
-def contact(request):
-    form = ContactForm()
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid:
-            message = Contact.objects.create(
-                name = form.cleaned_data.get('name'),
-                email = form.cleaned_data.get('email'),
-                message = form.cleaned_data.get('message')
-            )
-
-            message.save()
-            return HttpResponse('Message was successfully sent...')
-    else:
-        form = ContactForm()
-
-    context = {
-        'form' : form,
-        'button' : 'Send Message',
-        'project_name' : 'ProMed HealthNet Inc',
-        'title' : 'Contact Us'
-    }
-    return render(request, 'HealthNet/form.html', context)
-
 # Fucnction Add Staff Members
 @login_required
 def add_staff_member(request):
@@ -220,6 +214,7 @@ def add_staff_member(request):
                 first_name = form.cleaned_data.get('first_name'),
                 last_name = form.cleaned_data.get('last_name'),
                 date_of_birth = form.cleaned_data.get('date_of_birth'),
+                # picture = form.cleaned_data.get('picture'),
                 gender = form.cleaned_data.get('gender'),
                 phone_number = form.cleaned_data.get('phone_number'),
                 Email = form.cleaned_data.get('Email'),
@@ -230,7 +225,7 @@ def add_staff_member(request):
             )
 
             staff_member.save()
-            return HttpResponse('Staff Member successfully added...')
+            return HttpResponseRedirect('/HealthNet/')
     else:
         form = StaffForm()
 
@@ -308,7 +303,7 @@ def add_doctor(request):
         if form.is_valid():
             # Process and clean the data
             doctor = Doctor.objects.create(
-                prefix = form.cleaned_data.get('prefix'),
+                title = form.cleaned_data.get('title'),
                 first_name = form.cleaned_data.get('first_name'),
                 last_name = form.cleaned_data.get('last_name'),
                 date_of_birth = form.cleaned_data.get('date_of_birth'),
@@ -316,6 +311,7 @@ def add_doctor(request):
                 phone_number = form.cleaned_data.get('phone_number'),
                 Email = form.cleaned_data.get('Email'),
                 identification_id = form.cleaned_data.get('identification_id'),
+                # picture = form.cleaned_data.get('picture'),
                 qualification = form.cleaned_data.get('qualification'),
                 specialty = form.cleaned_data.get('specialty'),
                 join_date = form.cleaned_data.get('join_date')
@@ -353,7 +349,7 @@ def all_doctors(request):
         'purpose' : 'Patient Information Management System'
         }
 
-    return render(request, 'HealthNet/staff.html', context)
+    return render(request, 'HealthNet/doctors.html', context)
 
 @login_required
 def delete_doctor(request, id=None):
@@ -388,3 +384,61 @@ def update_doctor(request, id=None):
     }
 
     return render(request, 'HealthNet/form.html', context)
+
+
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm()
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+
+            print(email + 'sent a message')
+
+            return HttpResponse('Message was successfully sent...')
+    else:
+        form = ContactForm()
+
+    context = {
+        'form' : form,
+        'button' : 'Send Message',
+        'project_name' : 'ProMed HealthNet Inc',
+        'title' : 'Contact Us'
+    }
+    return render(request, 'HealthNet/form.html', context)
+
+def contact_form(request):
+    if request.method == 'POST':
+        form = ContactModelForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse('Message was successfully sent...')
+    else:
+        form = ContactModelForm()
+
+    context = {
+        'form' : form,
+        'button' : 'Send Message',
+        'project_name' : 'ProMed HealthNet Inc',
+        'title' : 'Contact Us'
+    }
+    return render(request, 'HealthNet/contact_form.html', context)
+
+def read_messages(request):
+    messages = Contact.objects.all()
+    paginator = Paginator(messages, 20)
+    if request.method == 'GET':
+        page = request.GET.get('page')
+    messages = paginator.get_page(page)
+
+    context = {
+        'title': 'All Messages',
+        'messages': messages,
+        'project_name' : 'ProMed HealthNet Inc',
+        'creator' : 'Andile XeroxZen',
+        'purpose' : 'Patient Information Management System'
+        }
+
+    return render(request, 'HealthNet/messages.html', context)

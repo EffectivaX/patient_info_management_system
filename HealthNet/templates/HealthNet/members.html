@@ -2,9 +2,32 @@
 
 {% block content %}
 
-<ul class="list-group">
+<ul class="list-group offset-md-2">
+    <h3 class="card-title">{{ title }}</h3>
 {% for member in members %}
-  <p class="list-group-item list-group-item-light">{{ member.id }} . {{ member.first_name }} {{ member.last_name }} <a href="/HealthNet/staff/member_info/{{ member.id }}" style="float: right;" class="btn btn-success btn-sm">View</a></p>
+<div class="card card-accent-success mb-3" style="max-width: 700px;">
+    <div class="card-header">
+        <h5 class="card-title text-info">{{ member.title }} {{ member.first_name }} {{ member.last_name }}</h5>
+    </div>
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            {% if member.picture %}
+            <img src="{{ member.picture.url }}" class="card-img img-responsive" alt="Image Coming Up" height="300" width="300">
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <p class="card-text text-dark">Position    :   {{ member.position }}</p>
+                <p class="card-text text-info">Identification    :   {{ member.identification_id }}</p>
+                <p class="card-text text-warning">Phone Number    :   {{ member.phone_number }}</p>
+                <p class="card-text text-secondary"><i>Email Address    :   {{ member.Email }}</i></p>
+                <p class="card-text text-danger"><small class="text-muted"><i>Last updated {{ member.updated_at }}</i></small></p>
+                <a href="/HealthNet/staff/edit_member/{{ member.id }}/" class="btn btn-info">Edit</a>
+                <a href="/HealthNet/staff/delete_member/{{ member.id }}/" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endfor %}
 </ul>
 {% endblock %}

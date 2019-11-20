@@ -1,0 +1,14 @@
+{% extends "HealthNet/base.html" %}
+{% load crispy_forms_tags %}
+
+  {% include 'HealthNet/inc/nav.html' %}
+    <!-- <div class="container"> -->
+    {% block content %}
+    <h3 class="card-title offset-md-3">{{ title }}</h3>
+      <form method="POST" action="." enctype="multipart/form" class="col-sm-6 offset-sm-3 form-group">{% csrf_token %}
+                  {{ form|crispy }}
+                <button type="submit" class="btn btn-primary">{{ button }}</button>
+      </form>
+    <!-- </div> -->
+    <br>
+    {% endblock content %}

@@ -5,26 +5,35 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
         <a class="navbar-brand" href="/HealthNet/">{{ project_name }}</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li class="nav-item active">
-            <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
+          <li {% if request.path == '/' %} class="nav-item active" {% endif %} >
+            <a class="nav-link disabled" href="/" aria-expanded="disabled">Home <span class="sr-only"></span></a>
           </li>
-          <li class="nav-item active">
+          <li {% if request.path == '/HealthNet/' %} class="nav-item active" {% endif %}>
             <a class="nav-link" href="/HealthNet/">Admin<span class="sr-only"></span></a>
           </li>
-          <li class="nav-item">
+          <li {% if request.path == '/HealthNet/patients/patient_form/' %} class="nav-item active" {% endif %}>
             <a class="nav-link" href="/HealthNet/patients/patient_form/">Add Patient</a>
           </li>
-          <li class="nav-item">
+          <li {% if request.path == '/HealthNet/patients/view_all/' %} class="nav-item active" {% endif %}>
             <a class="nav-link" href="/HealthNet/patients/view_all/">View All Patients</a>
           </li>
-          <li class="nav-item">
+          <li {% if request.path == '/HealthNet/patients/get_reports/' %} class="nav-item active" {% endif %}>
             <a class="nav-link" href="/HealthNet/patients/get_reports/">Get Reports</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/HealthNet/contact/">Contact</a>
+          <li {% if request.path == '/HealthNet/GetInTouch/' %} class="nav-item active" {% endif %}>
+            <a class="nav-link" href="/HealthNet/GetInTouch/">Contact</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Check Doctors</a>
+          <li {% if request.path == '/HealthNet/messages/' %} class="nav-item active" {% endif %}>
+            <a class="nav-link" href="/HealthNet/messages/">Messages</a>
+          </li>
+          <li {% if request.path == '/HealthNet/staff/doctors/' %} class="nav-item active" {% endif %}>
+            <a class="nav-link" href="/HealthNet/staff/doctors/" tabindex="-1">Check Doctors</a>
+          </li>
+          <li {% if request.path == '/admin/' %} class="nav-item active" {% endif %}>
+            <a class="nav-link" href="/admin/" tabindex="-1">Super Admin</a>
+          </li>
+          <li {% if request.path == '/HealthNet/staff/doctors/' %} class="nav-item active" {% endif %}>
+            <a class="nav-link" href="/HealthNet/staff/doctors/" tabindex="-1">Logged In as {{ accounts.MyUser }}</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">

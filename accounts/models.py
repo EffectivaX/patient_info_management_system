@@ -73,11 +73,11 @@ class MyUser(AbstractBaseUser):
 
 
     def __str__(self):
-        return self.email
+        return self.username     #email initial
 
     def get_short_name(self):
         # The user is identified by their email address
-        return self.email
+        return self.username #email initially
 
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"

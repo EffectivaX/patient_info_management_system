@@ -1,12 +1,9 @@
 from django import forms
-from datetime import datetime
-from .models import Patient, Doctor, Contact, Staff
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit
-# from django.core import validators
-# from django.core.exceptions import ValidationError
-# from django.utils.translation import ugettext_lazy as _
-
+# from datetime import datetime
+from .models import Patient, Doctor, Contact, Staff, HospitalsAndClinics
+from django.conf import settings
+# from crispy_forms.helper import FormHelper
+# from crispy_forms.layout import Layout, Submit
 
 PREFIX_CHOICES = [
     ('Mr', 'Mr.'),
@@ -175,6 +172,9 @@ class PatientForm(forms.Form):
     consulted_doctor = forms.ModelChoiceField(queryset=Doctor.objects.all(), widget=forms.Select(attrs={
         'class' : 'form-group col-md-6'
     }))
+    hospital = forms.ModelChoiceField(queryset=HospitalsAndClinics.objects.all(), widget=forms.Select(attrs={
+        'class' : 'form-group col-md-6'
+    }))
 
     marital_status = forms.CharField(widget=forms.Select(choices=MARITAL_CHOICES, attrs={
         'class' : 'form-group col-md-4'
@@ -223,6 +223,8 @@ class DoctorForm(forms.Form):
     phone_number = forms.CharField(widget=forms.TextInput(attrs={
         'class' : 'form-row col-md-4'
     }))
+    
+    picture = forms.FileField()
 
     Email = forms.EmailField(required=False,widget=forms.EmailInput(attrs={
         'class' : 'form-row col-md-6',

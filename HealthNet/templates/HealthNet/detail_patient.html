@@ -5,6 +5,7 @@
 {% block content %}
 
 <h3 class="card-title">{{ title }}</h3>
+<hr>
 <div class="card text-white bg-dark card-accent-success mb-3">
   <div class="card-header">
       <h3><b>{{ patient.first_name }} 's {{title}}</b></h3>
@@ -29,17 +30,18 @@
               <p class="card-text text-warning">Patient Allergies   :       {{ patient.allergies }}</p>
               <p class="card-text text-light">Medical AID Group     :       {{ patient.medical_aid_group }}</p>
               <p class="card-text text-success">Consulted Doctor    :       {{ patient.consulted_doctor }}</p>
+          <p class="card-text text-success">Assigned To             :       {{ patient.user }}</p>
               <p class="card-text text-primary">Date of Visit       :       {{ patient.date_of_visit }}</p>
-              <p class="card-text text-info">Created At          :       {{ patient.created_at }}</p>
-              <p class="card-text text-secondary">Information Update  :       {{ patient.updated_at }}</p>
+              <p class="card-text text-info">Created At             :       {{ patient.created_at }}</p>
+              <p class="card-text text-secondary">Information Update:     {{ patient.updated_at }}</p>
           <!-- </div> -->
       </div>
   </div>
 </div>
 
 <br>
- <a href="/HealthNet/patients/edit_patient/{{ patient.id }}" class="btn btn-info">Edit</a>
- <a href="/HealthNet/patients/delete_patient/{{ patient.id }}" class="btn btn-danger">Delete</a>
+ <a href="/HealthNet/patients/edit_patient/{{ patient.id }}/change/" class="btn btn-info">Edit</a>
+ <a href="/HealthNet/patients/delete_patient/{{ patient.id }}/delete/" class="btn btn-danger">Delete</a>
 <br>
 <br>
 

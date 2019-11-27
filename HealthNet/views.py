@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator
-from django.utils.decorators import method_decorator
+# from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django import forms
+from django.conf import settings
 
 # Create your views here.
 from django.views.generic import TemplateView, ListView
@@ -15,7 +16,7 @@ from .forms import PatientForm, ContactForm, DoctorForm, StaffForm, ContactModel
 from django.urls import reverse_lazy
 # from django.views.generic.edit import DeleteView
 
-login_required_m = method_decorator(login_required)
+# login_required_m = method_decorator(login_required)
 
 @login_required
 def index(request):
@@ -57,14 +58,15 @@ def patient_form(request):
                 allergies = form.cleaned_data.get('allergies'),
                 employment_status = form.cleaned_data.get('employment_status'),
                 consulted_doctor = form.cleaned_data.get('consulted_doctor'),
+                hospital = form.cleaned_data.get('hospital'),
                 marital_status = form.cleaned_data.get('marital_status'),
                 medical_aid_group = form.cleaned_data.get('medical_aid_group'),
                 date_of_visit = form.cleaned_data.get('date_of_visit'),
             )
 
-            print('Data saved successfully')
+            patient.user = request.user
             patient.save()
-            return HttpResponseRedirect('/HealthNet/')
+            return HttpResponseRedirect('/HealthNet/patients/view_all/')
 
     else:
         form = PatientForm()
@@ -124,7 +126,8 @@ def patient_info(request, id):
 
 @login_required
 def edit_patient(request, id=None):
-    item = get_object_or_404(Patient, id=id)
+    # item = get_object_or_404(Patient, pk=id)
+    item = Patient.objects.get(id=id)
     form = PatientForm(request.POST or None, instance=item)
     if form.is_valid():
         form.save()
@@ -134,40 +137,22 @@ def edit_patient(request, id=None):
         'title': 'Updating Information',
         'form': form,
         'project_name' : 'ProMed HealthNet Inc',
+        'button' : 'Update',
         'creator' : 'Andile XeroxZen',
         'purpose' : 'Patient Information Management System'
     }
 
     return render(request, 'HealthNet/form.html', context)
 
-
-# Edit using update view
-
-# @login_required
-# class PatientFormUpdate(UpdateView):
-#     model = Patient
-#     fields = '__all__'
-#     template_name = '_update_form'
-#
-#
-# # Delete class
-# class PatientDelete(DeleteView):
-#     model = Patient
-#     success_url = reverse_lazy('HealthNet/form.html')
-
-
 # This is a delete function
 @login_required
 def delete_patient(request, id=None):
-    item = get_object_or_404(Patient, id=id)
+    if request.method == 'POST' and 'DELETE' in request.POST:
+        Patient.objects.filter(pk=id).delete()
+        return HttpResponseRedirect(request.path)
 
-    if request.method == 'POST':
-        form = PatientForm(request.POST, instance = item)
-        if form.is_valid():
-            item.delete()
-            return HttpResponse("Patient successfully deleted")
     else:
-        form = PatientForm(instance=item)
+        form = Patient()
     context = {
         'form' : form
     }
@@ -206,7 +191,7 @@ def get_reports(request):
 def add_staff_member(request):
     form = StaffForm()
     if request.method == 'POST':
-        form = StaffForm(request.POST)
+        form = StaffForm(request.POST, request.FILES)
         if form.is_valid():
             # Process and clean the data
             staff_member = Staff.objects.create(
@@ -214,7 +199,7 @@ def add_staff_member(request):
                 first_name = form.cleaned_data.get('first_name'),
                 last_name = form.cleaned_data.get('last_name'),
                 date_of_birth = form.cleaned_data.get('date_of_birth'),
-                # picture = form.cleaned_data.get('picture'),
+                picture = form.cleaned_data.get('picture'),
                 gender = form.cleaned_data.get('gender'),
                 phone_number = form.cleaned_data.get('phone_number'),
                 Email = form.cleaned_data.get('Email'),
@@ -225,7 +210,7 @@ def add_staff_member(request):
             )
 
             staff_member.save()
-            return HttpResponseRedirect('/HealthNet/')
+            return HttpResponseRedirect('/HealthNet/staff/all_members/')
     else:
         form = StaffForm()
 
@@ -299,7 +284,7 @@ def all_members(request):
 def add_doctor(request):
     form = DoctorForm()
     if request.method == 'POST':
-        form = DoctorForm(request.POST)
+        form = DoctorForm(request.POST, request.FILES)
         if form.is_valid():
             # Process and clean the data
             doctor = Doctor.objects.create(
@@ -311,7 +296,7 @@ def add_doctor(request):
                 phone_number = form.cleaned_data.get('phone_number'),
                 Email = form.cleaned_data.get('Email'),
                 identification_id = form.cleaned_data.get('identification_id'),
-                # picture = form.cleaned_data.get('picture'),
+                picture = form.cleaned_data.get('picture'),
                 qualification = form.cleaned_data.get('qualification'),
                 specialty = form.cleaned_data.get('specialty'),
                 join_date = form.cleaned_data.get('join_date')

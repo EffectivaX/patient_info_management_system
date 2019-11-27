@@ -119,6 +119,26 @@ class Staff(models.Model):
         verbose_name_plural = 'Staff'
         ordering = ("identification_id",)
 
+class HospitalsAndClinics(models.Model):
+    HOSPITAL_CHOICES = [
+    ('Mpilo Central Hospital', 'Mpilo Hospital'),
+    ('Mater Dei Hospital', 'Mater Dei'),
+    ('United Bulawayo Hospitals', 'UBH'),
+    ('CIMAS', 'Cimas'),
+    ('Corporate 24', 'Corporate 24'),
+    ('Emergency 24', 'Emergency 24'),
+    ('Parirenyatwa General Hospital', 'Parirenyatwa Hospital'),
+    ('Lancet House', 'Lancet House'),
+    ]
+
+    name = models.CharField(max_length=60, choices=HOSPITAL_CHOICES)
+    parent = models.ForeignKey('self', blank=True, null=True, related_name='children', on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'Hospitals and Clinics'
 
 class Patient(models.Model):
     title = models.CharField(max_length=10, blank=True, choices=PREFIX_CHOICES)
@@ -139,11 +159,13 @@ class Patient(models.Model):
     body_mass = models.PositiveIntegerField()
     allergies = models.CharField(max_length=255, blank=True)
     consulted_doctor = models.ForeignKey('Doctor', related_name="doctor", on_delete=models.PROTECT)
+    hospital = models.ForeignKey('HospitalsAndClinics', related_name='hospital', on_delete=models.PROTECT, null=True)
     employment_status = models.CharField(max_length=20, choices=EMPLOYMET_STATUS)
     marital_status = models.CharField(max_length=20, choices=MARITAL_CHOICES)
     medical_aid_group = models.CharField(max_length=255, choices=INSURANCES)
     date_of_visit = models.DateField(default=datetime.now)
-    # created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, related_name='user')
+    User = settings.AUTH_USER_MODEL
+    user = models.ForeignKey(User, null=True, on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now=True)
 

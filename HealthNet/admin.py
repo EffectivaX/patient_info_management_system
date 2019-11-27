@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Patient, Doctor, MedicalRecords, Staff, Contact
+from .models import Patient, Doctor, MedicalRecords, Staff, HospitalsAndClinics, Contact
 
 class PatientAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'date_of_birth',
@@ -13,6 +13,9 @@ class DoctorAdmin(admin.ModelAdmin):
 
 class StaffAdmin(admin.ModelAdmin):
     list_display = ['first_name', 'last_name', 'position', 'phone_number','Email']
+
+class HospitalsAndClinicsAdmin(admin.ModelAdmin):
+    list_display = ['name']
 
 class MedicalRecordsAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'date_of_birth',
@@ -27,5 +30,6 @@ class ContactAdmin(admin.ModelAdmin):
 admin.site.register(Doctor, DoctorAdmin)
 admin.site.register(Patient, PatientAdmin)
 admin.site.register(MedicalRecords, MedicalRecordsAdmin)
+admin.site.register(HospitalsAndClinics, HospitalsAndClinicsAdmin)
 admin.site.register(Contact, ContactAdmin)
 admin.site.register(Staff, StaffAdmin)

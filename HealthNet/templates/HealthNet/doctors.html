@@ -3,12 +3,14 @@
 {% block content %}
 <ul class='list-group offset-md-2'>
     <h3 class="card-title">{{ title }}</h3>
+    <hr>
+    <!-- <a href="/HealthNet/staff/add_doctor/" style="float: right; margin-bottom: 20px;" class="btn btn-warning btn-sm">New Doctor</a> -->
     {% for doctor in staff %}
-    <div class="card card-accent-success mb-3" style="max-width: 700px;">
+    <div class="card card-accent-success mb-3" style="max-width: 800px;">
         <div class="row no-gutters">
             <div class="col-md-4">
                 {% if doctor.picture %}
-                <img src="{{ doctor.picture.url }}" class="card-img img-responsive" alt="Image Coming Up" height="300" width="300">
+                <img src="{{ doctor.picture.url }}" class="card-img img-responsive" alt="Image Coming Up" height="350" width="400">
                 {% endif %}
             </div>
             <div class="col-md-8">

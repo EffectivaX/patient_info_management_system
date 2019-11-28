@@ -22,8 +22,8 @@
                     <p class="card-text text-warning">Phone Number    :   {{ doctor.phone_number }}</p>
                     <p class="card-text text-secondary"><i>Email Address    :   {{ doctor.Email }}</i></p>
                     <p class="card-text text-danger"><small class="text-muted"><i>Last updated {{ doctor.updated_at }}</i></small></p>
-                    <a href="/HealthNet/staff/edit_member/{{ member.id }}/" class="btn btn-info">Edit</a>
-                    <a href="/HealthNet/staff/delete_member/{{ member.id }}/" class="btn btn-danger">Delete</a>
+                    <a href="/HealthNet/staff/update_doctor/{{ member.id }}" class="btn btn-info">Edit</a>
+                    <a href="/HealthNet/staff/delete_doctor/{{ member.id }}" class="btn btn-danger">Delete</a>
                 </div>
             </div>
         </div>

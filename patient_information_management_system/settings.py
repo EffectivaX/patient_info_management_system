@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 from django.contrib.messages import constants as messages
+import django_heroku
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
@@ -20,6 +21,7 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
 }
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -140,6 +142,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+django_heroku.settings(locals())
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 

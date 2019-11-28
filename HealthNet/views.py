@@ -69,7 +69,7 @@ def patient_form(request):
             messages.success(request, 'Patient added successfully!', extra_tags='alert')
             return HttpResponseRedirect('/HealthNet/patients/view_all/')
         else:
-            messages.warning(request, 'Please correct the error identified...')
+            messages.warning(request, 'Please correct the error identified...', extra_tags='alerts')
 
     else:
         form = PatientForm()
@@ -134,7 +134,8 @@ def edit_patient(request, id=None):
     form = PatientForm(request.POST or None, instance=item)
     if form.is_valid():
         form.save()
-        return redirect('/HealthNet/patients/view_all')
+        messages.success(request, 'Patient updated successfully!', extra_tags='alert')
+        return HttpResponseRedirect('HealthNet/patients/view_all')
 
     context = {
         'title': 'Updating Information',
@@ -209,11 +210,13 @@ def add_staff_member(request):
                 identification_id = form.cleaned_data.get('identification_id'),
                 position = form.cleaned_data.get('position'),
                 join_date = form.cleaned_data.get('join_date')
-
             )
 
             staff_member.save()
+            messages.success(request, 'Staff Member added successfully!', extra_tags='alert')
             return HttpResponseRedirect('/HealthNet/staff/all_members/')
+        else:
+            messages.warning(request, 'Staff Member failed to update!', extra_tags='alert')
     else:
         form = StaffForm()
 
@@ -233,7 +236,8 @@ def update_member(request, id=None):
     form = StaffForm(request.POST or None, instance=item)
     if form.is_valid():
         form.save()
-        return redirect('/HealthNet/staff/all_members/')
+        messages.success(request, 'Staff Member updated successfully!', extra_tags='alert')
+        return HttpResponseRedirect('/HealthNet/staff/all_members/')
 
     context = {
         'title': 'Staff Member',
@@ -254,7 +258,8 @@ def delete_staff_member(request, id=None):
         form = StaffForm(request.POST, instance = item)
         if form.is_valid():
             item.delete()
-            return HttpResponse("Patient successfully deleted")
+            messages.info(request,'Staff Member successfully deleted!')
+            return HttpResponseRedirect("/HealthNet/staff/all_members/")
     else:
         form = StaffForm(instance=item)
     context = {
@@ -307,7 +312,10 @@ def add_doctor(request):
             )
 
             doctor.save()
-            return HttpResponse('Doctor successfully added...')
+            messages.success(request, 'Doctor added successfully!', extra_tags='alert')
+            return redirect('/HealthNet/staff/doctors/')
+        else:
+            messages.warning(request, 'Doctor could not be added!', extra_tags='alert')
     else:
         form = DoctorForm()
 
@@ -361,7 +369,8 @@ def update_doctor(request, id=None):
     form = DoctorForm(request.POST or None, instance=item)
     if form.is_valid():
         form.save()
-        return redirect('/HealthNet/staff/doctors/')
+        messages.success(request, 'Doctor updated successfully!', extra_tags='alert')
+        return HttpResponseRedirect('/HealthNet/staff/doctors/')
 
     context = {
         'title': 'Update Doctor',
@@ -402,7 +411,10 @@ def contact_form(request):
         form = ContactModelForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse('Message was successfully sent...')
+            messages.success(request, 'Message sent successfully!', extra_tags='alert')
+            return HttpResponseRedirect('/HealthNet/messages/')
+        else:
+            messages.warning(request, 'Message not sent, try again in a bit!', extra_tags='alert')
     else:
         form = ContactModelForm()
 

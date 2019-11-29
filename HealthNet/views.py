@@ -151,7 +151,7 @@ def edit_patient(request, id=None):
 # This is a delete function
 @login_required
 def delete_patient(request, id=None):
-    if request.method == 'POST' and 'DELETE' in request.POST:
+    if request.method == 'GET' and 'DELETE' in request.GET:
         Patient.objects.filter(pk=id).delete()
         return HttpResponseRedirect(request.path)
 
@@ -427,15 +427,15 @@ def contact_form(request):
     return render(request, 'HealthNet/contact_form.html', context)
 
 def read_messages(request):
-    messages = Contact.objects.all()
-    paginator = Paginator(messages, 20)
+    msgs = Contact.objects.all()
+    paginator = Paginator(msgs, 20)
     if request.method == 'GET':
         page = request.GET.get('page')
-    messages = paginator.get_page(page)
+    msgs = paginator.get_page(page)
 
     context = {
         'title': 'All Messages',
-        'messages': messages,
+        'msgs': msgs,
         'project_name' : 'ProMed HealthNet Inc',
         'creator' : 'Andile XeroxZen',
         'purpose' : 'Patient Information Management System'

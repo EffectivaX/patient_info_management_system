@@ -6,13 +6,13 @@
 <ul class="list-group">
     <h3 class="card-title">{{ title }}</h3>
     <hr>
-    {% for message in messages %}
+    {% for msg in msgs %}
     <div class="card text-white bg-dark card-accent-success mb-3">
         <!-- card text-white bg-dark card-accent-success mb-3 -->
-        <div class="card-header">{{ message.name }}</div>
+        <div class="card-header">{{ msg.name }}</div>
             <div class="card-body">
-                <h5 class="card-title">{{ message.email }}</h5>
-                <p class="card-text">{% autoescape off %} {{ message.message }} {% endautoescape %}</p>
+                <h5 class="card-title">{{ msg.email }}</h5>
+                <p class="card-text">{% autoescape off %} {{ msg.message }} {% endautoescape %}</p>
                 <a href="/HealthNet/messages/reply_message/{{ message.id }}" style="float: right;" class="btn btn-warning">Reply</a>
             </div>
     </div>

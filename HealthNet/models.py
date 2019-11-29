@@ -117,7 +117,7 @@ class Staff(models.Model):
 
     class Meta:
         verbose_name_plural = 'Staff'
-        ordering = ("identification_id",)
+        ordering = ("id",)
 
 class HospitalsAndClinics(models.Model):
     HOSPITAL_CHOICES = [

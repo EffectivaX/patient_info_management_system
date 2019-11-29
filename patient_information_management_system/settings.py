@@ -15,7 +15,7 @@ from django.contrib.messages import constants as messages
 import django_heroku
 
 MESSAGE_TAGS = {
-    messages.DEBUG: 'alert-info',
+    messages.DEBUG: 'alert-primary',
     messages.INFO: 'alert-info',
     messages.SUCCESS: 'alert-success',
     messages.WARNING: 'alert-warning',

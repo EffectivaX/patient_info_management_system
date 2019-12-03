@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import ModelForm
 # from datetime import datetime
 from .models import Patient, Doctor, Contact, Staff, HospitalsAndClinics
 from django.conf import settings
@@ -223,7 +224,7 @@ class DoctorForm(forms.Form):
     phone_number = forms.CharField(widget=forms.TextInput(attrs={
         'class' : 'form-row col-md-4'
     }))
-    
+
     picture = forms.FileField()
 
     Email = forms.EmailField(required=False,widget=forms.EmailInput(attrs={

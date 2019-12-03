@@ -39,6 +39,9 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'accounts.MyUser'
 
+# Activating Heroku
+django_heroku.settings(locals())
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -142,7 +145,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-django_heroku.settings(locals())
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 

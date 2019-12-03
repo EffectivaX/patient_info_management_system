@@ -128,15 +128,19 @@ def patient_info(request, id):
 # This is a function for editing a patient's Information
 
 @login_required
-def edit_patient(request, id=None):
-    # item = get_object_or_404(Patient, pk=id)
-    item = Patient.objects.get(id=id)
-    form = PatientForm(request.POST or None, instance=item)
-    if form.is_valid():
-        form.save()
-        messages.success(request, 'Patient updated successfully!', extra_tags='alert')
-        return HttpResponseRedirect('HealthNet/patients/view_all')
-
+def edit_patient(request, id):
+    patient = get_object_or_404(Patient, id=id)
+    if request.method == "POST":
+        form = PatientForm(request.POST, instance=patient)
+        if form.is_valid():
+            patient = form.save(commit=False)
+            patient.user = request.user
+            patient.save()
+            messages.success(request, 'Patient updated successfully!', extra_tags='alert')
+            return redirect('HealthNet:view_all')
+    else:
+        form = PatientForm(instance=patient)
+    template_name = 'HealthNet/form.html'
     context = {
         'title': 'Updating Information',
         'form': form,
@@ -146,7 +150,7 @@ def edit_patient(request, id=None):
         'purpose' : 'Patient Information Management System'
     }
 
-    return render(request, 'HealthNet/form.html', context)
+    return render(request, template_name, context)
 
 # This is a delete function
 @login_required

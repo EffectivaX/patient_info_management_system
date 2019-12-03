@@ -14,6 +14,11 @@ import os
 from django.contrib.messages import constants as messages
 import django_heroku
 
+
+# Activating Heroku
+django_heroku.settings(locals())
+
+
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-primary',
     messages.INFO: 'alert-info',
@@ -39,8 +44,6 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'accounts.MyUser'
 
-# Activating Heroku
-django_heroku.settings(locals())
 
 # Application definition
 

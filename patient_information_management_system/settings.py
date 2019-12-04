@@ -14,11 +14,6 @@ import os
 from django.contrib.messages import constants as messages
 import django_heroku
 
-
-# Activating Heroku
-django_heroku.settings(locals())
-
-
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-primary',
     messages.INFO: 'alert-info',
@@ -174,3 +169,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = '/'
+
+# Activating Heroku
+django_heroku.settings(locals())

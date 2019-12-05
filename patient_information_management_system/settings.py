@@ -35,7 +35,7 @@ SECRET_KEY = 'll!iuz+fn%79)jjfzk^ot%d)uc_4*ste-gnc)xl)qe9acj0(09'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [".herokuapp.com"]
 
 AUTH_USER_MODEL = 'accounts.MyUser'
 

@@ -8,7 +8,7 @@ User = get_user_model()
 class UserCreationForm(forms.ModelForm):
     username = forms.CharField(label='Username', widget=forms.TextInput(attrs={
         'class' : 'form-control',
-        'placeholder' : 'Username'
+        'placeholder' : 'Andile'
     }))
 
     email = forms.EmailField(label='Email', widget=forms.TextInput(attrs={
@@ -16,13 +16,13 @@ class UserCreationForm(forms.ModelForm):
         'placeholder' : 'andilembele@cybertech.co.zw'
     }))
 
-    identification_id = forms.CharField(label='Identification ID', widget=forms.TextInput(attrs={
-        'class' : 'form-control',
-        # 'placeholder' : 'Your 10 Digit Key Here'
-    }))
-    role = forms.CharField(label='Role', widget=forms.TextInput(attrs={
-        'class' : 'form-control'
-    }))
+    # identification_id = forms.CharField(label='Identification ID', widget=forms.TextInput(attrs={
+    #     'class' : 'form-control',
+    #     # 'placeholder' : 'Your 10 Digit Key Here'
+    # }))
+    # role = forms.CharField(label='Role', widget=forms.TextInput(attrs={
+    #     'class' : 'form-control'
+    # }))
 
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={
         'class' : 'form-control',
@@ -61,7 +61,7 @@ class UserCreationForm(forms.ModelForm):
 class UserLoginForm(forms.Form):
     query = forms.CharField(label='Username', widget=forms.TextInput(attrs={
         'class' : 'form-control',
-        'placeholder' : 'Jack Sparrow'
+        'placeholder' : 'Andile_Jaden'
     }))
 
     password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={

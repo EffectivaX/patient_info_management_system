@@ -94,7 +94,7 @@ def patient_form(request):
 def view_all(request):
     template_name = 'view_patients.html'
     patients = Patient.objects.all()
-    paginator = Paginator(patients, 30)
+    paginator = Paginator(patients)
     if request.method == 'GET':
         page = request.GET.get('page')
     patients = paginator.get_page(page)

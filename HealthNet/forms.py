@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 # from datetime import datetime
-from .models import Patient, Doctor, Contact, Staff, HospitalsAndClinics
+from .models import Patient, Doctor, Contact, Staff, HospitalsAndClinics, MedicalAidScheme
 from django.conf import settings
 # from crispy_forms.helper import FormHelper
 # from crispy_forms.layout import Layout, Submit
@@ -32,19 +32,19 @@ BLOOD_TYPE_CHOICES = (
     ('O-', 'O- Type'),
 )
 
-INSURANCES = (
-    ('Not Applicable', "N/A"),
-    ('Masca', "MASCA"),
-    ('NUST Medical AID', "NUST Medical AID"),
-    ('Humana', "Humana"),
-    ('Premier', "Premier Services"),
-    ('PSMAS', "PSMAS"),
-    ('Emergency 24', "Emergency 24"),
-    ('EA', "Emblem Healthcare"),
-    ('zimaid', "ZimAid"),
-    ('KP', "Kaiser Permanente"),
-    ('WP', "Wellpoint"),
-)
+# INSURANCES = (
+#     ('Not Applicable', "N/A"),
+#     ('Masca', "MASCA"),
+#     ('NUST Medical AID', "NUST Medical AID"),
+#     ('Humana', "Humana"),
+#     ('Premier', "Premier Services"),
+#     ('PSMAS', "PSMAS"),
+#     ('Emergency 24', "Emergency 24"),
+#     ('EA', "Emblem Healthcare"),
+#     ('zimaid', "ZimAid"),
+#     ('KP', "Kaiser Permanente"),
+#     ('WP', "Wellpoint"),
+# )
 
 MARITAL_CHOICES = [
         ('Not Available', 'Not Available'),
@@ -181,7 +181,7 @@ class PatientForm(forms.Form):
         'class' : 'form-group col-md-4'
     }))
 
-    medical_aid_group = forms.CharField(widget=forms.Select(choices=INSURANCES, attrs={
+    medical_aid_group = forms.ModelChoiceField(queryset=MedicalAidScheme.objects.all(), widget=forms.Select(attrs={
         'class' : 'form-group col-md-6'
     }))
 

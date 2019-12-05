@@ -84,16 +84,15 @@ class MyUser(AbstractBaseUser):
         # Simplest possible answer: Yes, always
         return True
 
+    def has_perms(self, perms, obj=None):
+        "Does the user have specific permission"
+        # Yes
+        return True
+
     def has_module_perms(self, app_label):
         "Does the user have permissions to view the app 'app_label'"
         # Simplest possible answer: Yes, always
         return True
-
-    # def is_staff(self):
-    #     "Is the user a member of staff?"
-    #     #Simplest possible answer: All Admins are staff
-    #     return True
-
 
     class Meta:
         verbose_name_plural = "Admin"

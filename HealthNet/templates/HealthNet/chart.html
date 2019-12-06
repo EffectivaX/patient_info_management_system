@@ -1,8 +1,12 @@
 {% extends "HealthNet/base.html" %}
+{% load js %}
+
 {% block content %}
 <html>
   <head>
+      {% load static %}
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/chart.css' %}">
     <script type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
@@ -21,7 +25,15 @@
         ]);
         var options = {
           title: 'Patient Visit Report',
+          backgroundColor: '#95A5A6',
           is3D: true,
+          'chartArea': {
+              'backgroundColor': {
+                  'fill': '#95A5A6',
+                  'opacity': 99,
+                  'fillOpacity': 0.8
+     },
+ }
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
@@ -29,9 +41,9 @@
       }
     </script>
   </head>
-  <body style="background:#C0C0C0;">
-      <h3 class="card-title">{{ title }}</h3>
-    <div id="piechart_3d" style="width: 1000px; height: 600px;"></div>
+  <body>
+      <h4 class="display-4">{{ title }}</h4>
+    <div id="piechart_3d"></div>
   </body>
 </html>
 {% endblock %}

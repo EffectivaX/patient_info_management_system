@@ -1,6 +1,6 @@
-    .card:hover {
-        cursor: pointer;
-    }
-    a, ul{
-        text-decoration: none;
-    }
+.card:hover {
+    cursor: pointer;
+}
+a, ul{
+    text-decoration: none;
+}

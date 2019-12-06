@@ -197,6 +197,29 @@ def reports(request):
 
     return render(request, 'HealthNet/reports.html', context)
 
+@login_required
+def chart(request):
+    template_name = "/HealthNet/chart.html"
+    # reports = Patient.objects.all()
+    # paginator = Paginator(reports, 60)
+    #
+    # if request.method == 'GET':
+    #     try:
+    #         page_requested = request.GET.get('page')
+    #     except Exception:
+    #         return HttpResponseRedict('/HealthNet/')
+    # reports = paginator.get_page(page_requested)
+
+    context = {
+        'title' : 'Reports',
+        # 'reports' : reports,
+        'project_name' : 'ProMed HealthNet Inc',
+        'creator' : 'Andile XeroxZen',
+        'purpose' : 'Patient Information Management System'
+    }
+
+    return render(request, 'HealthNet/chart.html', context)
+
 # Fucnction Add Staff Members
 @login_required
 def add_staff_member(request):
@@ -325,7 +348,7 @@ def add_doctor(request):
 
             doctor.save()
             messages.success(request, 'Doctor added successfully!', extra_tags='alert')
-            return redirect('/HealthNet/staff/doctors/')
+            return redirect('/HealthNet/doctors/all/')
         else:
             messages.warning(request, 'Doctor could not be added!', extra_tags='alert')
     else:

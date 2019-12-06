@@ -13,6 +13,7 @@ urlpatterns = [
     path('HealthNet/patients/delete_patient/<int:id>/', views.delete_patient, name='Delete'),
     # path('HealthNet/patients/DeletePatient/<int:id>/', views.PatientDelete.as_view(), name='Delete Patient'),
     path('HealthNet/patients/reports/', views.reports, name="reports"),
+    path('HealthNet/patients/statistics/', views.chart, name='Statistics'),
     # path('HealthNet/patients/edit_patient/<int:id>/', views.PatientFormUpdate.as_view(), name='Update Patient'),
 
     # Contact Page url

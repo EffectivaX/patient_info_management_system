@@ -3,22 +3,12 @@
 {% block title %} {{ title }} {% endblock %}
 
 {% block content %}
-<div class="container">
-	<div class="row">
-		<div class="card text-white bg-dark card-accent-success">
-			<div class="card-title">
-				<h4 class="display-4">Reports</h4>
+<div class="row">
+	<div class="card text-white bg-dark card-accent-success mb-3">
+		<h4 class="display-4">Reports</h4>
+		{% for report in reports %}
 
-			</div>
-			{% for report in reports %}
-				<div class="card-content">
-					<p>{{ report.purpose_of_visit }} {{ forloop.counter }}</p>
-					<!-- Return Data in graphical form -->
-					<!-- Show Stats of hospital viisits -->
-					<!-- Offer detail -->
-				</div>
-			{% endfor %}
-		</div>
+		{% endfor %}
 	</div>
 </div>
 {% endblock %}

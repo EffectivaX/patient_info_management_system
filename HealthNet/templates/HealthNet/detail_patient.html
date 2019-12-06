@@ -8,7 +8,7 @@
 <hr>
 <div class="card text-white bg-dark card-accent-success mb-3">
   <div class="card-header">
-      <h3><b>{{ patient.first_name }} 's {{title}}</b></h3>
+      <h3 class="text-info"><b>{{ patient.first_name }} {{ patient.last_name }}'s {{title}}</b></h3>
   </div>
   <div class="card-body">
       <div class="card-text">
@@ -24,11 +24,12 @@
               <p class="card-text text-primary">Current Medication  :       {{ patient.current_medication }}</p>
               <p class="card-text text-secondary">Prescription      :       {{ patient.prescription }}</p>
               <p class="card-text text-info">Condition Description  :       <i style="color:green;">{% autoescape off %} {{ patient.description_of_the_condition }} {% endautoescape %}</i></p>
-              <p class="card-text text-success">Body Temperature    :       {{ patient.current_temperature }}</p>
-              <p class="card-text text-info">Body Mass              :       {{ patient.body_mass }}</p>
+              <p class="card-text text-success">Body Temperature    :       {{ patient.current_temperature }} &deg C</p>
+              <p class="card-text text-info">Body Mass              :       {{ patient.body_mass }} Kilogrammes</p>
               <p class="card-text text-danger">Blood Type           :       {{ patient.blood_type }}</p>
               <p class="card-text text-warning">Patient Allergies   :       {{ patient.allergies }}</p>
               <p class="card-text text-light">Medical AID Group     :       {{ patient.medical_aid_group }}</p>
+              <p class="card-text text-light">Consultation Fee     :      $ {{ patient.consultation_fee }}</p>
               <p class="card-text text-success">Consulted Doctor    :       {{ patient.consulted_doctor }}</p>
           <p class="card-text text-success">Assigned To             :       {{ patient.user }}</p>
               <p class="card-text text-primary">Date of Visit       :       {{ patient.date_of_visit }}</p>

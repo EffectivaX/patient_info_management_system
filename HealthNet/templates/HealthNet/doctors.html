@@ -6,7 +6,7 @@
     <hr>
     <!-- <a href="/HealthNet/staff/add_doctor/" style="float: right; margin-bottom: 20px;" class="btn btn-warning btn-sm">New Doctor</a> -->
     {% for doctor in staff %}
-    <div class="card card-accent-success mb-3" style="max-width: 800px;">
+    <div class="card card-accent-success mb-3" style="max-width: 700px;">
         <div class="row no-gutters">
             <div class="col-md-4">
                 {% if doctor.picture %}
@@ -22,8 +22,8 @@
                     <p class="card-text text-warning">Phone Number    :   {{ doctor.phone_number }}</p>
                     <p class="card-text text-secondary"><i>Email Address    :   {{ doctor.Email }}</i></p>
                     <p class="card-text text-danger"><small class="text-muted"><i>Last updated {{ doctor.updated_at }}</i></small></p>
-                    <a href="/HealthNet/staff/update_doctor/{{ member.id }}" class="btn btn-info">Edit</a>
-                    <a href="/HealthNet/staff/delete_doctor/{{ member.id }}" class="btn btn-danger">Delete</a>
+                    <a href="/HealthNet/doctors/update_doctor/{{ doctor.id }}" class="btn btn-info"><i class="glyphicon-pencil"></i>Edit</a>
+                    <a href="/HealthNet/doctors/delete_doctor/{{ doctor.id }}" class="btn btn-danger">Delete</a>
                 </div>
             </div>
         </div>

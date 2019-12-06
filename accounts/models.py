@@ -60,8 +60,7 @@ class MyUser(AbstractBaseUser):
         unique= True,
         verbose_name='email address'
     )
-    # unique_id = models.CharField(max_length=10)
-    # role = models.CharField(max_length=30, choices=AUTHORISED_PERSONNEL, default=False)
+
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)

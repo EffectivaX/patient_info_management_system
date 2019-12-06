@@ -9,7 +9,7 @@ from django.conf import settings
 from django.contrib import messages
 # Create your views here.
 from django.views.generic import TemplateView, ListView
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic.edit import FormView
 from .models import Patient, Doctor, Staff, Contact
 from .forms import PatientForm, ContactForm, DoctorForm, StaffForm, ContactModelForm
@@ -42,6 +42,7 @@ def patient_form(request):
             patient = Patient.objects.create(
                 title = form.cleaned_data.get('title'),
                 first_name = form.cleaned_data.get('first_name'),
+                middle_name = form.cleaned_data.get('middle_name'),
                 last_name = form.cleaned_data.get('last_name'),
                 date_of_birth = form.cleaned_data.get('date_of_birth'),
                 gender = form.cleaned_data.get('gender'),
@@ -62,6 +63,7 @@ def patient_form(request):
                 hospital = form.cleaned_data.get('hospital'),
                 marital_status = form.cleaned_data.get('marital_status'),
                 medical_aid_group = form.cleaned_data.get('medical_aid_group'),
+                consultation_fee = form.cleaned_data.get('consultation_fee'),
                 date_of_visit = form.cleaned_data.get('date_of_visit'),
             )
 
@@ -121,7 +123,7 @@ def patient_info(request, id):
     patient = Patient.objects.get(id=id)
 
     context = {
-        'title': 'Information',
+        'title': 'Medical Information',
         'patient': patient,
         'project_name' : 'ProMed HealthNet Inc',
         'creator' : 'Andile XeroxZen',
@@ -374,9 +376,9 @@ def delete_doctor(request, id=None):
     return redirect(request, 'HealthNet/patients/view_all', context)
 
 @login_required
-def update_doctor(request, id=None):
+def update_doctor(request, id):
     item = get_object_or_404(Doctor, id=id)
-    form = DoctorForm(request.POST or None, instance=item)
+    form = DoctorForm(request.POST, instance=item)
     if form.is_valid():
         form.save()
         messages.success(request, 'Doctor updated successfully!', extra_tags='alert')

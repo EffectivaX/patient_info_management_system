@@ -20,14 +20,14 @@ urlpatterns = [
     path('HealthNet/messages/', views.read_messages, name="Read Messages"),
 
     # Staff Members urls
-    path('HealthNet/staff/doctors/', views.all_doctors, name='Medical Staff'),
-    path('HealthNet/staff/add_doctor/', views.add_doctor, name='Add Doctor'),
+    path('HealthNet/doctors/all/', views.all_doctors, name='Medical Staff'),
+    path('HealthNet/doctors/add_doctor/', views.add_doctor, name='Add Doctor'),
     path('HealthNet/staff/new_member/', views.add_staff_member, name="Add Staff Member"),
     path('HealthNet/staff/all_members/', views.all_members, name='All Members'),
-    path('HealthNet/staff/update_doctor/<int:id>/', views.update_doctor, name='Edit Staff Member'),
+    path('HealthNet/doctors/update_doctor/<int:id>/', views.update_doctor, name='Edit Staff Member'),
     path('HealthNet/staff/edit_member/<int:id>/', views.update_member, name='Edit Staff Member'),
     path('HealthNet/staff/delete_member/<int:id>/', views.delete_staff_member, name='Delete Member'),
-    path('HealthNet/staff/delete_doctor/<int:id>/', views.delete_doctor, name='Delete Doctor')
+    path('HealthNet/doctors/delete_doctor/<int:id>/', views.delete_doctor, name='Delete Doctor')
 ]
 
 # urlpatterns += staticfiles_urlpatterns()

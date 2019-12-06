@@ -28,18 +28,6 @@ GENDER_CHOICES = [
     ('FEMALE', 'Female')
 ]
 
-
-BLOOD_TYPE_CHOICES = (
-    ('A+', 'A+ Type'),
-    ('B+', 'B+ Type'),
-    ('AB+', 'AB+ Type'),
-    ('O+', 'O+ Type'),
-    ('A-', 'A- Type'),
-    ('B-', 'B- Type'),
-    ('AB-', 'AB- Type'),
-    ('O-', 'O- Type'),
-)
-
 MARITAL_CHOICES = [
         ('N/A', 'Not Applicable'),
         ('ENGAGED', 'Engaged'),
@@ -128,11 +116,45 @@ class HospitalsAndClinics(models.Model):
     def save(self, *args, **kwargs):
         value = self.name
         self.slug = slugify(value, allow_unicode=True)
-        super().save(*args, **kwargs)    
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse("HealthNet:HospitalsAndClinics", kwargs={"slug": self.slug})
 
     class Meta:
         verbose_name_plural = 'Hospitals and Clinics'
 
+class BloodGroup(models.Model):
+    BLOOD_TYPE_CHOICES = (
+        ('A+', 'A+ Type'),
+        ('B+', 'B+ Type'),
+        ('AB+', 'AB+ Type'),
+        ('O+', 'O+ Type'),
+        ('A-', 'A- Type'),
+        ('B-', 'B- Type'),
+        ('AB-', 'AB- Type'),
+        ('O-', 'O- Type'),
+    )
+
+    type = models.CharField(max_length=60, choices=BLOOD_TYPE_CHOICES)
+    parent = models.ForeignKey('self', blank=True, null=True, related_name='blood_type', on_delete=models.PROTECT)
+    slug = models.SlugField(max_length=12, unique=True, editable=False)
+    timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
+
+    def __str__(self):
+        return self.type
+
+    def save(self, *args, **kwargs):
+        value = self.type
+        self.slug = slugify(value, allow_unicode=True)
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse("HealthNet:BloodGroups", kwargs={"slug": self.slug})
+
+    class Meta:
+        verbose_name_plural = 'Blood Groups'
+        ordering = ['type']
 
 class MedicalAidScheme(models.Model):
     INSURANCES = [
@@ -165,22 +187,10 @@ class MedicalAidScheme(models.Model):
     class Meta:
         verbose_name_plural = 'Medical AID Providers'
 
-# class PatientProfile(models.Model):
-#     full_name = models.CharField(max_length=60)
-#     member = models.CharField(max_length=60)
-#     relationship_to_member = models.CharField(max_length=30)
-#     gender = models.CharField(max_length=8)
-#     identification = models.CharField(max_length=30)
-#
-#     class Meta:
-#         verbose_name_plural = 'Patient Profile'
-#     def __str__(self):
-#         return self.full_name
-
-
 class Patient(models.Model):
     title = models.CharField(max_length=10, blank=True, choices=PREFIX_CHOICES)
     first_name = models.CharField(max_length=255)
+    middle_name = models.CharField(max_length=255, default=None)
     last_name = models.CharField(max_length=255)
     gender = models.CharField(max_length=12, choices=GENDER_CHOICES)
     date_of_birth = models.DateField()
@@ -192,7 +202,7 @@ class Patient(models.Model):
     description_of_the_condition = models.TextField(blank=True)
     prescription = models.CharField(max_length=255)
     current_temperature = models.CharField(max_length=255, blank=True)
-    blood_type = models.CharField(max_length=255, choices=BLOOD_TYPE_CHOICES, blank=True)
+    blood_type = models.ForeignKey('BloodGroup', related_name='blood', on_delete=models.PROTECT)
     current_medication = models.CharField(max_length=255)
     body_mass = models.PositiveIntegerField()
     allergies = models.CharField(max_length=255, blank=True)
@@ -200,7 +210,7 @@ class Patient(models.Model):
     hospital = models.ForeignKey('HospitalsAndClinics', related_name='hospital', on_delete=models.PROTECT)
     employment_status = models.CharField(max_length=20, choices=EMPLOYMET_STATUS)
     marital_status = models.CharField(max_length=20, choices=MARITAL_CHOICES)
-    # medical_aid_group = models.CharField(max_length=255, choices=INSURANCES)
+    consultation_fee = models.DecimalField(max_digits=10, decimal_places=2, default=None)
     medical_aid_group = models.ForeignKey('MedicalAidScheme', related_name='medical_aid_user', on_delete=models.PROTECT)
     date_of_visit = models.DateField(default=datetime.now)
     User = settings.AUTH_USER_MODEL
@@ -213,7 +223,7 @@ class Patient(models.Model):
         return self.first_name + " " + self.last_name
 
     def get_absolute_url(self):
-        return reverse("HealthNet:view_all", kwargs={"slug": self.slug})
+        return reverse("HealthNet:detail_patient", kwargs={"slug": self.slug})
 
     def save(self, *args, **kwargs):
         name = self.first_name + self.last_name
@@ -222,35 +232,38 @@ class Patient(models.Model):
 
     class Meta:
         verbose_name_plural = "Patients"
-        # ordering = ("-last_name",)
+        ordering = ["id"]
 
-# class MedicalRecords(models.Model):
-#     first_name = models.CharField(max_length=255)
-#     last_name = models.CharField(max_length=255)
-#     gender = models.CharField(max_length=12, choices=GENDER_CHOICES)
-#     date_of_birth = models.DateField()
-#     physical_address = models.CharField(max_length=255)
-#     chronic_disease = models.BooleanField()
-#     national_id = models.CharField(max_length=30)
-#     phone_number = models.CharField(max_length=30)
-#     email_address = models.EmailField()
-#     blood_type = models.CharField(max_length=255, choices=BLOOD_TYPE_CHOICES)
-#     allergies = models.CharField(max_length=255)
-#     marital_status = models.CharField(max_length=20, choices=MARITAL_CHOICES)
-#     # medical_aid_group = models.ForeignKey('MedicalAidScheme', related_name='medical_aid_used', on_delete=models.PROTECT, default=None)
-#     slug = models.SlugField(default=None, unique=True, max_length=60, editable=False)
-#     created_at = models.DateTimeField(auto_now=True)
-#
-#     def __str__(self):
-#         return self.first_name + " " + self.last_name
-#
-#     def save(self, *args, **kwargs):
-#         value = self.first_name
-#         self.slug = slugify(value, allow_unicode=True)
-#         super().save(*args, **kwargs)
-#
-#     class Meta:
-#         verbose_name_plural = "Medical Records"
+class MedicalRecords(models.Model):
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    gender = models.CharField(max_length=12, choices=GENDER_CHOICES)
+    date_of_birth = models.DateField()
+    physical_address = models.CharField(max_length=255)
+    chronic_disease = models.BooleanField()
+    national_id = models.CharField(max_length=30)
+    phone_number = models.CharField(max_length=30)
+    email_address = models.EmailField()
+    blood_type = models.ForeignKey('BloodGroup', related_name='Blood', on_delete=models.PROTECT)
+    allergies = models.CharField(max_length=255)
+    marital_status = models.CharField(max_length=20, choices=MARITAL_CHOICES)
+    medical_aid_group = models.ForeignKey('MedicalAidScheme', related_name='medical_aid_used', on_delete=models.PROTECT)
+    slug = models.SlugField(default=None, unique=True, max_length=60, editable=False)
+    created_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.first_name + " " + self.last_name
+
+    def save(self, *args, **kwargs):
+        value = self.first_name + self.last_name
+        self.slug = slugify(value, allow_unicode=True)
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse("HealthNet:detail_patient", kwargs={"slug": self.slug})
+
+    class Meta:
+        verbose_name_plural = "Medical Records"
 
 class Contact(models.Model):
     name = models.CharField(max_length=100)

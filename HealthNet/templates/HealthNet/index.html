@@ -7,7 +7,7 @@
     <!-- Here comes the beautiful design of the dashboard Using Cards-->
     <h3 class="card-title">{{ title }}</h3>
       <div class="row">
-			<div class="card text-white bg-success mb-3" style="width: 23rem;">
+			<!-- <div class="card text-white bg-success mb-3" style="width: 23rem;">
 				<div class="card-header">
 					<b>{{title}}</b>
 				</div>
@@ -16,21 +16,9 @@
 					<p class="card-text">This is ProMed's platform for registering new patients into the system</p>
                     <p class="card-text">Comprehensive system for all health needs</p>
                     <p class="card-text">With supporting text below as a natural lead-in to addition</p>
-						<a href="/HealthNet/" class="btn btn-primary">Go Home</a>
+						<a href="/HealthNet/" class="btn btn-primary">You are here</a>
 				</div>
-			</div>
-
-			<div class="card text-white bg-secondary mb-3" style="width: 23rem;">
-				<div class="card-header">
-					<b>All Patients</b>
-				</div>
-				<div class="card-body">
-					<h5 class="card-title">View All Patients in the System</h5>
-					<p class="card-text">Check out oujr ever growing database</p>
-                    <p class="card-text">With supporting text below as a natural lead-in to addition</p>
-						<a href="/HealthNet/patients/view_all" class="btn btn-info">View All Patients</a>
-				</div>
-			</div>
+			</div> -->
 
 			<div class="card text-white bg-info mb-3" style="width: 23rem;">
 				<div class="card-header">
@@ -45,16 +33,30 @@
 				</div>
 			</div>
 
-			<div class="card text-white bg-danger mb-3" style="width: 23rem;">
+            <div class="card text-white bg-secondary mb-3" style="width: 23rem;">
 				<div class="card-header">
-					<b>Reports</b>
+					<b>All Patients</b>
 				</div>
 				<div class="card-body">
-					<h5 class="card-title">Check out latest Reports</h5>
-					<p class="card-text">Because we aim to please we have provided the option for generating reports that are based on certain trends. the first trend we are on the lookout for is that of diseases outbreak, if say a particular pattern is repetitive it has to be flagged for close monitoring so that immediate action and steps can be taken</p>
-						<a href="/HealthNet/patients/reports/" class="btn btn-success">See Reports</a>
+					<h5 class="card-title">View All Patients in the System</h5>
+					<p class="card-text">Check out oujr ever growing database</p>
+                    <p class="card-text">With supporting text below as a natural lead-in to addition</p>
+						<a href="/HealthNet/patients/view_all" class="btn btn-danger">View All Patients</a>
 				</div>
 			</div>
+
+
+            <div class="card text-white bg-dark mb-3" style="width: 23rem;">
+				<div class="card-header">
+					<b>Add Doctor</b>
+				</div>
+				<div class="card-body">
+					<h5 class="card-title">Check out our medical practictioners</h5>
+					<p class="card-text">Check out a list of our skilled medical personnel currently working with us to provide the municiaplty with the best medical health care the people can get.</p>
+						<a href="/HealthNet/doctors/add_doctor/" class="btn btn-warning">Add Doctors</a>
+				</div>
+			</div>
+
 			<div class="card text-white bg-warning mb-3" style="width: 23rem;">
 				<div class="card-header">
 					<b>Check Doctors</b>
@@ -62,7 +64,7 @@
 				<div class="card-body">
 					<h5 class="card-title">Check out our medical practictioners</h5>
 					<p class="card-text">Check out a list of our skilled medical personnel currently working with us to provide the municiaplty with the best medical health care the people can get.</p>
-						<a href="/HealthNet/staff/doctors/" class="btn btn-primary">View Doctors</a>
+						<a href="/HealthNet/doctors/all/" class="btn btn-info">View Doctors</a>
 				</div>
 			</div>
 
@@ -77,37 +79,25 @@
 				</div>
 			</div>
 
-            <div class="card text-white bg-danger mb-3" style="width: 23rem;">
-				<div class="card-header">
-					<b>Add Doctor</b>
-				</div>
-				<div class="card-body">
-					<h5 class="card-title">Check out our medical practictioners</h5>
-					<p class="card-text">Check out a list of our skilled medical personnel currently working with us to provide the municiaplty with the best medical health care the people can get.</p>
-						<a href="/HealthNet/staff/add_doctor/" class="btn btn-info">Add Doctors</a>
-				</div>
-			</div>
-
-			<div class="card text-white bg-dark mb-3" style="width: 23rem;">
+            <div class="card text-white bg-info mb-3" style="width: 23rem;">
 				<div class="card-header">
 					<b>Authorised Hospital Staff</b>
 				</div>
 				<div class="card-body">
 					<h5 class="card-title">A list of all the authorised personnel</h5>
 					<p class="card-text">Because we work with sensitive data, that is individual's most private and intimate information, our system has to be totally secured and we have to keep a tight list of how many people have access to it to minimise information leaks.</p>
-						<a href="/HealthNet/staff/all_members/" class="btn btn-primary">View Staff</a>
+						<a href="/HealthNet/staff/all_members/" class="btn btn-danger">View Staff</a>
 				</div>
 			</div>
 
-            <div class="card text-white bg-secondary mb-3" style="width: 23rem;">
+            <div class="card text-white bg-danger mb-3" style="width: 23rem;">
 				<div class="card-header">
-					<b>All Patients</b>
+					<b>Reports</b>
 				</div>
 				<div class="card-body">
-					<h5 class="card-title">View All Patients in the System</h5>
-					<p class="card-text">Check out oujr ever growing database</p>
-                    <p class="card-text">With supporting text below as a natural lead-in to addition</p>
-						<a href="/HealthNet/patients/view_all" class="btn btn-info">View All Patients</a>
+					<h5 class="card-title">Check out latest Reports</h5>
+					<p class="card-text">Because we aim to please we have provided the option for generating reports that are based on certain trends. the first trend we are on the lookout for is that of diseases outbreak, if say a particular pattern is repetitive it has to be flagged for close monitoring so that immediate action and steps can be taken</p>
+						<a href="/HealthNet/patients/reports/" class="btn btn-warning">See Reports</a>
 				</div>
 			</div>
       </div> <!-- Row Div -->

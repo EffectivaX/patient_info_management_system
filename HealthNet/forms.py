@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 # from datetime import datetime
-from .models import Patient, Doctor, Contact, Staff, HospitalsAndClinics, MedicalAidScheme
+from .models import Patient, Doctor, Contact, Staff, HospitalsAndClinics, MedicalAidScheme, BloodGroup
 from django.conf import settings
 # from crispy_forms.helper import FormHelper
 # from crispy_forms.layout import Layout, Submit
@@ -20,32 +20,6 @@ GENDER_CHOICES = [
     ('Female', 'Female')
 ]
 
-
-BLOOD_TYPE_CHOICES = (
-    ('A+', 'A+ Type'),
-    ('B+', 'B+ Type'),
-    ('AB+', 'AB+ Type'),
-    ('O+', 'O+ Type'),
-    ('A-', 'A- Type'),
-    ('B-', 'B- Type'),
-    ('AB-', 'AB- Type'),
-    ('O-', 'O- Type'),
-)
-
-# INSURANCES = (
-#     ('Not Applicable', "N/A"),
-#     ('Masca', "MASCA"),
-#     ('NUST Medical AID', "NUST Medical AID"),
-#     ('Humana', "Humana"),
-#     ('Premier', "Premier Services"),
-#     ('PSMAS', "PSMAS"),
-#     ('Emergency 24', "Emergency 24"),
-#     ('EA', "Emblem Healthcare"),
-#     ('zimaid', "ZimAid"),
-#     ('KP', "Kaiser Permanente"),
-#     ('WP', "Wellpoint"),
-# )
-
 MARITAL_CHOICES = [
         ('Not Available', 'Not Available'),
         ('Engaged', 'Engaged'),
@@ -63,8 +37,6 @@ EMPLOYMET_STATUS = [
         ('Student', 'STUDENT'),
         ('Retired', 'RETIRED'),
     ]
-
-# BIRTH_YEAR_CHOICES = [range()]
 
 class PatientModelForm(forms.ModelForm):
     class Meta:
@@ -95,7 +67,10 @@ class PatientForm(forms.Form):
     }))
 
     first_name = forms.CharField(widget=forms.TextInput(attrs={
-        'placeholder': 'First Name',
+        'class': 'form-row col-md-4'
+    }))
+
+    middle_name = forms.CharField(required=False, widget=forms.TextInput(attrs={
         'class': 'form-row col-md-4'
     }))
 
@@ -123,12 +98,11 @@ class PatientForm(forms.Form):
 
     national_id = forms.CharField(widget=forms.TextInput(attrs={
         'class' : 'form-row col-md-4',
-        'placeholder' : '08-1234567X35'
+        'placeholder' : '02-1234567X30'
     }))
 
     email_address = forms.EmailField(required=False,widget=forms.EmailInput(attrs={
         'class' : 'form-row col-md-6',
-        'placeholder' : 'example@gmail.com'
     }))
 
     purpose_of_visit =forms.CharField(widget=forms.TextInput(attrs={
@@ -147,23 +121,20 @@ class PatientForm(forms.Form):
         'class' : 'form-group col-md-3'
     }))
 
-    blood_type = forms.CharField(required=False,widget=forms.Select(choices=BLOOD_TYPE_CHOICES, attrs={
+    blood_type = forms.ModelChoiceField(queryset=BloodGroup.objects.all(), required=False, widget=forms.Select(attrs={
         'class' : 'form-group col-md-4'
     }))
 
     current_medication = forms.CharField(widget=forms.TextInput(attrs={
         'class' : 'form-group col-md-6',
-        'placeholder' : 'Morphin'
     }))
 
     body_mass = forms.IntegerField(widget=forms.TextInput(attrs={
         'class' : 'form-group col-md-4',
-        'placeholder' : '60kg'
     }))
 
     allergies = forms.CharField(widget=forms.TextInput(attrs={
         'class' : 'form-group col-md-6',
-        'placeholder' : 'chicken nuggets'
     }))
 
     employment_status = forms.CharField(widget=forms.Select(choices=EMPLOYMET_STATUS, attrs={
@@ -183,6 +154,10 @@ class PatientForm(forms.Form):
 
     medical_aid_group = forms.ModelChoiceField(queryset=MedicalAidScheme.objects.all(), widget=forms.Select(attrs={
         'class' : 'form-group col-md-6'
+    }))
+
+    consultation_fee = forms.DecimalField(max_digits=10, decimal_places=2, localize=True, widget=forms.TextInput(attrs={
+        'class' : 'form-group col-md-4'
     }))
 
     date_of_visit = forms.DateField(widget=forms.TextInput(attrs={
@@ -229,7 +204,7 @@ class DoctorForm(forms.Form):
 
     Email = forms.EmailField(required=False,widget=forms.EmailInput(attrs={
         'class' : 'form-row col-md-6',
-        'placeholder' : 'example@gmail.com'
+        'placeholder' : 'name@example.com'
     }))
 
     identification_id = forms.CharField(widget=forms.TextInput(attrs={

@@ -1,0 +1,51 @@
+<nav class="navbar container navbar-expand-lg navbar-light bg-dark">
+  <a class="navbar-brand" style='color: green;' href="/HealthNet/">Promedical</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li {% if request.path == '/' %} class="nav-item active" {% endif %}>
+        <a style='color: green;' class="nav-link" href="/HealthNet/">Home</a>
+      </li>
+      <li {% if request.path == '/HealthNet/GetInTouch/' %} class="nav-item active" {% endif %}>
+            <a style='color: green;' class="nav-link" href="/HealthNet/GetInTouch/">Contact</a>
+          </li>
+      <li {% if request.path == '/admin/' %} class="nav-item active" {% endif %}>
+        <a style='color: green;' class="nav-link" href="/admin/">Super Admin</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a style='color: green;' class="nav-link dropdown-toggle" href="/HealthNet/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Actions
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/HealthNet/patients/patient_form/">Add New Patient</a>
+
+          <a class="dropdown-item" href="/HealthNet/patients/view_all/">All Patients</a>
+
+          <a class="dropdown-item" href="/HealthNet/staff/new_member/">Add Staff Member</a>
+
+          <a class="dropdown-item" href="/HealthNet/staff/all_members/">All Staff Members</a>
+
+          <a class="dropdown-item" href="/HealthNet/doctors/add_doctor/">Add Doctor</a>
+
+          <a class="dropdown-item" href="/HealthNet/doctors/all_doctors/">All Doctors</a>
+
+          <a class="dropdown-item" href="/HealthNet/patients/statistcs/" >Reports</a>
+
+          <a class="dropdown-item disabled" href="/HealthNet/medical_aid/see_all/">Medical Aid Schemes</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/logout">Logout</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="/HealthNet/hospitals_clinics/see_all/">Hospitals</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>

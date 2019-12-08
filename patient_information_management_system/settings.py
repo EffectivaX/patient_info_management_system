@@ -47,7 +47,7 @@ INSTALLED_APPS = [
 
     # My Apps
     #'management',
-    'patients',
+    # 'patients',
     'HealthNet',
     'accounts',
     'pages',

@@ -3,6 +3,9 @@
 {% block content %}
 <ul class='list-group offset-md-2'>
     <h3 class="card-title">{{ title }}</h3>
+    <div class="col-md-9">
+        <a href="/HealthNet/doctors/add_doctor/" style='float: right;' class="btn btn-warning btn-sm">Add New Doctor</a>
+    </div>
     <hr>
     <!-- <a href="/HealthNet/staff/add_doctor/" style="float: right; margin-bottom: 20px;" class="btn btn-warning btn-sm">New Doctor</a> -->
     {% for doctor in staff %}

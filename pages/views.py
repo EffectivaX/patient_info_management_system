@@ -35,7 +35,7 @@ def request_updates(request):
         if form.is_valid():
             # Process and clean the data
             email = ProgressUpdate.objects.create(
-                Email = form.cleaned_data.get('Email'),
+                email = form.cleaned_data.get('email'),
             )
 
             email.save()

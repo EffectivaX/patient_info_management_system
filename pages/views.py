@@ -34,11 +34,11 @@ def request_updates(request):
         form = ProgressUpdateForm(request.POST)
         if form.is_valid():
             # Process and clean the data
-            email = ProgressUpdate.objects.create(
-                email = form.cleaned_data.get('email'),
+            request_email = ProgressUpdate.objects.create(
+                request_email = form.cleaned_data.get('request_email')
             )
 
-            email.save()
+            request_email.save()
             messages.success(request, 'Email Sent successfully!', extra_tags='alert')
             return HttpResponseRedirect('/')
         else:

@@ -34,7 +34,7 @@
 		<!--  -->
 		<div class="w-full flex-w flex-sb-m p-l-65 p-r-80 p-t-22 p-b-185 p-lr-15-sm respon8">
 			<div class="wrappic1 m-r-30 m-t-10 m-b-10">
-				<a href="#"><img src="{% static 'images/icons/logo.png' %}" alt="LOGO"></a>
+				<a href="/"><img src="{% static 'images/icons/logo.png' %}" alt="LOGO"></a>
 			</div>
 
 			<div class="flex-w m-t-10 m-b-10">
@@ -57,10 +57,13 @@
 				</p>
 
 				<form class="contact100-form validate-form p-t-55 w-full" method="POST" action="/">
+					{% csrf_token %}
 					<div class="wrap-input100 validate-input m-lr-auto-lg" data-validate = "Email is required: andilejaden@promedical.herokuapp.com">
-						<input class="s2-txt1 placeholder0 input100 trans-04" type="text" name="email" placeholder="Email Address">
+						<input class="s2-txt1 placeholder0 input100 trans-04" type="text" id="request_email" value="{{ request_email }}" name="request_email" placeholder="Email Address">
 
-						<button class="flex-c-m ab-t-r size4 s1-txt1 hov1 trans-04">
+						<!-- <input type="submit" name="Send" class="flex-c-m ab-t-r size4 s1-txt1 hov1 trans-04" value="submit"> -->
+
+						<button class="flex-c-m ab-t-r size4 s1-txt1 hov1 trans-04" type="submit" value="submit">
 							<i class="fa fa-paper-plane fs-15 cl0"></i>
 						</button>
 					</div>
@@ -130,9 +133,9 @@
 		$('.cd100').countdown100({
 			/*Set Endtime here*/
 			/*Endtime must be > current time*/
-			endtimeYear: 0,
-			endtimeMonth: 0,
-			endtimeDate: 20,
+			endtimeYear: 2019,
+			endtimeMonth: 12,
+			endtimeDate: 26,
 			endtimeHours: 10,
 			endtimeMinutes: 0,
 			endtimeSeconds: 0,

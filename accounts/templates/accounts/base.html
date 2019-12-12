@@ -9,9 +9,17 @@
         <link href="{% static 'assets/img/favicon/favicon.png' %}" rel="shortcut icon"/>
         <link type="text/css" rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" media="screen, projection">
         <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}" media="screen, projection">
+        <link rel="stylesheet" type="text/css" href="{% static 'assets/css/main.css' %}" media="screen, projection">
     </head>
     <body style="background-color: #008B8B;">
         <div class="container">
+            <div class="simpleslide100">
+                <!-- <div class="simpleslide100-item bg-img1" style="background-image: url({% static 'images/screenshot-1.png' %});"></div> -->
+                <!-- <div class="simpleslide100-item bg-img1" style="background-image: url({% static 'images/screenshot.png' %});"></div> -->
+        		<div class="simpleslide100-item bg-img1" style="background-image: url({% static 'images/bg01.jpg' %});"></div>
+                <div class="simpleslide100-item bg-img1" style="background-image: url({% static 'images/bg02.jpg' %});"></div>
+        		<div class="simpleslide100-item bg-img1" style="background-image: url({% static 'images/bg03.jpg' %});"></div>
+        	</div>
             {% block content %}
 
             {% endblock %}

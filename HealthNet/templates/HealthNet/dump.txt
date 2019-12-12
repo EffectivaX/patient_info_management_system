@@ -1,0 +1,66 @@
+<!-- <h5 class="card-title">{{ patient.first_name }} {{ patient.last_name }}</h5>
+<p class="card-text">Date of Birth : {{patient.date_of_birth}}</p>
+<p class="card-text">Gender: {{ patient.gender }}</p>
+<p class="card-text">National ID : {{ patient.national_id }}</p>
+<p class="card-text">Physical Address : {{ patient.home_address }}</p>
+<p class="card-text">Phone Number : {{ patient.phone_number }}</p>
+<p class="card-text">Email Address : {{ patient.email_address }}</p>
+<p class="card-text">Reason for Visit : {{ patient.purpose_of_visit }}</p>
+<p class="card-text">Prescription : {{ patient.prescription }}</p>
+<p class="card-text">Current Medication : {{ patient.current_medication }}</p>
+<p class="card-text">Body Mass : {{ patient.body_mass }}</p>
+<p class="card-text">Body Temperature : {{ patient.current_temperature }}</p>
+<p class="card-text">Blood Type : {{ patient.blood_type }}</p>
+<p class="card-text">Patient Allergies : {{ patient.allergies }}</p>
+<p class="card-text">Medical AID Group : {{ patient.medical_aid_group }}</p>
+<p class="card-text">Consulted Doctor : {{ patient.consulted_doctor }}</p>
+<p class="card-text">Date of Visit : {{ patient.date_of_visit }}</p>
+<p class="card-text text-info">Condition Description : {% autoescape off %} {{ patient.description_of_the_condition }} {% endautoescape %} </p> -->
+
+Date of Birth : {{ patient.date_of_birth }}
+Gender: {{ patient.gender }}
+National ID : {{ patient.national_id }} <br> <br>
+Physical Address : {{ patient.home_address }}
+Phone Number : {{ patient.phone_number }}
+Email Address : {{ patient.email_address }} <br> <br>
+Reason for Visit : {{ patient.purpose_of_visit }}
+Prescription : {{ patient.prescription }}
+Current Medication : {{ patient.current_medication }} <br> <br>
+
+Body Mass : {{ patient.body_mass }}
+Body Temperature : {{ patient.current_temperature }}
+Blood Type : {{ patient.blood_type }} <br> <br>
+Patient Allergies : {{ patient.allergies }}
+Medical AID Group : {{ patient.medical_aid_group }}
+Consulted Doctor : {{ patient.consulted_doctor }} <br> <br>
+Date of Visit : {{ patient.date_of_visit }}
+Condition Description : {% autoescape off %} {{ patient.description_of_the_condition }} {% endautoescape %}
+
+
+<!-- <ul class="list-group">
+     <h3 class="card-title">{{ title }}</h3>
+{% for patient in patients %}
+  <!-- <a href="HealthNet/patient_info/{{ patient.id }}" class="collection-item">{{ patient.id }} . {{ patient.first_name }} {{ patient.last_name }}</a> -->
+  <!-- <p class="list-group-item list-group-item-light">{{ patient.id }} . {{ patient.first_name }} {{ patient.last_name }} <a href="/HealthNet/patients/patient_info/{{ patient.id }}" style="float: right;" class="btn btn-success btn-sm">View</a></p>
+{% endfor %}
+</ul> -->
+
+<script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems, options);
+      });
+
+
+      $(document).ready(function(){
+          $('input.autocomplete').autocomplete({
+          data: {
+              "Apple": null,
+              "Microsoft": null,
+              "Google": null,
+              "Gargle":null
+          }
+          });
+          });
+</script>

@@ -447,7 +447,7 @@ def contact_form(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Message sent successfully!', extra_tags='alert')
-            return HttpResponseRedirect('/HealthNet/messages/')
+            return HttpResponseRedirect('/HealthNet/')
         else:
             messages.warning(request, 'Message not sent, try again in a bit!', extra_tags='alert')
     else:

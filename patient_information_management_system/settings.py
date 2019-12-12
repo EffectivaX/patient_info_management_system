@@ -37,8 +37,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = [".herokuapp.com"]
 
+# My Auth User
 AUTH_USER_MODEL = 'accounts.MyUser'
 
+# Securing Sessions
+SESSION_COOKIE_AGE = 120
+# SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+# SESSION_SAVE_EVERY_REQUEST = True
+#
+# SHORT_DATETIME_FORMAT = 'm/d/Y P'
+#
+# SECURE_SSL_REDIRECT = True
 
 # Application definition
 

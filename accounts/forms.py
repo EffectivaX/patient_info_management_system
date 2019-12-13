@@ -13,7 +13,7 @@ class UserCreationForm(forms.ModelForm):
 
     email = forms.EmailField(label='Email', widget=forms.TextInput(attrs={
         'class' : 'form-control',
-        'placeholder' : 'andilembele@cybertech.co.zw'
+        'placeholder' : 'andilembele@promedical.com'
     }))
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={
         'class' : 'form-control',
@@ -52,7 +52,7 @@ class UserCreationForm(forms.ModelForm):
 class UserLoginForm(forms.Form):
     query = forms.CharField(label='Username', widget=forms.TextInput(attrs={
         'class' : 'form-control',
-        'placeholder' : 'Andile_Jaden'
+        'placeholder' : 'Username'
     }))
 
     password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={

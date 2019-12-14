@@ -13,7 +13,10 @@ def register(request, *args, **kwargs):
     context = {
         'form': form,
         'title' : 'CyberTech ProMed Register',
-        'button' : 'Register'
+        'button' : 'Register',
+        'alt_page' : '/login/',
+        'page_text' : 'Already Registered?',
+        'button_option' : 'Login'
     }
 
     return render(request, 'accounts/register.html', context)
@@ -27,7 +30,10 @@ def login_view(request, *args, **kwargs):
     context = {
         'form': form,
         'title' : 'CyberTech ProMed Login',
-        'button' : 'Login'
+        'button' : 'Login',
+        'alt_page' : '/register/',
+        'page_text' : 'Not Registered Yet?',
+        'button_option' : 'Register'
     }
 
     return render(request, 'accounts/login.html', context)

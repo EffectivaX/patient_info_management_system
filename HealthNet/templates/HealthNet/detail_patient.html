@@ -21,17 +21,17 @@
               <p class="card-text text-success">Phone Number        :       {{ patient.phone_number }}</p>
               <p class="card-text text-warning">Email Address       :       {{ patient.email_address }}</p>
               <p class="card-text text-danger">Reason for Visit     :       {{ patient.purpose_of_visit }}</p>
+              <p class="card-text text-info">Condition Description  :       <i style="color:green;">{% autoescape off %} {{ patient.description_of_the_condition }} {% endautoescape %}</i></p>
               <p class="card-text text-primary">Current Medication  :       {{ patient.current_medication }}</p>
               <p class="card-text text-secondary">Prescription      :       {{ patient.prescription }}</p>
-              <p class="card-text text-info">Condition Description  :       <i style="color:green;">{% autoescape off %} {{ patient.description_of_the_condition }} {% endautoescape %}</i></p>
               <p class="card-text text-success">Body Temperature    :       {{ patient.current_temperature }} &deg C</p>
               <p class="card-text text-info">Body Mass              :       {{ patient.body_mass }} Kilogrammes</p>
               <p class="card-text text-danger">Blood Type           :       {{ patient.blood_type }}</p>
               <p class="card-text text-warning">Patient Allergies   :       {{ patient.allergies }}</p>
               <p class="card-text text-light">Medical AID Group     :       {{ patient.medical_aid_group }}</p>
-              <p class="card-text text-light">Consultation Fee     :      $ {{ patient.consultation_fee }}</p>
               <p class="card-text text-success">Consulted Doctor    :       {{ patient.consulted_doctor }}</p>
-          <p class="card-text text-success">Assigned To             :       {{ patient.user }}</p>
+          <p class="card-text text-danger">Assigned To             :       {{ patient.user }}</p>
+          <p class="card-text text-light">Consultation Fee     :      $ {{ patient.consultation_fee }}</p>
               <p class="card-text text-primary">Date of Visit       :       {{ patient.date_of_visit }}</p>
               <p class="card-text text-info">Created At             :       {{ patient.created_at }}</p>
               <p class="card-text text-secondary">Information Update:     {{ patient.updated_at }}</p>

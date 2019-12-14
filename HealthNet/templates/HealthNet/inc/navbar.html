@@ -1,5 +1,5 @@
 <nav class="navbar container navbar-expand-lg navbar-light bg-dark">
-  <a class="navbar-brand" style='color: green;' href="/HealthNet/">Promedical</a>
+  <a class="navbar-brand" style='color: red;' href="/HealthNet/">Promedical</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -14,10 +14,7 @@
       </li>
       <li {% if request.path == '/HealthNet/GetInTouch/' %} class="nav-item active" {% endif %}>
             <a style='color: green;' class="nav-link" href="/HealthNet/GetInTouch/">Contact</a>
-          </li>
-      <li {% if request.path == '/admin/' %} class="nav-item active" {% endif %}>
-        <a style='color: green;' class="nav-link" href="/admin/">Super Admin</a>
-      </li>
+    </li>
       <li class="nav-item dropdown">
         <a style='color: green;' class="nav-link dropdown-toggle" href="/HealthNet/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Actions
@@ -43,7 +40,10 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="/HealthNet/hospitals_clinics/see_all/">Hospitals</a>
+        <a class="nav-link disabled" href="/HealthNet/hospitals_clinics/see_all/"></a>
+      </li>
+      <li class="nav-item">
+        <a style="color:red;" class="nav-link" href="/logout/">Logout</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">

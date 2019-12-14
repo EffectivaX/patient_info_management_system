@@ -204,7 +204,7 @@ class Patient(models.Model):
     current_temperature = models.CharField(max_length=255, blank=True)
     blood_type = models.ForeignKey('BloodGroup', related_name='blood', on_delete=models.PROTECT)
     current_medication = models.CharField(max_length=255)
-    body_mass = models.PositiveIntegerField()
+    body_mass = models.DecimalField(max_digits=10, decimal_places=2, default=None)
     allergies = models.CharField(max_length=255, blank=True)
     consulted_doctor = models.ForeignKey('Doctor', related_name="doctor", on_delete=models.PROTECT)
     hospital = models.ForeignKey('HospitalsAndClinics', related_name='hospital', on_delete=models.PROTECT)
@@ -232,7 +232,7 @@ class Patient(models.Model):
 
     class Meta:
         verbose_name_plural = "Patients"
-        ordering = ["id"]
+        ordering = ["last_name"]
 
 class MedicalRecords(models.Model):
     first_name = models.CharField(max_length=255)

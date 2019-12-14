@@ -1,5 +1,6 @@
 {% load staticfiles %}
 {% load crispy_forms_tags %}
+{% block content %}
     <div class="row" style="padding-top:120px;">
         <div class="simpleslide100-item bg-img1" style="background-image: url({% static 'images/photos-1.jpg' %});"></div>
         <div class="col-sm-3 offset-sm-4">
@@ -7,9 +8,13 @@
             <form method="POST" action="."> {% csrf_token %}
 
                 {{ form|crispy }}
+                <!-- {% if not login %} -->
+                    <p style="color: #1099f3;">{{ page_text }} <a href="{{ alt_page }}" style="color: #f70611;">{{ button_option }}</a></p>
+                <!-- {% endif %} -->
                     <!-- <p style="color: #1099f3;">Not registered yet? Click <a href="/login/" style="color: #f70611;">Here</a></p>
                     <p style="color: #1099f3;">Already registered? Click <a href="/register/" style="color: #f70611;">Here</a></p> -->
                 <button type="submit" class="btn btn-primary mb-2">{{ button }}</button>
             </form>
         </div>
     </div>
+{% endblock %}

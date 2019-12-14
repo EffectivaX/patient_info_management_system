@@ -41,7 +41,7 @@ ALLOWED_HOSTS = [".herokuapp.com"]
 AUTH_USER_MODEL = 'accounts.MyUser'
 
 # Securing Sessions
-SESSION_COOKIE_AGE = 600
+SESSION_COOKIE_AGE = 1800
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 # SESSION_SAVE_EVERY_REQUEST = True
 #
@@ -52,14 +52,11 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 # Application definition
 
 INSTALLED_APPS = [
-    # 3rd Part Apps
-
-    # My Apps
-    #'management',
-    # 'patients',
     'HealthNet',
     'accounts',
     'pages',
+
+    # 3rd Party Apps
     'crispy_forms',
 
     'django.contrib.admin',

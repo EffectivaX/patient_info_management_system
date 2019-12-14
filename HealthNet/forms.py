@@ -129,8 +129,8 @@ class PatientForm(forms.Form):
         'class' : 'form-group col-md-6',
     }))
 
-    body_mass = forms.IntegerField(widget=forms.TextInput(attrs={
-        'class' : 'form-group col-md-4',
+    body_mass = forms.DecimalField(max_digits=10, decimal_places=2, localize=True, widget=forms.TextInput(attrs={
+        'class' : 'form-group col-md-4'
     }))
 
     allergies = forms.CharField(widget=forms.TextInput(attrs={

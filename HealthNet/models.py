@@ -58,7 +58,7 @@ class Doctor(models.Model):
     date_of_birth = models.DateField(default=datetime.now)
     identification_id = models.CharField(max_length=30, default='',unique=True)
     specialty = models.CharField(max_length=60)
-    parent = models.ForeignKey('self', blank=True, null=True, related_name='children', on_delete = models.PROTECT)
+    parent = models.ForeignKey('self', blank=True, null=True, related_name='children', on_delete = models.CASCADE)
     join_date = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -81,7 +81,7 @@ class Staff(models.Model):
     picture = models.ImageField(upload_to='images/', null=True, height_field=None, width_field=None, max_length=None)
     identification_id = models.CharField(max_length=30, default='',unique=True)
     position = models.CharField(max_length=100)
-    parent = models.ForeignKey('self', blank=True, null=True, related_name='children', on_delete = models.PROTECT)
+    parent = models.ForeignKey('self', blank=True, null=True, related_name='children', on_delete = models.CASCADE)
     join_date = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -103,10 +103,13 @@ class HospitalsAndClinics(models.Model):
     ('Emergency 24', 'Emergency 24'),
     ('Parirenyatwa General Hospital', 'Parirenyatwa Hospital'),
     ('Lancet House', 'Lancet House'),
+    ('Mutare General Hospital', 'Mutare General'),
+    ('Kwekwe General Hospital', 'Kwekwe General'),
+    ('Avenues Clinic', 'Avenues')
     ]
 
     name = models.CharField(max_length=60, choices=HOSPITAL_CHOICES)
-    parent = models.ForeignKey('self', blank=True, null=True, related_name='children', on_delete=models.PROTECT)
+    parent = models.ForeignKey('self', blank=True, null=True, related_name='children', on_delete=models.CASCADE)
     slug = models.SlugField(max_length=90, unique=True, editable=False)
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
 
@@ -137,7 +140,7 @@ class BloodGroup(models.Model):
     )
 
     type = models.CharField(max_length=60, choices=BLOOD_TYPE_CHOICES)
-    parent = models.ForeignKey('self', blank=True, null=True, related_name='blood_type', on_delete=models.PROTECT)
+    parent = models.ForeignKey('self', blank=True, null=True, related_name='blood_type', on_delete=models.CASCADE)
     slug = models.SlugField(max_length=12, unique=True, editable=False)
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
 
@@ -202,16 +205,16 @@ class Patient(models.Model):
     description_of_the_condition = models.TextField(blank=True)
     prescription = models.CharField(max_length=255)
     current_temperature = models.CharField(max_length=255, blank=True)
-    blood_type = models.ForeignKey('BloodGroup', related_name='blood', on_delete=models.PROTECT)
+    blood_type = models.ForeignKey('BloodGroup', related_name='blood', on_delete=models.CASCADE)
     current_medication = models.CharField(max_length=255)
     body_mass = models.DecimalField(max_digits=10, decimal_places=2, default=None)
     allergies = models.CharField(max_length=255, blank=True)
-    consulted_doctor = models.ForeignKey('Doctor', related_name="doctor", on_delete=models.PROTECT)
-    hospital = models.ForeignKey('HospitalsAndClinics', related_name='hospital', on_delete=models.PROTECT)
+    consulted_doctor = models.ForeignKey('Doctor', related_name="doctor", on_delete=models.CASCADE)
+    hospital = models.ForeignKey('HospitalsAndClinics', related_name='hospital', on_delete=models.CASCADE)
     employment_status = models.CharField(max_length=20, choices=EMPLOYMET_STATUS)
     marital_status = models.CharField(max_length=20, choices=MARITAL_CHOICES)
     consultation_fee = models.DecimalField(max_digits=10, decimal_places=2, default=None)
-    medical_aid_group = models.ForeignKey('MedicalAidScheme', related_name='medical_aid_user', on_delete=models.PROTECT)
+    medical_aid_group = models.ForeignKey('MedicalAidScheme', related_name='medical_aid_user', on_delete=models.CASCADE)
     date_of_visit = models.DateField(default=datetime.now)
     User = settings.AUTH_USER_MODEL
     user = models.ForeignKey(User, null=True, on_delete=models.PROTECT)
@@ -244,10 +247,10 @@ class MedicalRecords(models.Model):
     national_id = models.CharField(max_length=30)
     phone_number = models.CharField(max_length=30)
     email_address = models.EmailField()
-    blood_type = models.ForeignKey('BloodGroup', related_name='Blood', on_delete=models.PROTECT)
+    blood_type = models.ForeignKey('BloodGroup', related_name='Blood', on_delete=models.CASCADE)
     allergies = models.CharField(max_length=255)
     marital_status = models.CharField(max_length=20, choices=MARITAL_CHOICES)
-    medical_aid_group = models.ForeignKey('MedicalAidScheme', related_name='medical_aid_used', on_delete=models.PROTECT)
+    medical_aid_group = models.ForeignKey('MedicalAidScheme', related_name='medical_aid_used', on_delete=models.CASCADE)
     slug = models.SlugField(default=None, unique=True, max_length=60, editable=False)
     created_at = models.DateTimeField(auto_now=True)
 

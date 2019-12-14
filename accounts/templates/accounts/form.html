@@ -8,11 +8,7 @@
             <form method="POST" action="."> {% csrf_token %}
 
                 {{ form|crispy }}
-                <!-- {% if not login %} -->
                     <p style="color: #1099f3;">{{ page_text }} <a href="{{ alt_page }}" style="color: #f70611;">{{ button_option }}</a></p>
-                <!-- {% endif %} -->
-                    <!-- <p style="color: #1099f3;">Not registered yet? Click <a href="/login/" style="color: #f70611;">Here</a></p>
-                    <p style="color: #1099f3;">Already registered? Click <a href="/register/" style="color: #f70611;">Here</a></p> -->
                 <button type="submit" class="btn btn-primary mb-2">{{ button }}</button>
             </form>
         </div>

@@ -3,6 +3,7 @@ from django.forms import ModelForm
 # from datetime import datetime
 from .models import Patient, Doctor, Contact, Staff, HospitalsAndClinics, MedicalAidScheme, BloodGroup
 from django.conf import settings
+from faker import Faker
 # from crispy_forms.helper import FormHelper
 # from crispy_forms.layout import Layout, Submit
 
@@ -38,6 +39,9 @@ EMPLOYMET_STATUS = [
         ('Retired', 'RETIRED'),
     ]
 
+
+fake = Faker()
+
 class PatientModelForm(forms.ModelForm):
     class Meta:
         model = Patient
@@ -67,42 +71,53 @@ class PatientForm(forms.Form):
     }))
 
     first_name = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'form-row col-md-4'
+        'class': 'form-row col-md-4',
+        'placeholder': 'First Name',
+        'value' : fake.first_name()
+        # 'label': 'fake.first_name()'
     }))
 
     middle_name = forms.CharField(required=False, widget=forms.TextInput(attrs={
-        'class': 'form-row col-md-4'
+        'class': 'form-row col-md-4',
+        'placeholder': 'Middle Name',
     }))
 
     last_name = forms.CharField(widget=forms.TextInput(attrs={
         'placeholder': 'Last Name',
-        'class': 'form-row col-md-4'
+        'class': 'form-row col-md-4',
+        'value' : fake.last_name()
+        # 'label' : fake.first_name()
     }))
 
     date_of_birth = forms.DateField(widget=forms.TextInput(attrs={
         'class' : 'form-row col-md-4',
-        'placeholder' : 'YYYY-MM-DD'
+        'placeholder' : 'YYYY-MM-DD',
+        'value' : fake.date_of_birth()
     }))
 
     gender = forms.CharField(widget=forms.Select(choices=GENDER_CHOICES, attrs={
-        'class' : 'form-row col-md-4'
+        'class' : 'form-row col-md-4',
     }))
 
     home_address = forms.CharField(widget=forms.TextInput(attrs={
-        'class' : 'form-row col-md-6'
+        'class' : 'form-row col-md-6',
+        'value' : fake.address()
     }))
 
     phone_number = forms.CharField(widget=forms.TextInput(attrs={
-        'class' : 'form-row col-md-4'
+        'class' : 'form-row col-md-4',
+        'value' : fake.phone_number()
     }))
 
     national_id = forms.CharField(widget=forms.TextInput(attrs={
         'class' : 'form-row col-md-4',
-        'placeholder' : '02-1234567X30'
+        'placeholder' : '02-1234567X30',
+        'value' : fake.ssn()
     }))
 
     email_address = forms.EmailField(required=False,widget=forms.EmailInput(attrs={
         'class' : 'form-row col-md-6',
+        'value' : fake.email()
     }))
 
     purpose_of_visit =forms.CharField(widget=forms.TextInput(attrs={
@@ -162,7 +177,8 @@ class PatientForm(forms.Form):
 
     date_of_visit = forms.DateField(widget=forms.TextInput(attrs={
         'class' : 'form-row col-md-4',
-        'placeholder' : 'YYYY-MM-DD'
+        'placeholder' : 'YYYY-MM-DD',
+        'value' : fake.date()
     }))
 
 
@@ -179,17 +195,20 @@ class DoctorForm(forms.Form):
 
     first_name = forms.CharField(widget=forms.TextInput(attrs={
         'placeholder': 'First Name',
-        'class': 'form-row col-md-4'
+        'class': 'form-row col-md-4',
+        'value': fake.first_name()
     }))
 
     last_name = forms.CharField(widget=forms.TextInput(attrs={
         'placeholder': 'Last Name',
-        'class': 'form-row col-md-4'
+        'class': 'form-row col-md-4',
+        'value' : fake.last_name()
     }))
 
     date_of_birth = forms.DateField(widget=forms.TextInput(attrs={
         'class' : 'form-row col-md-4',
-        'placeholder' : 'YYYY-MM-DD'
+        'placeholder' : 'YYYY-MM-DD',
+        'value' : fake.date_of_birth()
     }))
 
     gender = forms.CharField(widget=forms.Select(choices=GENDER_CHOICES, attrs={
@@ -197,18 +216,20 @@ class DoctorForm(forms.Form):
     }))
 
     phone_number = forms.CharField(widget=forms.TextInput(attrs={
-        'class' : 'form-row col-md-4'
+        'class' : 'form-row col-md-4',
+        'value' : fake.phone_number()
     }))
 
     picture = forms.FileField()
 
     Email = forms.EmailField(required=False,widget=forms.EmailInput(attrs={
         'class' : 'form-row col-md-6',
-        'placeholder' : 'name@example.com'
+        'placeholder' : 'name@example.com',
+        'value' : fake.email()
     }))
 
     identification_id = forms.CharField(widget=forms.TextInput(attrs={
-        'class' : 'form-row col-md-4'
+        'class' : 'form-row col-md-4',
     }))
 
     # picture = forms.FileField()
@@ -223,7 +244,8 @@ class DoctorForm(forms.Form):
 
     join_date = forms.DateField(widget=forms.TextInput(attrs={
         'class' : 'form-row col-md-4',
-        'placeholder' : 'YYYY-MM-DD'
+        'placeholder' : 'YYYY-MM-DD',
+        'value' : fake.date()
     }))
 
     def __init__(self, *args, **kwargs):

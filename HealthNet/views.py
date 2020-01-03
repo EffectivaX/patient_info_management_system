@@ -15,9 +15,10 @@ from .models import Patient, Doctor, Staff, Contact
 from .forms import PatientForm, ContactForm, DoctorForm, StaffForm, ContactModelForm
 # from django.views.generic.edit import UpdateView
 from django.urls import reverse_lazy
+import requests
 # from requests import request
 
-# request.session.set_expiry(request.session.get_expiry_age())
+# requests.session.set_expiry(request.session.get_expiry_age())
 
 @login_required
 def index(request):

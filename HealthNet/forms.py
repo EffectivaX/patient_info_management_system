@@ -3,7 +3,7 @@ from django.forms import ModelForm
 # from datetime import datetime
 from .models import Patient, Doctor, Contact, Staff, HospitalsAndClinics, MedicalAidScheme, BloodGroup
 from django.conf import settings
-from faker import Faker
+from chameleon.chameleon import DeepFake
 # from crispy_forms.helper import FormHelper
 # from crispy_forms.layout import Layout, Submit
 
@@ -40,7 +40,7 @@ EMPLOYMET_STATUS = [
     ]
 
 
-fake = Faker()
+fake = DeepFake
 
 class PatientModelForm(forms.ModelForm):
     class Meta:
@@ -92,7 +92,7 @@ class PatientForm(forms.Form):
     date_of_birth = forms.DateField(widget=forms.TextInput(attrs={
         'class' : 'form-row col-md-4',
         'placeholder' : 'YYYY-MM-DD',
-        'value' : fake.date_of_birth()
+        # 'value' : fake.date_of_birth()
     }))
 
     gender = forms.CharField(widget=forms.Select(choices=GENDER_CHOICES, attrs={
@@ -112,7 +112,7 @@ class PatientForm(forms.Form):
     national_id = forms.CharField(widget=forms.TextInput(attrs={
         'class' : 'form-row col-md-4',
         'placeholder' : '02-1234567X30',
-        'value' : fake.ssn()
+        'value' : fake.national_id()
     }))
 
     email_address = forms.EmailField(required=False,widget=forms.EmailInput(attrs={
@@ -178,7 +178,7 @@ class PatientForm(forms.Form):
     date_of_visit = forms.DateField(widget=forms.TextInput(attrs={
         'class' : 'form-row col-md-4',
         'placeholder' : 'YYYY-MM-DD',
-        'value' : fake.date()
+        # 'value' : fake.date()
     }))
 
 
@@ -208,7 +208,7 @@ class DoctorForm(forms.Form):
     date_of_birth = forms.DateField(widget=forms.TextInput(attrs={
         'class' : 'form-row col-md-4',
         'placeholder' : 'YYYY-MM-DD',
-        'value' : fake.date_of_birth()
+        # 'value' : fake.date_of_birth()
     }))
 
     gender = forms.CharField(widget=forms.Select(choices=GENDER_CHOICES, attrs={
@@ -245,7 +245,7 @@ class DoctorForm(forms.Form):
     join_date = forms.DateField(widget=forms.TextInput(attrs={
         'class' : 'form-row col-md-4',
         'placeholder' : 'YYYY-MM-DD',
-        'value' : fake.date()
+        # 'value' : fake.date()
     }))
 
     def __init__(self, *args, **kwargs):

@@ -5,7 +5,7 @@ Django==2.2.6
 django-crispy-forms==1.7.2
 django-heroku==0.3.1
 docutils==0.15.2
-genuine-fake==1.1.1
+genuine-fake==1.1.2
 gunicorn==20.0.4
 idna==2.8
 mysqlclient==1.4.4

@@ -79,7 +79,7 @@ class PatientForm(forms.Form):
     middle_name = forms.CharField(required=False, widget=forms.TextInput(attrs={
         'class': 'form-row col-md-4',
         'placeholder': 'Middle Name',
-        'value' : fake.first_name()
+        # 'value' : fake.first_name()
     }))
 
     last_name = forms.CharField(widget=forms.TextInput(attrs={

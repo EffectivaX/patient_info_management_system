@@ -7,6 +7,7 @@ from django.utils.text import slugify
 # Create your models here.
 from django.conf import settings
 from django.db.models.signals import post_save
+from genuine.fake import GenuineFake
 
 
 def post_save_receiver(sender, instance, created, **kwargs):
@@ -107,6 +108,7 @@ class HospitalsAndClinics(models.Model):
     ('Kwekwe General Hospital', 'Kwekwe General'),
     ('Avenues Clinic', 'Avenues')
     ]
+    # HOSPITAL_CHOICES = GenuineFake
 
     name = models.CharField(max_length=60, choices=HOSPITAL_CHOICES)
     parent = models.ForeignKey('self', blank=True, null=True, related_name='children', on_delete=models.CASCADE)

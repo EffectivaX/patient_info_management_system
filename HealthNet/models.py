@@ -69,7 +69,7 @@ class Doctor(models.Model):
 
     class Meta:
         verbose_name_plural = 'Doctors'
-        ordering = ("identification_id",)
+        ordering = ("id",)
 
 class Staff(models.Model):
     title = models.CharField(max_length=6, choices=PREFIX_CHOICES)
@@ -237,7 +237,7 @@ class Patient(models.Model):
 
     class Meta:
         verbose_name_plural = "Patients"
-        ordering = ["last_name"]
+        ordering = ["id"]
 
 class MedicalRecords(models.Model):
     first_name = models.CharField(max_length=255)

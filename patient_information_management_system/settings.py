@@ -108,19 +108,19 @@ DATABASES = {
     #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     # },
 
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ProMedical',
-        'USER': 'xeroxzen',
-        'PASSWORD': '2020',
-        'HOST': 'localhost',
-        'PORT': ''
-    },
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'ProMedical',
+    #     'USER': 'xeroxzen',
+    #     'PASSWORD': '2020',
+    #     'HOST': 'localhost',
+    #     'PORT': ''
+    # },
 
-    'production': {
-        'NAME': 'patient_information_management_system',
+    'default': {
+        'NAME': 'promedical',
         'ENGINE': 'django.db.backends.postgresql',
-        'USER': 'xeroxzen',
+        'USER': 'postgres',
         'PASSWORD': '2020',
         'HOST': 'localhost',
         'PORT': ''

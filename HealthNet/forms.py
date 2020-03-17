@@ -28,6 +28,7 @@ MARITAL_CHOICES = [
         ('Divorced', 'Divorced'),
         ('Separated', 'Separated'),
         ('Married', 'Married'),
+        ('Widow', 'Widow')
     ]
 
 EMPLOYMET_STATUS = [
@@ -66,7 +67,7 @@ class ContactModelForm(forms.ModelForm):
 
 
 class PatientForm(forms.Form):
-    title = forms.CharField(widget=forms.Select(choices=PREFIX_CHOICES, attrs={
+    title = forms.CharField(required=False, widget=forms.Select(choices=PREFIX_CHOICES, attrs={
         'class' : 'form-group col-md-2'
     }))
 
@@ -124,15 +125,15 @@ class PatientForm(forms.Form):
         'class' : 'form-group col-md-6'
     }))
 
-    description_of_the_condition = forms.CharField(widget=forms.Textarea(attrs={
+    description_of_the_condition = forms.CharField(required=False, widget=forms.Textarea(attrs={
         'class' : 'form-group col-md-6'
     }))
 
-    prescription = forms.CharField(widget=forms.TextInput(attrs={
+    prescription = forms.CharField(required=False, widget=forms.TextInput(attrs={
         'class' : 'form-group col-md-6'
     }))
 
-    current_temperature = forms.CharField(widget=forms.TextInput(attrs={
+    current_temperature = forms.CharField(required=False, widget=forms.TextInput(attrs={
         'class' : 'form-group col-md-3'
     }))
 
@@ -140,20 +141,20 @@ class PatientForm(forms.Form):
         'class' : 'form-group col-md-4'
     }))
 
-    current_medication = forms.CharField(widget=forms.TextInput(attrs={
+    current_medication = forms.CharField(required=False, widget=forms.TextInput(attrs={
         'class' : 'form-group col-md-6',
     }))
 
-    body_mass = forms.DecimalField(max_digits=10, decimal_places=2, localize=True, widget=forms.TextInput(attrs={
+    body_mass = forms.DecimalField(required=False, max_digits=10, decimal_places=2, localize=True, widget=forms.TextInput(attrs={
         'class' : 'form-group col-md-4'
     }))
 
-    allergies = forms.CharField(widget=forms.TextInput(attrs={
+    allergies = forms.CharField(required=False, widget=forms.TextInput(attrs={
         'class' : 'form-group col-md-6',
         'value' : fake.allergies()
     }))
 
-    employment_status = forms.CharField(widget=forms.Select(choices=EMPLOYMET_STATUS, attrs={
+    employment_status = forms.CharField(required=False, widget=forms.Select(choices=EMPLOYMET_STATUS, attrs={
         'class' : 'form-group col-md-6'
     }))
 
@@ -164,15 +165,15 @@ class PatientForm(forms.Form):
         'class' : 'form-group col-md-6'
     }))
 
-    marital_status = forms.CharField(widget=forms.Select(choices=MARITAL_CHOICES, attrs={
+    marital_status = forms.CharField(required=False, widget=forms.Select(choices=MARITAL_CHOICES, attrs={
         'class' : 'form-group col-md-4'
     }))
 
-    medical_aid_group = forms.ModelChoiceField(queryset=MedicalAidScheme.objects.all(), widget=forms.Select(attrs={
+    medical_aid_group = forms.ModelChoiceField(required=False, queryset=MedicalAidScheme.objects.all(), widget=forms.Select(attrs={
         'class' : 'form-group col-md-6'
     }))
 
-    consultation_fee = forms.DecimalField(max_digits=10, decimal_places=2, localize=True, widget=forms.TextInput(attrs={
+    consultation_fee = forms.DecimalField(required=False, max_digits=10, decimal_places=2, localize=True, widget=forms.TextInput(attrs={
         'class' : 'form-group col-md-4'
     }))
 
@@ -287,7 +288,7 @@ class StaffForm(forms.Form):
         'value' : fake.phone_number()
     }))
 
-    Email = forms.EmailField(required=False,widget=forms.EmailInput(attrs={
+    staff_email = forms.EmailField(required=False,widget=forms.EmailInput(attrs={
         'class' : 'form-row col-md-4',
         'placeholder' : 'example@gmail.com',
         'value' : fake.email()

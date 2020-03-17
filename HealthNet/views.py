@@ -237,7 +237,7 @@ def add_staff_member(request):
                 picture = form.cleaned_data.get('picture'),
                 gender = form.cleaned_data.get('gender'),
                 phone_number = form.cleaned_data.get('phone_number'),
-                Email = form.cleaned_data.get('Email'),
+                staff_email = form.cleaned_data.get('staff_email'),
                 identification_id = form.cleaned_data.get('identification_id'),
                 position = form.cleaned_data.get('position'),
                 join_date = form.cleaned_data.get('join_date')
@@ -338,7 +338,7 @@ def add_doctor(request):
                 date_of_birth = form.cleaned_data.get('date_of_birth'),
                 gender = form.cleaned_data.get('gender'),
                 phone_number = form.cleaned_data.get('phone_number'),
-                Email = form.cleaned_data.get('Email'),
+                doctor_email = form.cleaned_data.get('Email'),
                 identification_id = form.cleaned_data.get('identification_id'),
                 picture = form.cleaned_data.get('picture'),
                 qualification = form.cleaned_data.get('qualification'),
@@ -418,6 +418,27 @@ def update_doctor(request, id):
 
     return render(request, 'HealthNet/form.html', context)
 
+@login_required
+def assigned_patient(request, id):
+    template_name = 'view_patients.html'
+    patients = get_object_or_404(Patient, id=id)
+    paginator = Paginator(patients, 50)
+    if request.method == 'GET':
+        try:
+            page = request.GET.get('page')
+        except Exception:
+            return HttpResponseRedirect('/HealthNet/')
+    patients = paginator.get_page(page)
+
+    context = {
+        'title': 'Doctor Patients',
+        'patients': patients,
+        'project_name': 'ProMed HealthNet Inc',
+        'creator': 'Andile XeroxZen',
+        'purpose': 'Patient Information Management System'
+    }
+
+    return render(request, 'HealthNet/view_patients.html', context)
 
 
 def contact(request):

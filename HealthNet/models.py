@@ -9,6 +9,8 @@ from django.conf import settings
 from django.db.models.signals import post_save
 from genuine.fake import GenuineFake
 
+data = GenuineFake
+
 
 def post_save_receiver(sender, instance, created, **kwargs):
     pass
@@ -36,6 +38,7 @@ MARITAL_CHOICES = [
         ('DIVORCED', 'Divorced'),
         ('SEPARATED', 'Separated'),
         ('MARRIED', 'Married'),
+        ('WIDOWED', 'Widowed'),
     ]
 
 EMPLOYMET_STATUS = [
@@ -47,37 +50,13 @@ EMPLOYMET_STATUS = [
         ('Retired', 'RETIRED'),
     ]
 
-class Doctor(models.Model):
-    title = models.CharField(max_length=6, default='Dr')
-    first_name = models.CharField(max_length=60)
-    last_name = models.CharField(max_length=60)
-    phone_number = models.CharField(max_length=20)
-    Email = models.EmailField()
-    picture = models.ImageField(upload_to='images/', null=True, height_field=None, width_field=None, max_length=None)
-    qualification = models.CharField(max_length=60)
-    gender = models.CharField(max_length=7, default='')
-    date_of_birth = models.DateField(default=datetime.now)
-    identification_id = models.CharField(max_length=30, default='',unique=True)
-    specialty = models.CharField(max_length=60)
-    parent = models.ForeignKey('self', blank=True, null=True, related_name='children', on_delete = models.CASCADE)
-    join_date = models.DateTimeField(auto_now=True)
-    created_at = models.DateTimeField(auto_now=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.first_name + " " + self.last_name
-
-    class Meta:
-        verbose_name_plural = 'Doctors'
-        ordering = ("id",)
-
 class Staff(models.Model):
     title = models.CharField(max_length=6, choices=PREFIX_CHOICES)
     first_name = models.CharField(max_length=60)
     last_name = models.CharField(max_length=60)
     date_of_birth = models.DateField(null=True)
     phone_number = models.CharField(max_length=20)
-    Email = models.EmailField()
+    staff_email = models.EmailField()
     gender = models.CharField(max_length=7)
     picture = models.ImageField(upload_to='images/', null=True, height_field=None, width_field=None, max_length=None)
     identification_id = models.CharField(max_length=30, default='',unique=True)
@@ -108,7 +87,6 @@ class HospitalsAndClinics(models.Model):
     ('Kwekwe General Hospital', 'Kwekwe General'),
     ('Avenues Clinic', 'Avenues')
     ]
-    # HOSPITAL_CHOICES = GenuineFake
 
     name = models.CharField(max_length=60, choices=HOSPITAL_CHOICES)
     parent = models.ForeignKey('self', blank=True, null=True, related_name='children', on_delete=models.CASCADE)
@@ -163,6 +141,7 @@ class BloodGroup(models.Model):
 
 class MedicalAidScheme(models.Model):
     INSURANCES = [
+        ('None', 'None'),
         ('Masca', "MASCA"),
         ('CIMAS', "CIMAS"),
         ('Liberty Health Cover', "Liberty Blue"),
@@ -193,29 +172,29 @@ class MedicalAidScheme(models.Model):
         verbose_name_plural = 'Medical AID Providers'
 
 class Patient(models.Model):
-    title = models.CharField(max_length=10, blank=True, choices=PREFIX_CHOICES)
-    first_name = models.CharField(max_length=255)
-    middle_name = models.CharField(max_length=255, default=None)
-    last_name = models.CharField(max_length=255)
+    title = models.CharField(max_length=10, blank=True, choices=PREFIX_CHOICES, null=True)
+    first_name = models.CharField(max_length=255, default=data.first_name())
+    middle_name = models.CharField(max_length=255, default=None, null=True)
+    last_name = models.CharField(max_length=255, default=data.last_name())
     gender = models.CharField(max_length=12, choices=GENDER_CHOICES)
-    date_of_birth = models.DateField()
-    home_address = models.CharField(max_length=255)
-    national_id = models.CharField(max_length=30, unique=True)
-    phone_number = models.CharField(max_length=30, unique=True)
-    email_address = models.EmailField(blank=True, unique=True)
+    date_of_birth = models.DateField(default=data.date_of_birth())
+    home_address = models.CharField(max_length=255, default= data.address())
+    national_id = models.CharField(max_length=30, unique=True, default=data.national_id())
+    phone_number = models.CharField(max_length=30, unique=True, default=data.phone_number())
+    email_address = models.EmailField(null=True, unique=True, default=data.email())
     purpose_of_visit = models.CharField(max_length=255)
-    description_of_the_condition = models.TextField(blank=True)
+    description_of_the_condition = models.TextField(null=True)
     prescription = models.CharField(max_length=255)
-    current_temperature = models.CharField(max_length=255, blank=True)
+    current_temperature = models.CharField(max_length=255, null=True)
     blood_type = models.ForeignKey('BloodGroup', related_name='blood', on_delete=models.CASCADE)
-    current_medication = models.CharField(max_length=255)
-    body_mass = models.DecimalField(max_digits=10, decimal_places=2, default=None)
-    allergies = models.CharField(max_length=255, blank=True)
+    current_medication = models.CharField(max_length=255, null=True)
+    body_mass = models.DecimalField(max_digits=10, decimal_places=2, default=None, null=True)
+    allergies = models.CharField(max_length=255, null=True, default=data.allergies())
     consulted_doctor = models.ForeignKey('Doctor', related_name="doctor", on_delete=models.CASCADE)
     hospital = models.ForeignKey('HospitalsAndClinics', related_name='hospital', on_delete=models.CASCADE)
-    employment_status = models.CharField(max_length=20, choices=EMPLOYMET_STATUS)
-    marital_status = models.CharField(max_length=20, choices=MARITAL_CHOICES)
-    consultation_fee = models.DecimalField(max_digits=10, decimal_places=2, default=None)
+    employment_status = models.CharField(max_length=20, choices=EMPLOYMET_STATUS, null=True)
+    marital_status = models.CharField(max_length=20, choices=MARITAL_CHOICES, null=True)
+    consultation_fee = models.DecimalField(max_digits=10, decimal_places=2, default=3.00, null=True)
     medical_aid_group = models.ForeignKey('MedicalAidScheme', related_name='medical_aid_user', on_delete=models.CASCADE)
     date_of_visit = models.DateField(default=datetime.now)
     User = settings.AUTH_USER_MODEL
@@ -238,6 +217,47 @@ class Patient(models.Model):
     class Meta:
         verbose_name_plural = "Patients"
         ordering = ["id"]
+
+
+class Doctor(models.Model):
+    title = models.CharField(max_length=6, default='Dr')
+    first_name = models.CharField(max_length=60)
+    last_name = models.CharField(max_length=60)
+    phone_number = models.CharField(max_length=20)
+    doctor_email = models.EmailField()
+    picture = models.ImageField(upload_to='images/',
+                                null=True,
+                                height_field=None,
+                                width_field=None,
+                                max_length=None)
+    qualification = models.CharField(max_length=60)
+    gender = models.CharField(max_length=7, default='')
+    date_of_birth = models.DateField(default=datetime.now)
+    identification_id = models.CharField(max_length=30,
+                                         default='',
+                                         unique=True)
+    assigned_patient = models.ManyToManyField('Patient',
+                                         related_name="patients")
+    specialty = models.CharField(max_length=60)
+    parent = models.ForeignKey('self',
+                               blank=True,
+                               null=True,
+                               related_name='children',
+                               on_delete=models.CASCADE)
+    join_date = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.first_name + " " + self.last_name
+
+    def get_absolute_url(self):
+        return reverse("Doctors:detail", kwargs={"pk": self.pk})
+
+    class Meta:
+        verbose_name_plural = 'Doctors'
+        ordering = ("id", )
+
 
 class MedicalRecords(models.Model):
     first_name = models.CharField(max_length=255)

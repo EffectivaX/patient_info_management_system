@@ -23,7 +23,7 @@
                 <p class="card-text text-dark">Position    :   {{ member.position }}</p>
                 <p class="card-text text-info">Identification    :   {{ member.identification_id }}</p>
                 <p class="card-text text-warning">Phone Number    :   {{ member.phone_number }}</p>
-                <p class="card-text text-secondary"><i>Email Address    :   {{ member.Email }}</i></p>
+                <p class="card-text text-secondary"><i>Email Address    :   {{ member.staff_email }}</i></p>
                 <p class="card-text text-danger"><small class="text-muted"><i>Last updated {{ member.updated_at }}</i></small></p>
                 <a href="/HealthNet/staff/edit_member/{{ member.id }}/" class="btn btn-info">Edit</a>
                 <a href="/HealthNet/staff/delete_member/{{ member.id }}/" class="btn btn-danger">Delete</a>

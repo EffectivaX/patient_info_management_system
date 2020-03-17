@@ -13,7 +13,7 @@ urlpatterns = [
     path('HealthNet/patients/delete_patient/<int:id>/', views.delete_patient, name='Delete'),
     # path('HealthNet/patients/DeletePatient/<int:id>/', views.PatientDelete.as_view(), name='Delete Patient'),
     path('HealthNet/patients/reports/', views.reports, name="reports"),
-    path('HealthNet/patients/statistics/', views.chart, name='Statistics'),
+    path('HealthNet/statistics/', views.chart, name='Statistics'),
     # path('HealthNet/patients/edit_patient/<int:id>/', views.PatientFormUpdate.as_view(), name='Update Patient'),
 
     # Contact Page url
@@ -21,14 +21,15 @@ urlpatterns = [
     path('HealthNet/messages/', views.read_messages, name="Read Messages"),
 
     # Staff Members urls
-    path('HealthNet/doctors/all/', views.all_doctors, name='Medical Staff'),
-    path('HealthNet/doctors/add_doctor/', views.add_doctor, name='Add Doctor'),
-    path('HealthNet/staff/new_member/', views.add_staff_member, name="Add Staff Member"),
-    path('HealthNet/staff/all_members/', views.all_members, name='All Members'),
-    path('HealthNet/doctors/update_doctor/<int:id>/', views.update_doctor, name='Edit Staff Member'),
-    path('HealthNet/staff/edit_member/<int:id>/', views.update_member, name='Edit Staff Member'),
-    path('HealthNet/staff/delete_member/<int:id>/', views.delete_staff_member, name='Delete Member'),
-    path('HealthNet/doctors/delete_doctor/<int:id>/', views.delete_doctor, name='Delete Doctor')
+    path('HealthNet/Doctors/all/', views.all_doctors, name='Medical Staff'),
+    path('HealthNet/Doctors/add_doctor/', views.add_doctor, name='Add Doctor'),
+    path('HealthNet/Doctors/delete_doctor/<int:id>/', views.delete_doctor, name='Delete Doctor'),
+    path('HealthNet/Doctors/patients/', views.assigned_patient, name= 'Assigned Patients'),
+    path('HealthNet/Staff/new_member/', views.add_staff_member, name="Add Staff Member"),
+    path('HealthNet/Staff/all_members/', views.all_members, name='All Members'),
+    path('HealthNet/Doctors/update_doctor/<int:id>/', views.update_doctor, name='Edit Staff Member'),
+    path('HealthNet/Staff/edit_member/<int:id>/', views.update_member, name='Edit Staff Member'),
+    path('HealthNet/Staff/delete_member/<int:id>/', views.delete_staff_member, name='Delete Member')
 ]
 
 # urlpatterns += staticfiles_urlpatterns()

@@ -421,7 +421,7 @@ def update_doctor(request, id):
 @login_required
 def assigned_patient(request, id):
     template_name = 'view_patients.html'
-    patients = get_object_or_404(Patient, id=id)
+    patients = Patient.objects.get(id=1)
     paginator = Paginator(patients, 50)
     if request.method == 'GET':
         try:

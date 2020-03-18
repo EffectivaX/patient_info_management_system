@@ -27,7 +27,7 @@
                     <p class="card-text text-danger"><small class="text-muted"><i>Last updated {{ doctor.updated_at }}</i></small></p>
                     <a href="/HealthNet/Doctors/update_doctor/{{ doctor.id }}" class="btn btn-info"><i class="glyphicon-pencil"></i>Edit</a>
                     <a href="/HealthNet/Doctors/delete_doctor/{{ doctor.id }}" class="btn btn-danger">Delete</a>
-                    <a href="/HealthNet/Doctors/patients/{{ patient.consulted_doctor_id }}" class="btn btn-success">View Patients</a>
+                    <a href="/HealthNet/Doctors/patients/{{ patient.consulted_doctor }}" class="btn btn-warning">View Patients</a>
                 </div>
             </div>
         </div>

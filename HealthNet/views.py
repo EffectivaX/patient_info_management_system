@@ -117,8 +117,10 @@ def view_all(request):
 
     return render(request, 'HealthNet/view_patients.html', context)
 
+
 # A function to to view details of any patient selected, they're selected using the unique id
-@login_required('HealthNet.see_patient')
+#('HealthNet.see_patient')
+@login_required
 def patient_info(request, id):
     template_name = 'detail_patient.html'
     patient = Patient.objects.get(id=id)

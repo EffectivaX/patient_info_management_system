@@ -118,7 +118,7 @@ def view_all(request):
     return render(request, 'HealthNet/view_patients.html', context)
 
 # A function to to view details of any patient selected, they're selected using the unique id
-@permission_required('HealthNet.see_patient')
+@login_required('HealthNet.see_patient')
 def patient_info(request, id):
     template_name = 'detail_patient.html'
     patient = Patient.objects.get(id=id)
@@ -136,13 +136,13 @@ def patient_info(request, id):
 # This is a function for editing a patient's Information
 
 @login_required
-def edit_patient(request, pk=None):
+def edit_patient(request, pk):
     patient = get_object_or_404(Patient, pk=pk)
     if request.method == "POST":
-        form = PatientForm(request.POST, instance=patient)
+        form = PatientForm(request, instance=patient)
         if form.is_valid():
-            patient = form.save(commit=False)
             patient.user = request.user
+            patient = form.save(commit=False)
             patient.save()
             messages.success(request, 'Patient updated successfully!', extra_tags='alert')
             return redirect('HealthNet:view_all')
@@ -163,10 +163,9 @@ def edit_patient(request, pk=None):
 # This is a delete function
 @login_required
 def delete_patient(request, id=None):
-    if request.method == 'GET' and 'DELETE' in request.GET:
+    if request.method == "GET" and "DELETE" in request.GET:
         Patient.objects.filter(pk=id).delete()
         return HttpResponseRedirect(request.path)
-
     else:
         form = Patient()
     context = {
@@ -367,15 +366,15 @@ def add_doctor(request):
 @login_required
 def all_doctors(request):
     template = 'staff.html'
-    staff = Doctor.objects.all()
-    paginator = Paginator(staff, 20)
+    doctor = Doctor.objects.all()
+    paginator = Paginator(doctor, 20)
     if request.method == 'GET':
         page = request.GET.get('page')
-    staff = paginator.get_page(page)
+    doctor = paginator.get_page(page)
 
     context = {
         'title': 'All Doctors',
-        'staff': staff,
+        'doctor': doctor,
         'project_name' : 'ProMed HealthNet Inc',
         'creator' : 'Andile XeroxZen',
         'purpose' : 'Patient Information Management System'

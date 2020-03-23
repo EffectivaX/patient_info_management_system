@@ -120,7 +120,7 @@ DATABASES = {
     'default': {
         'NAME': 'promedical',
         'ENGINE': 'django.db.backends.postgresql',
-        'USER': 'postgres',
+        'USER': 'xeroxzen',
         'PASSWORD': '2020',
         'HOST': 'localhost',
         'PORT': ''

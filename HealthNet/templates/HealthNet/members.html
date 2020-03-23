@@ -8,9 +8,9 @@
         <a href="/HealthNet/staff/new_member/" style='float: right;' class="btn btn-success btn-md">Add New Member</a>
     </div>
 {% for member in members %}
-<div class="card card-accent-success mb-3" style="max-width: 800px;">
+<div class="card card-accent-success mb-4" style="max-width: 800px;">
     <div class="card-header">
-        <h5 class="card-title text-info">{{ member.title }} {{ member.first_name }} {{ member.last_name }}</h5>
+        <h5 class="card-title text-danger">{{ member.title }} {{ member.first_name }} {{ member.last_name }}</h5>
     </div>
     <div class="row no-gutters">
         <div class="col-md-4">

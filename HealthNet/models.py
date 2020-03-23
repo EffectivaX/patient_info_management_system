@@ -171,6 +171,47 @@ class MedicalAidScheme(models.Model):
     class Meta:
         verbose_name_plural = 'Medical AID Providers'
 
+class Doctor(models.Model):
+    title = models.CharField(max_length=6, default='Dr')
+    first_name = models.CharField(max_length=60)
+    last_name = models.CharField(max_length=60)
+    phone_number = models.CharField(max_length=20)
+    doctor_email = models.EmailField()
+    picture = models.ImageField(upload_to='images/',
+                                null=True,
+                                height_field=None,
+                                width_field=None,
+                                max_length=None)
+    qualification = models.CharField(max_length=60)
+    gender = models.CharField(max_length=7, default='')
+    date_of_birth = models.DateField(default=datetime.now)
+    identification_id = models.CharField(max_length=30,
+                                         default='',
+                                         unique=True)
+    patients = models.ForeignKey('Patient',
+                                         related_name="patients",
+                                         on_delete=models.PROTECT,
+                                         null=True)
+    specialty = models.CharField(max_length=60)
+    # parent = models.ForeignKey('self',
+    #                            blank=True,
+    #                            null=True,
+    #                            related_name='children',
+    #                            on_delete=models.CASCADE)
+    join_date = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.first_name + " " + self.last_name
+
+    def get_absolute_url(self):
+        return reverse("Doctors:detail", kwargs={"pk": self.pk})
+
+    class Meta:
+        verbose_name_plural = 'Doctors'
+        ordering = ("id", )
+
 class Patient(models.Model):
     title = models.CharField(max_length=10, blank=True, choices=PREFIX_CHOICES, null=True)
     first_name = models.CharField(max_length=255, default=data.first_name())
@@ -217,47 +258,6 @@ class Patient(models.Model):
     class Meta:
         verbose_name_plural = "Patients"
         ordering = ["id"]
-
-
-class Doctor(models.Model):
-    title = models.CharField(max_length=6, default='Dr')
-    first_name = models.CharField(max_length=60)
-    last_name = models.CharField(max_length=60)
-    phone_number = models.CharField(max_length=20)
-    doctor_email = models.EmailField()
-    picture = models.ImageField(upload_to='images/',
-                                null=True,
-                                height_field=None,
-                                width_field=None,
-                                max_length=None)
-    qualification = models.CharField(max_length=60)
-    gender = models.CharField(max_length=7, default='')
-    date_of_birth = models.DateField(default=datetime.now)
-    identification_id = models.CharField(max_length=30,
-                                         default='',
-                                         unique=True)
-    assigned_patient = models.ManyToManyField('Patient',
-                                         related_name="patients")
-    specialty = models.CharField(max_length=60)
-    parent = models.ForeignKey('self',
-                               blank=True,
-                               null=True,
-                               related_name='children',
-                               on_delete=models.CASCADE)
-    join_date = models.DateTimeField(auto_now=True)
-    created_at = models.DateTimeField(auto_now=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.first_name + " " + self.last_name
-
-    def get_absolute_url(self):
-        return reverse("Doctors:detail", kwargs={"pk": self.pk})
-
-    class Meta:
-        verbose_name_plural = 'Doctors'
-        ordering = ("id", )
-
 
 class MedicalRecords(models.Model):
     first_name = models.CharField(max_length=255)

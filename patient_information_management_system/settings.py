@@ -22,7 +22,6 @@ MESSAGE_TAGS = {
     messages.ERROR: 'alert-danger',
 }
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -34,6 +33,12 @@ SECRET_KEY = 'll!iuz+fn%79)jjfzk^ot%d)uc_4*ste-gnc)xl)qe9acj0(09'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+# SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+X_FRAME_OPTIONS = 'DENY'
 
 ALLOWED_HOSTS = [".herokuapp.com"]
 
@@ -58,7 +63,6 @@ INSTALLED_APPS = [
 
     # 3rd Party Apps
     'crispy_forms',
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -116,7 +120,6 @@ DATABASES = {
     #     'HOST': 'localhost',
     #     'PORT': ''
     # },
-
     'default': {
         'NAME': 'promedical',
         'ENGINE': 'django.db.backends.postgresql',
@@ -148,7 +151,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/

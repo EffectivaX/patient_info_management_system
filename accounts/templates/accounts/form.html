@@ -4,16 +4,16 @@
 {% block content %}
 
     <div class="row">
-        {% comment %} <div class="simpleslide100-item bg-img1" style="background-image: url({% static 'images/photos-1.jpg' %});"></div> {% endcomment %}
         <div class="col-sm-3 offset-sm-4">
-            <div class='card text-white bg-secondary'  style='width:23rem'>
+            <div class='card text-info bg-secondary'  style='width:23rem'>
                 <div class='card-body'>
             <h5 class='card-header'>{{title}}</h5>
             <form method="POST" action="."> {% csrf_token %}
 
                 {{ form|crispy }}
-                    <button type="submit" class="btn btn-primary btn-large mb-3">{{ button }}</button>
-                    <p style="color: #1099f3;">{{ page_text }} <a href="{{ alt_page }}" style="color: #f70611;">{{ button_option }}</a></p>
+                    <button type="submit" class="btn btn-primary btn-large">{{ button }}</button>
+
+                    <p style="color: #1099f3;" class="text-center">{{ page_text }} <a href="{{ alt_page }}" style="color: #f70611;">{{ button_option }}</a></p>
             </form>
                 </div>
             </div>

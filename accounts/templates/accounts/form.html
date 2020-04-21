@@ -1,16 +1,22 @@
+{% extends "accounts/base.html" %}
 {% load staticfiles %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="row" style="padding-top:120px;">
-        <div class="simpleslide100-item bg-img1" style="background-image: url({% static 'images/photos-1.jpg' %});"></div>
+
+    <div class="row">
+        {% comment %} <div class="simpleslide100-item bg-img1" style="background-image: url({% static 'images/photos-1.jpg' %});"></div> {% endcomment %}
         <div class="col-sm-3 offset-sm-4">
-            <h5 style="color:#1bb6d1;">{{ title }}</h5>
+            <div class='card text-white bg-secondary'  style='width:23rem'>
+                <div class='card-body'>
+            <h5 class='card-header'>{{title}}</h5>
             <form method="POST" action="."> {% csrf_token %}
 
                 {{ form|crispy }}
                     <p style="color: #1099f3;">{{ page_text }} <a href="{{ alt_page }}" style="color: #f70611;">{{ button_option }}</a></p>
                 <button type="submit" class="btn btn-primary mb-2">{{ button }}</button>
             </form>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

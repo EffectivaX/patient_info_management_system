@@ -34,10 +34,10 @@ SECRET_KEY = 'll!iuz+fn%79)jjfzk^ot%d)uc_4*ste-gnc)xl)qe9acj0(09'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
-SECURE_BROWSER_XSS_FILTER = True
+# SECURE_BROWSER_XSS_FILTER = True
 # SECURE_SSL_REDIRECT = False
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
 X_FRAME_OPTIONS = 'DENY'
 
 ALLOWED_HOSTS = [".herokuapp.com"]

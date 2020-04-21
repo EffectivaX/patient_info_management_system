@@ -6,6 +6,8 @@
   <head>
       {% load static %}
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type='text/javascript' src="{% static 'js/loader.js' %}"></script>
+    <script type='text/javascript' src="{% static 'js/Chart.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/chart.css' %}">
     <script type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
@@ -22,6 +24,13 @@
           ['Diabetes', 2],
           ['STI Infection', 5],
           ['Pregnant Women', 8],
+          ['Car Accidents', 5],
+          ['Allergic Reactions', 3],
+          ['Dog bites', 3],
+          ['Snake bites', 2],
+          ['Fractures', 2],
+          ['Epilepsy', 1],
+          ['Penumonia', 3]
         ]);
         var options = {
           title: 'Patient Visit Report',

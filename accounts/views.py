@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth import login, get_user_model, logout
 
+# PasswordResetView,PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
+
 from django.http import HttpResponseRedirect
 
 from .forms import UserCreationForm, UserLoginForm
@@ -37,7 +39,6 @@ def login_view(request, *args, **kwargs):
     }
 
     return render(request, 'accounts/login.html', context)
-
 
 def logout_view(request):
     logout(request)

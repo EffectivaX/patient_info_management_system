@@ -16,6 +16,7 @@ from .forms import PatientForm, ContactForm, DoctorForm, StaffForm, ContactModel
 # from django.views.generic.edit import UpdateView
 from django.urls import reverse_lazy
 import requests
+from django.views.generic.edit import UpdateView
 # from requests import request
 
 # requests.session.set_expiry(request.session.get_expiry_age())
@@ -284,11 +285,16 @@ def update_member(request, id=None):
 
     return render(request, 'HealthNet/form.html', context)
 
+# class StaffMemberUpdate(UpdateView):
+#     model = Staff
+#     fields = ['title', 'first_name', 'last_name', 'date_of_birth', 'phone_number', 'staff_email', 'gender', 'pictire', 'position']
+#     template_name_suffix = '_update_form'
+
 # Function to delete a staff member
 @login_required
 def delete_staff_member(request, id=None):
     item = get_object_or_404(Staff, id=id)
-
+    
     if request.method == 'POST':
         form = StaffForm(request.POST, instance = item)
         if form.is_valid():

@@ -30,6 +30,7 @@ urlpatterns = [
     path('HealthNet/Staff/all_members/', views.all_members, name='All Members'),
     path('HealthNet/Doctors/update_doctor/<int:id>/', views.update_doctor, name='Edit Staff Member'),
     path('HealthNet/Staff/edit_member/<int:id>/', views.update_member, name='Edit Staff Member'),
+    # path('HealthNet/Staff/StaffMemberUpdate/<int:id>', views.StaffMemberUpdate, name='Edit Staff'),
     path('HealthNet/Staff/delete_member/<int:id>/', views.delete_staff_member, name='Delete Member')
 ]
 

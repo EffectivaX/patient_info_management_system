@@ -191,7 +191,8 @@ class Doctor(models.Model):
     patients = models.ForeignKey('Patient',
                                          related_name="patients",
                                          on_delete=models.PROTECT,
-                                         null=True)
+                                         null=True,
+                                         blank=True)
     specialty = models.CharField(max_length=60)
     # parent = models.ForeignKey('self',
     #                            blank=True,

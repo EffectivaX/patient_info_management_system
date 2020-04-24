@@ -246,7 +246,7 @@ def add_staff_member(request):
 
             staff_member.save()
             messages.success(request, 'Staff Member added successfully!', extra_tags='alert')
-            return HttpResponseRedirect('/HealthNet/staff/all_members/')
+            return HttpResponseRedirect('/HealthNet/Staff/all_members/')
         else:
             messages.warning(request, 'Staff Member failed to update!', extra_tags='alert')
     else:
@@ -263,8 +263,9 @@ def add_staff_member(request):
 
 # Function to edit or update a staff members
 @login_required
-def update_member(request, pk=None):
-    member = get_object_or_404(Staff, pk=pk)
+def update_member(request, id=None):
+    member = get_object_or_404(Staff, id=id)
+    form = StaffForm(request.GET)
     if request.method == "POST":
         form = StaffForm(request.POST, instance=member)
         if form.is_valid():
@@ -322,7 +323,7 @@ def all_members(request):
         'purpose' : 'Patient Information Management System'
         }
 
-    return render(request, template, context)
+    return render(request, 'HealthNet/members.html', context)
 
 # Function to add doctors
 @login_required
@@ -350,7 +351,7 @@ def add_doctor(request):
 
             doctor.save()
             messages.success(request, 'Doctor added successfully!', extra_tags='alert')
-            return redirect('/HealthNet/doctors/all/')
+            return redirect('/HealthNet/Doctors/all/')
         else:
             messages.warning(request, 'Doctor could not be added!', extra_tags='alert')
     else:

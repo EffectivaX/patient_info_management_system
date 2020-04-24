@@ -20,11 +20,12 @@ urlpatterns = [
     path('HealthNet/GetInTouch/', views.contact_form, name='Contact'),
     path('HealthNet/messages/', views.read_messages, name="Read Messages"),
 
-    # Staff Members urls
+    # Doctor urls
     path('HealthNet/Doctors/all/', views.all_doctors, name='Medical Staff'),
     path('HealthNet/Doctors/add_doctor/', views.add_doctor, name='Add Doctor'),
     path('HealthNet/Doctors/delete_doctor/<int:id>/', views.delete_doctor, name='Delete Doctor'),
     path('HealthNet/Doctors/patients/<int:id>/', views.assigned_patient, name= 'Assigned Patients'),
+    # Staff Members
     path('HealthNet/Staff/new_member/', views.add_staff_member, name="Add Staff Member"),
     path('HealthNet/Staff/all_members/', views.all_members, name='All Members'),
     path('HealthNet/Doctors/update_doctor/<int:id>/', views.update_doctor, name='Edit Staff Member'),

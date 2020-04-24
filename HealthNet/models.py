@@ -258,7 +258,7 @@ class Patient(models.Model):
 
     class Meta:
         verbose_name_plural = "Patients"
-        ordering = ["id"]
+        ordering = ["-id"]
 
 class MedicalRecords(models.Model):
     first_name = models.CharField(max_length=255)

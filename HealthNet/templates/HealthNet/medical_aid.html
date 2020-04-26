@@ -2,18 +2,25 @@
 
 {% block content %}
 
-<div class="card">
-    <div class="card-title">
+<h4 class="card-title">
         Medical AID Group
-    </div>
-    <div class="card-body">
-        <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-        </ul>
-    </div>
-
-</div>
-
+    </h4>
+    <table class="table table-striped table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Counter</th>
+                <th scope="col">Name</th>
+                <th scope="col">Associated Patients</th>
+            </tr>
+        </thead>
+        {% for scheme in schemes %}
+        <tbody>
+            <tr>
+              <th scope="row">{{forloop.counter}}</th>
+              <td>{{scheme.name}}</td>
+              <td>{{scheme.slug}}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
 {% endblock content %}

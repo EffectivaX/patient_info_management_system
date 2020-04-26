@@ -472,7 +472,7 @@ def contact(request):
     return render(request, 'HealthNet/form.html', context)
 
 @login_required
-def medical_aid_group(request):
+def medical_aid_groups(request):
     template_name='medical_aid.html'
     medical_aid_groups = MedicalAidScheme.objects.all()
     paginator=Paginator(medical_aid_groups, 50)
@@ -488,7 +488,7 @@ def medical_aid_group(request):
         'schemes':medical_aid_groups
     }
 
-    return render(request, '/HealthNet/medical_aid.html', context)
+    return render(request, 'HealthNet/medical_aid.html', context)
 
 def contact_form(request):
     if request.method == 'POST':

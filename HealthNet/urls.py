@@ -31,7 +31,11 @@ urlpatterns = [
     path('HealthNet/Doctors/update_doctor/<int:id>/', views.update_doctor, name='Edit Staff Member'),
     path('HealthNet/Staff/edit_member/<int:id>/', views.update_member, name='Edit Staff Member'),
     # path('HealthNet/Staff/StaffMemberUpdate/<int:id>', views.StaffMemberUpdate, name='Edit Staff'),
-    path('HealthNet/Staff/delete_member/<int:id>/', views.delete_staff_member, name='Delete Member')
+    path('HealthNet/Staff/delete_member/<int:id>/', views.delete_staff_member, name='Delete Member'),
+
+    # Dynamic Routing
+    path('HealthNet/medical_aid/all/', views.medical_aid_group, name="Medical AID Groups")
+
 ]
 
 # urlpatterns += staticfiles_urlpatterns()

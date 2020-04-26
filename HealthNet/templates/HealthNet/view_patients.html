@@ -6,9 +6,10 @@
 	<table class="table table-striped table-dark">
 	  <thead>
 	    <tr>
-	      <th scope="col">#</th>
+	      <th scope="col">Counter</th>
 	      <th scope="col">Full Name</th>
-	      <th scope="col">Phone #</th>
+		  <th scope="col">Purpose of Visit</th>
+	      <th scope="col">Phone Number</th>
 	      <th scope="col">Date of Visit</th>
 		  <th scope='col'>Action</th>
 	    </tr>
@@ -18,6 +19,7 @@
 	    <tr>
 	      <th scope="row">{{ forloop.counter }}</th>
 	      <td>{{ patient.first_name }} {{ patient.last_name }}</td>
+		  <td>{{ patient.purpose_of_visit }}</td>
 	      <td>{{ patient.phone_number }}</td>
 		  <td>{{ patient.date_of_visit }}</td>
 		  <td><a href="/HealthNet/patients/patient_info/{{ patient.id }}" class="btn btn-success btn-sm">View</a></td>

@@ -11,7 +11,7 @@ from django.contrib import messages
 from django.views.generic import TemplateView, ListView
 from django.urls import reverse_lazy, reverse
 from django.views.generic.edit import FormView
-from .models import Patient, Doctor, Staff, Contact
+from .models import Patient, Doctor, Staff, Contact, MedicalAidScheme, BloodGroup
 from .forms import PatientForm, ContactForm, DoctorForm, StaffForm, ContactModelForm
 # from django.views.generic.edit import UpdateView
 from django.urls import reverse_lazy
@@ -109,7 +109,7 @@ def view_all(request):
     patients = paginator.get_page(page)
 
     context = {
-        'title': 'All Patients',
+        'title': 'Patients List',
         'patients': patients,
         'project_name' : 'ProMed HealthNet Inc',
         'creator' : 'Andile XeroxZen',
@@ -294,7 +294,7 @@ def update_member(request, id=None):
 @login_required
 def delete_staff_member(request, id=None):
     item = get_object_or_404(Staff, id=id)
-    
+
     if request.method == 'POST':
         form = StaffForm(request.POST, instance = item)
         if form.is_valid():
@@ -470,6 +470,25 @@ def contact(request):
         'title' : 'Contact Us'
     }
     return render(request, 'HealthNet/form.html', context)
+
+@login_required
+def medical_aid_group(request):
+    template_name='medical_aid.html'
+    medical_aid_groups = MedicalAidScheme.objects.all()
+    paginator=Paginator(medical_aid_groups, 50)
+    if request.method== 'GET':
+        try:
+            page=request.GET.get('page')
+        except Exception:
+            return HttpResponseRedirect('/HealthNet/')
+    medical_aid_groups=paginator.get_page('page')
+
+    context={
+        'title':'Medical AID Groups',
+        'schemes':medical_aid_groups
+    }
+
+    return render(request, '/HealthNet/medical_aid.html', context)
 
 def contact_form(request):
     if request.method == 'POST':

@@ -1,11 +1,11 @@
 {% extends "accounts/base.html" %}
-{% load staticfiles %}
+{% load static %}
 {% load crispy_forms_tags %}
-{% block content %}
 
+{% block content %}
     <div class="row">
         <div class="col-sm-3 offset-sm-4">
-            <div class='card text-info bg-secondary'  style='width:23rem'>
+            <div class='card text-info bg-secondary' style='width:26rem'>
                 <div class='card-body'>
             <h5 class='card-header'>{{title}}</h5>
             <form method="POST" action="."> {% csrf_token %}

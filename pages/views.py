@@ -22,7 +22,7 @@ def homepage(request):
 
     context = {
         'title': 'HealthNet Dashboard',
-        'project_name' : 'ProMedical HealthNet Inc',
+        'project_name' : 'ProHealthnet',
         'creator' : 'Andile XeroxZen'
     }
 

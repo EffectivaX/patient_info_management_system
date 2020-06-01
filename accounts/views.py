@@ -14,7 +14,7 @@ def register(request, *args, **kwargs):
         return HttpResponseRedirect('/login')
     context = {
         'form': form,
-        'title' : 'CyberTech ProMed Register',
+        'title' : 'ProHealthnet Register',
         'button' : 'Register',
         'alt_page' : '/login/',
         'page_text' : 'Already Registered?',
@@ -31,7 +31,7 @@ def login_view(request, *args, **kwargs):
         return HttpResponseRedirect('/HealthNet/')
     context = {
         'form': form,
-        'title' : 'CyberTech ProMed Login',
+        'title' : 'ProHealthnet Login',
         'button' : 'Login',
         'alt_page' : '/register/',
         'page_text' : 'Not Registered Yet?',

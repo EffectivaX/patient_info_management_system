@@ -25,7 +25,7 @@ from django.views.generic.edit import UpdateView
 def index(request):
     context = {
         'title': 'HealthNet Dashboard',
-        'project_name' : 'ProMed HealthNet Inc',
+        'project_name' : 'ProHealthnet',
         'creator' : 'Andile XeroxZen',
         'purpose' : 'Patient Information Management System'
     }
@@ -83,7 +83,7 @@ def patient_form(request):
         'form': form,
         'button' : 'Add Patient',
         'title': "Add New Patient",
-        'project_name' : 'ProMed HealthNet Inc',
+        'project_name' : 'ProHealthnet',
         'creator' : 'Andile XeroxZen',
         'purpose' : 'Patient Information Management System'
     }
@@ -111,7 +111,7 @@ def view_all(request):
     context = {
         'title': 'Patients List',
         'patients': patients,
-        'project_name' : 'ProMed HealthNet Inc',
+        'project_name' : 'ProHealthnet',
         'creator' : 'Andile XeroxZen',
         'purpose' : 'Patient Information Management System'
         }
@@ -129,7 +129,7 @@ def patient_info(request, id):
     context = {
         'title': 'Medical Information',
         'patient': patient,
-        'project_name' : 'ProMed HealthNet Inc',
+        'project_name' : 'ProHealthnet',
         'creator' : 'Andile XeroxZen',
         'purpose' : 'Patient Information Management System'
     }
@@ -155,7 +155,7 @@ def edit_patient(request, pk):
     context = {
         'title': 'Updating Information',
         'form': form,
-        'project_name' : 'ProMed HealthNet Inc',
+        'project_name' : 'ProHealthnet',
         'button' : 'Update',
         'creator' : 'Andile XeroxZen',
         'purpose' : 'Patient Information Management System'
@@ -193,7 +193,7 @@ def reports(request):
     context = {
         'title' : 'Reports',
         'reports' : reports,
-        'project_name' : 'ProMed HealthNet Inc',
+        'project_name' : 'ProHealthnet',
         'creator' : 'Andile XeroxZen',
         'purpose' : 'Patient Information Management System'
     }
@@ -216,7 +216,7 @@ def chart(request):
     context = {
         'title' : 'Reports',
         # 'reports' : reports,
-        'project_name' : 'ProMed HealthNet Inc',
+        'project_name' : 'ProHealthnet',
         'creator' : 'Andile XeroxZen',
         'purpose' : 'Patient Information Management System'
     }
@@ -256,7 +256,7 @@ def add_staff_member(request):
     context = {
         'form' : form,
         'button' : 'Add Member',
-        'project_name' : 'ProMed HealthNet Inc',
+        'project_name' : 'ProHealthnet',
         'title' : 'Add New Staff Member'
     }
 
@@ -278,7 +278,7 @@ def update_member(request, id=None):
     context = {
         'title': 'Staff Member',
         'form': form,
-        'project_name' : 'ProMed HealthNet Inc',
+        'project_name' : 'ProHealthnet',
         'creator' : 'Andile XeroxZen',
         'purpose' : 'Patient Information Management System'
     }
@@ -324,7 +324,7 @@ def all_members(request):
     context = {
         'title': 'Staff Members',
         'members': members,
-        'project_name' : 'ProMed HealthNet Inc',
+        'project_name' : 'ProHealthnet',
         'creator' : 'Andile XeroxZen',
         'purpose' : 'Patient Information Management System'
         }
@@ -366,7 +366,7 @@ def add_doctor(request):
     context = {
         'form' : form,
         'button' : 'Submit Doctor',
-        'project_name' : 'ProMed HealthNet Inc',
+        'project_name' : 'ProHealthnet',
         'title' : 'Add New Doctor'
     }
 
@@ -384,7 +384,7 @@ def all_doctors(request):
     context = {
         'title': 'All Doctors',
         'doctor': doctor,
-        'project_name' : 'ProMed HealthNet Inc',
+        'project_name' : 'ProHealthnet',
         'creator' : 'Andile XeroxZen',
         'purpose' : 'Patient Information Management System'
         }
@@ -419,7 +419,7 @@ def update_doctor(request, id):
     context = {
         'title': 'Update Doctor',
         'form': form,
-        'project_name' : 'ProMed HealthNet Inc',
+        'project_name' : 'ProHealthnet',
         'creator' : 'Andile XeroxZen',
         'purpose' : 'Patient Information Management System'
     }
@@ -441,7 +441,7 @@ def assigned_patient(request, id):
     context = {
         'title': 'Doctor Patients',
         'patients': patients,
-        'project_name': 'ProMed HealthNet Inc',
+        'project_name': 'ProHealthnet',
         'creator': 'Andile XeroxZen',
         'purpose': 'Patient Information Management System'
     }
@@ -466,7 +466,7 @@ def contact(request):
     context = {
         'form' : form,
         'button' : 'Send Message',
-        'project_name' : 'ProMed HealthNet Inc',
+        'project_name' : 'ProHealthnet',
         'title' : 'Contact Us'
     }
     return render(request, 'HealthNet/form.html', context)
@@ -505,7 +505,7 @@ def contact_form(request):
     context = {
         'form' : form,
         'button' : 'Send Message',
-        'project_name' : 'ProMed HealthNet Inc',
+        'project_name' : 'ProHealthnet',
         'title' : 'Contact Us'
     }
     return render(request, 'HealthNet/contact_form.html', context)
@@ -520,7 +520,7 @@ def read_messages(request):
     context = {
         'title': 'All Messages',
         'msgs': msgs,
-        'project_name' : 'ProMed HealthNet Inc',
+        'project_name' : 'ProHealthnet',
         'creator' : 'Andile XeroxZen',
         'purpose' : 'Patient Information Management System'
         }

@@ -10,7 +10,8 @@
             <tr>
                 <th scope="col">Counter</th>
                 <th scope="col">Name</th>
-                <th scope="col">Associated Patients</th>
+                <th scope="col">Slug</th>
+                <th scope="col">Total Patients</th>
             </tr>
         </thead>
         {% for scheme in schemes %}
@@ -19,6 +20,7 @@
               <th scope="row">{{forloop.counter}}</th>
               <td>{{scheme.name}}</td>
               <td>{{scheme.slug}}</td>
+              <td>{{scheme.id.patients}}</td>
             </tr>
         </tbody>
         {% endfor %}

@@ -141,7 +141,6 @@ class BloodGroup(models.Model):
 
 class MedicalAidScheme(models.Model):
     INSURANCES = [
-        ('None', 'None'),
         ('Masca', "MASCA"),
         ('CIMAS', "CIMAS"),
         ('Liberty Health Cover', "Liberty Blue"),

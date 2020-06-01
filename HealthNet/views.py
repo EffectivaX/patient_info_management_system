@@ -485,6 +485,7 @@ def medical_aid_groups(request):
 
     context={
         'title':'Medical AID Groups',
+        'project_name' : 'ProHealthnet',
         'schemes':medical_aid_groups
     }
 

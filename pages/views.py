@@ -49,7 +49,7 @@ def request_updates(request):
     context = {
         'form' : form,
         # 'button' : 'Add Member',
-        # 'project_name' : 'ProMed HealthNet Inc',
+        # 'project_name' : 'ProHealthnet'
         # 'title' : 'Add New Staff Member'
     }
 

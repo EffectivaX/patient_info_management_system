@@ -236,7 +236,7 @@ class Patient(models.Model):
     employment_status = models.CharField(max_length=20, choices=EMPLOYMET_STATUS, null=True)
     marital_status = models.CharField(max_length=20, choices=MARITAL_CHOICES, null=True)
     consultation_fee = models.DecimalField(max_digits=10, decimal_places=2, default=3.00, null=True)
-    medical_aid_group = models.ForeignKey('MedicalAidScheme', related_name='medical_aid_user', on_delete=models.CASCADE)
+    medical_aid_group = models.ForeignKey('MedicalAidScheme', related_name='medical_aid_user', on_delete=models.CASCADE, null=True, blank=True)
     date_of_visit = models.DateField(default=datetime.now)
     User = settings.AUTH_USER_MODEL
     user = models.ForeignKey(User, null=True, on_delete=models.PROTECT)
